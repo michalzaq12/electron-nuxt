@@ -1,0 +1,20 @@
+{
+  "name": "electron-nuxt",
+  "version": "1.0.0",
+  "description": "An Electron & Nuxt.js quick start boilerplate with vue-cli support",
+  "main": "meta.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michalzaq12/electron-nuxt.git"
+  },
+  "keywords": [],
+  "author": "“Michał <“michal.m.zarach@gmail.com”>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michalzaq12/electron-nuxt/issues"
+  },
+  "homepage": "https://github.com/michalzaq12/electron-nuxt#readme"
+}

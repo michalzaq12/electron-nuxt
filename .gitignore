@@ -1,0 +1,9 @@
+.idea
+_book
+thumbs.db
+.DS_Store
+node_modules
+tests/builds/*
+npm-debug.log
+npm-debug.*.log
+!.gitkeep
