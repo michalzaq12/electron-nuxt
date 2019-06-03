@@ -12,4 +12,7 @@ matrix:
       env: TEST_SUITE=buefy
 
 
+before_script:
+  -  npm install -g vue-cli
+
 script: bash ./tests/init.sh $TEST_SUITE
