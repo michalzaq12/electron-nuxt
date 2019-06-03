@@ -31,11 +31,26 @@ module.exports = {
             message: 'Use Sass / Scss?',
             required: true
         },
-        plugins: {
-            type: 'checkbox',
-            message: 'Select which Vue plugins to install',
-            choices: ['axios', 'vue-electron', 'vue-router', 'vuex', 'vuex-electron'],
-            default: ['axios', 'vue-electron', 'vue-router', 'vuex', 'vuex-electron']
+        cssFramework: {
+            type: 'list',
+            message: 'Select which css framework install',
+            choices: [
+                {
+                    name: 'none (configure it yourself)',
+                    value: 'none',
+                    short: 'none'
+                },
+                {
+                    name: 'Vuetify (https://github.com/vuetifyjs/vuetify)',
+                    value: 'vuetify',
+                    short: 'Vuetify'
+                },
+                {
+                    name: 'Buefy (https://github.com/buefy/buefy)',
+                    value: 'buefy',
+                    short: 'Buefy'
+                }
+            ]
         },
         eslint: {
             type: 'confirm',

@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '10'
+
+matrix:
+  include:
+    - name: "Default template"
+      env: TEST_SUITE=default
+    - name: "Vuetify template"
+      env: TEST_SUITE=vuetify
+    - name: "Buefy template"
+      env: TEST_SUITE=buefy
+
+
+script: bash ./tests/init.sh $TEST_SUITE
