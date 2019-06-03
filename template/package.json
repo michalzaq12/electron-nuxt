@@ -1,0 +1,75 @@
+{
+  "name": "electron-nuxt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/dev-runner.js",
+    "recompile": "./node_modules/.bin/electron-rebuild.cmd",
+    "build": "npx nuxt generate --config-file=\"./.electron-nuxt/nuxt.config.js\"",
+    "build2": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/dev-runner.js && npx electron-builder\""
+  },
+  "keywords": [],
+  "author": "“Michał <“michal.m.zarach@gmail.com”>",
+  "license": "ISC",
+  "build": {
+    "asar": true,
+    "productName": "My browser",
+    "appId": "org.michalzarach.my-browser",
+    "publish": {
+      "provider": "github",
+      "private": true
+    },
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/electron/**/*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "icon": "build/icons/win-icon.ico",
+      "publisherName": "michal"
+    },
+    "linux": {
+      "icon": "build/icons"
+    },
+    "nsis": {
+      "differentialPackage": true,
+      "artifactName": "my-browser-${version}.${ext}"
+    }
+  },
+  "devDependencies": {
+    "chalk": "^2.4.2",
+    "cross-env": "^5.2.0",
+    "del": "^4.0.0",
+    "electron": "^4.0.7",
+    "electron-debug": "^2.1.0",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-packager": "^13.1.1",
+    "electron-rebuild": "^1.8.4",
+    "ora": "^3.2.0",
+    "ps-tree": "^1.2.0",
+    "webpack": "^4.29.2"
+  },
+  "dependencies": {
+    "nuxt": "^2.4.5"
+  }
+}
