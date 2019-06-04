@@ -8,13 +8,19 @@ let whiteListedModules = ['nuxt']
 module.exports = {
     srcDir: path.join(__dirname, '..', 'src', 'renderer'),
     rootDir: path.join(__dirname, '..'),
-    mode: process.env.NODE_ENV === 'development' ? 'spa' : 'universal',
+    mode: 'spa',
     head: {title: 'Electron-vue'},
     loading: false,
+    router: {
+        mode: 'hash'
+    },
     dev: process.env.NODE_ENV === 'development',
     generate:{
         dir: path.join(__dirname, '..', 'dist', 'electron'),
     },
+    plugins: [
+        { ssr: false, src: path.join(__dirname, 'resources.js') }
+    ],
     build: {
         extend (config, { isDev, isClient }) {
 
@@ -29,10 +35,13 @@ module.exports = {
                 __filename: process.env.NODE_ENV !== 'production'
             };
 
-            // if (!isDev) {
-            //     // relative links, please.
-            //     config.output.publicPath = '../_nuxt/'
-            // }
+
+            if (!isDev) {
+                // absolute path to file on production
+                config.output.publicPath = '_nuxt/';
+            }
+
+            console.log(config.resolve.alias);
 
             /**
              * Adjust rendererConfig for development settings
@@ -40,7 +49,7 @@ module.exports = {
             if (process.env.NODE_ENV !== 'production') {
                 config.plugins.push(
                     new webpack.DefinePlugin({
-                        '__static': `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
+                        '__resources': JSON.stringify(path.join(__dirname, '..', 'resources'))
                     })
                 )
             }

@@ -8,6 +8,7 @@ const webpack = require('webpack')
 
 
 let mainConfig = {
+    mode: 'production',
     entry: {
         main: path.join(__dirname, '../src/main/index.js')
     },
@@ -51,7 +52,7 @@ let mainConfig = {
 if (process.env.NODE_ENV !== 'production') {
     mainConfig.plugins.push(
         new webpack.DefinePlugin({
-            '__static': `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
+            '__resources': JSON.stringify(path.join(__dirname, '..', 'resources'))
         })
     )
 }

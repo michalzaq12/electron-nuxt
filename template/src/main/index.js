@@ -1,12 +1,11 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, globalShortcut } from 'electron'
 
 
 /**
- * Set `__static` path to static files in production
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
+ * Set `__resources` path to resources files in main process
  */
 if (process.env.NODE_ENV !== 'development') {
-    global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+    global.__resources = require('path').join(__dirname, '..', 'resources')
 }
 
 let mainWindow;
@@ -37,6 +36,12 @@ function createWindow () {
     /**
      * Additional window setup
      */
+    globalShortcut.register('CommandOrControl+Shift+K', () => {
+        console.log('CommandOrControl+Shift+K')
+        mainWindow.webContents.openDevTools();
+    })
+
+    console.log(__resources);
 }
 
 
