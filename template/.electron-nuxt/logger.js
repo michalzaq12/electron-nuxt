@@ -34,6 +34,28 @@ class Logger {
                 callback();
             }
         });
+
+        this.stdout.on('end', () => {
+            console.log('END---------------')
+        })
+
+        this.stdout.on('close', () => {
+            console.log('CLOSE---------------')
+        })
+
+        this.stdout.on('finish', () => {
+            console.log('FINISH---------------')
+        })
+
+        this.stdout.on('unpipe', () => {
+            console.log('UNPIPE---------------');
+            this._initStreams();
+        })
+
+        this.stdout.on('error', err => {
+            console.log('ERROR---------------')
+            console.log(err);
+        })
     }
 
 

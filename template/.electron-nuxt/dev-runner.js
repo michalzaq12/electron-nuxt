@@ -7,14 +7,14 @@ const psTree = require('ps-tree')
 const del = require('del')
 const mainConfig = require('./webpack.main.config');
 const {ELECTRON_RELAUNCH_CODE} = require('./config');
+const ElectronApp = require('./electron');
 
 process.title = "Electron-nuxt";
 
 const isDev = process.env.NODE_ENV === 'development';
 
-let electronProcess = null;
+let electronApp = null;
 let nuxtProcess = null;
-let manualRestart = false;
 
 
 
@@ -66,18 +66,7 @@ function startMain () {
             }
 
             mainLogger.logWebpackStats(stats);
-
-            if (electronProcess) {
-                manualRestart = true;
-                killElectron().then(() => {
-                    electronProcess = null;
-                    startElectron();
-                    setTimeout(() => {
-                        manualRestart = false
-                    }, 5000)
-                });
-            }
-
+            if(electronApp !== null) electronApp.restart();
             resolve()
         })
     })
@@ -85,30 +74,14 @@ function startMain () {
 
 
 function startElectron () {
-    let args = [
-        '--inspect=5858',
-        path.join(__dirname, '../dist/electron/index.js'),
-        '--auto-detect=false',
-        '--no-proxy-server'
-    ];
+    electronApp = new ElectronApp(path.join(__dirname, '../dist/electron/index.js'));
+    electronApp.redirectStdout(electronLogger);
 
-    if (process.env.npm_execpath.endsWith('yarn.js')) {
-        args = args.concat(process.argv.slice(3))
-    } else if (process.env.npm_execpath.endsWith('npm-cli.js')) {
-        args = args.concat(process.argv.slice(2))
-    }
-
-    electronProcess = spawn(electron, args)
-
-    electronProcess.stdout.pipe(electronLogger.stdout);
-    electronProcess.stderr.pipe(electronLogger.stderr);
-
-    electronProcess.on('exit', code => {
+    electronApp.on('exit', code => {
+        console.log('exit electron App');
         console.log(code);
-        if(code === ELECTRON_RELAUNCH_CODE) return;
-        electronProcess = null;
-        if (!manualRestart) exitHandler('on electron exit event');
-    });
+        exitHandler('on electron exit event');
+    })
 }
 
 
@@ -136,26 +109,6 @@ if (process.env.BUILD_TARGET === 'clean') clean()
 else init()
 
 
-
-function killElectron() {
-    console.log('kill electron');
-    return new Promise((resolve, reject) => {
-        if(!electronProcess) resolve();
-        electronProcess.removeAllListeners();
-        electronProcess.stdout.unpipe(electronLogger.stdout);
-        electronProcess.stderr.unpipe(electronLogger.stderr);
-        psTree(electronProcess.pid, (err, children) =>  {
-            if(err) reject(err)
-            children.map(p => {
-                process.kill(p.PID);
-            });
-            process.kill(electronProcess.pid);
-            electronProcess = null;
-            resolve();
-        });
-    });
-}
-
 let isExiting = false;
 
 async function exitHandler(exitCode) {
@@ -163,10 +116,7 @@ async function exitHandler(exitCode) {
     if(isExiting) return;
     isExiting = true;
     console.log('exit code: ' + exitCode);
-    if(electronProcess != null) {
-        console.log('try to kill electron pid: ' + electronProcess.pid)
-        await killElectron();
-    }
+    await electronApp.exit();
     if(nuxtProcess != null){
         console.log('try to kill nuxt pid: ' + nuxtProcess.pid)
         nuxtProcess.kill();

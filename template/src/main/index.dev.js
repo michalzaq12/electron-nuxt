@@ -27,9 +27,7 @@ app.on('ready', () => {
         label: 'Relaunch electron',
         accelerator: 'CommandOrControl+E',
         click: () => {
-            // app.relaunch();
-            // app.exit(ELECTRON_RELAUNCH_CODE);
-            console.log(process)
+            app.exit(ELECTRON_RELAUNCH_CODE);
         }
     });
     menu.append(refreshButton);
