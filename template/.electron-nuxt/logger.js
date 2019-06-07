@@ -41,27 +41,13 @@ class Logger {
             }
         });
 
-        this.stdout.on('end', () => {
-            console.log('END---------------')
-        })
-
-        this.stdout.on('close', () => {
-            console.log('CLOSE---------------')
-        })
-
         this.stdout.on('finish', () => {
-            console.log('FINISH---------------')
-        })
-
-        this.stdout.on('unpipe', () => {
-            console.log('UNPIPE---------------');
+            // Reopen streams
+            // This statement is needed because unpipe method close all streams
+            // what causes an error 'write after end' while electron relaunching
             this._initStreams();
-        })
+        });
 
-        this.stdout.on('error', err => {
-            console.log('ERROR---------------')
-            console.log(err);
-        })
     }
 
 

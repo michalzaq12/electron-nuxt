@@ -28,7 +28,7 @@ function cleanBuildDirectory () {
     }catch (e) {
         Logger.spinnerFail('Error occurred when cleaning build directory');
         console.error(e);
-        exitHandler(1);
+        cleanupProcessAndExit(1);
     }
 }
 
@@ -65,12 +65,12 @@ function startElectron () {
 
     electronApp.on('relaunch', () => {
         Logger.reset();
-        Logger.info('Electron relaunching... ')
+        Logger.info('Relaunching electron... ')
     });
 
     electronApp.on('exit', code => {
         Logger.info('Killing all processes (reason: electron app close event) ');
-        exitHandler(code);
+        cleanupProcessAndExit(code);
     })
 }
 
@@ -85,7 +85,7 @@ function startElectron () {
         .then(() => {
             if(isDev) startElectron();
             Logger.spinnerSucceed('Done');
-            if(!isDev) exitHandler(0)
+            if(!isDev) cleanupProcessAndExit(0)
         })
         .catch(err => {
             Logger.spinnerFail('Something went wrong');
@@ -96,29 +96,30 @@ function startElectron () {
 
 
 
-let isExiting = false;
-
-async function exitHandler(exitCode) {
-    console.log('isExiting ' + isExiting);
-    if(isExiting) return;
-    isExiting = true;
-    console.log('exit code: ' + exitCode);
+async function cleanupProcessAndExit(exitCode, exit = true) {
     if(electronApp) await electronApp.exit(); //on production build electron does not start
     nuxtApp.exit();
-
-    console.log(' main pid '+ process.pid);
-    process.exit();
+    if(exit) process.exit();
 }
 
 
 
 //https://stackoverflow.com/questions/14031763/doing-a-cleanup-action-just-before-node-js-exits
-//do something when app is closing
-process.on('exit', exitHandler.bind(null));
+
+// exit param = false -> prevention of an infinite loop
+process.on('exit', code => cleanupProcessAndExit(code, false));
 
 //catches ctrl+c event
-process.on('SIGINT', exitHandler.bind(null));
+process.on('SIGINT', code => cleanupProcessAndExit(code));
 
-// catches "kill pid" (for example: nodemon restart)
-process.on('SIGUSR1', exitHandler.bind(null));
-process.on('SIGUSR2', exitHandler.bind(null));
+// catches "kill pid"
+process.on('SIGUSR1', code => cleanupProcessAndExit(code));
+process.on('SIGUSR2', code => cleanupProcessAndExit(code));
+
+
+//catches uncaught exceptions
+process.on('uncaughtException', e => {
+    console.log('Uncaught Exception');
+    console.log(e.stack);
+    cleanupProcessAndExit(99);
+});
