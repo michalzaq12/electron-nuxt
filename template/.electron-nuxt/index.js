@@ -1,46 +1,28 @@
 const Logger = require('./logger');
 const path = require('path')
-const { spawn, fork } = require('child_process')
 const webpack = require('webpack');
 const del = require('del')
 const mainConfig = require('./webpack.main.config');
 const ElectronApp = require('./electron');
+const NuxtApp = require('./nuxt-runner');
 
-process.title = "Electron-nuxt";
 
 const isDev = process.env.NODE_ENV === 'development';
-
-let electronApp = null;
-let nuxtProcess = null;
-
-
 
 const mainLogger = new Logger('Main', 'yellow');
 const nuxtLogger = new Logger('Nuxt', 'green');
 const electronLogger = new Logger('Electron', 'blue');
 electronLogger.ignore(text => text.indexOf('source: chrome-devtools://devtools/bundled/shell.js (108)') > -1);
 
+let electronApp = null;
 
-
+const nuxtApp = new NuxtApp();
+nuxtApp.redirectStdout(nuxtLogger);
 
 function clean () {
     del.sync(['build/*', '!build/icons', '!build/icons/icon.*'])
     console.log(`\n${doneLog}\n`)
     process.exit()
-}
-
-function startRenderer () {
-    nuxtProcess = fork(path.join(__dirname, 'nuxt-process.js'), {silent: true});
-
-    nuxtProcess.stdout.pipe(nuxtLogger.stdout)
-    nuxtProcess.stderr.pipe(nuxtLogger.stderr)
-
-    return new Promise((resolve, reject) => {
-        nuxtProcess.once('message', msg => {
-            if(msg.status === 'ok') resolve();
-            else reject(msg.err);
-        })
-    });
 }
 
 
@@ -92,7 +74,7 @@ function init () {
 
     if(!isDev) del.sync(['dist/electron/*', '!.gitkeep'])
 
-    startRenderer().then(startMain)
+    nuxtApp.build().then(startMain)
         .then(() => {
             if(isDev) startElectron();
             Logger.spinnerSucceed('done');
@@ -117,11 +99,7 @@ async function exitHandler(exitCode) {
     isExiting = true;
     console.log('exit code: ' + exitCode);
     await electronApp.exit();
-    if(nuxtProcess != null){
-        console.log('try to kill nuxt pid: ' + nuxtProcess.pid)
-        process.kill(nuxtProcess.pid);
-        nuxtProcess = null;
-    }
+    nuxtApp.exit();
 
     console.log(' main pid '+ process.pid);
     process.exit();

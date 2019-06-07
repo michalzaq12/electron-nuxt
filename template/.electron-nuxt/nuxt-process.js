@@ -2,27 +2,53 @@ const { Nuxt, Builder, Generator } = require('nuxt')
 let config = require('./nuxt.config.js');
 
 
-const nuxt = new Nuxt(config)
-const builder = new Builder(nuxt)
+const nuxt = new Nuxt(config);
+const builder = new Builder(nuxt);
 const generator = new Generator(nuxt, builder);
 
 
-if(process.env.NODE_ENV !== 'production'){
-    builder.build().then(() => {
-        nuxt.listen(9080)
-        process.send({status: 'ok'})
-    }).catch(err => {
-        process.send({status: 'error', err: err})
-        process.exit(1)
-    });
-}else{
-    generator.generate({build: true, init: true}).then(() => {
-        process.send({status: 'ok'})
-    }).catch(err => {
-        process.send({status: 'error', err: err})
-        process.exit(1)
-    });
-}
+process.on('message', ({action, target}) => {
+    if(action !== 'build'){
+        console.warn('Unknown action');
+        return;
+    }
+
+    if(target === 'production'){
+        generator.generate({build: true, init: true}).then(() => {
+            process.send({status: 'ok'})
+        }).catch(err => {
+            process.send({status: 'error', err: err})
+            process.exit(1)
+        });
+    }else {
+        builder.build().then(() => {
+            nuxt.listen(9080)
+            process.send({status: 'ok'})
+        }).catch(err => {
+            process.send({status: 'error', err: err})
+            process.exit(1)
+        });
+    }
+
+});
+
+
+// if(process.env.NODE_ENV !== 'production'){
+//     builder.build().then(() => {
+//         nuxt.listen(9080)
+//         process.send({status: 'ok'})
+//     }).catch(err => {
+//         process.send({status: 'error', err: err})
+//         process.exit(1)
+//     });
+// }else{
+//     generator.generate({build: true, init: true}).then(() => {
+//         process.send({status: 'ok'})
+//     }).catch(err => {
+//         process.send({status: 'error', err: err})
+//         process.exit(1)
+//     });
+// }
 
 
 
