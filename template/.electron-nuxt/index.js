@@ -1,12 +1,9 @@
-const electron = require('electron')
 const Logger = require('./logger');
 const path = require('path')
 const { spawn, fork } = require('child_process')
 const webpack = require('webpack');
-const psTree = require('ps-tree')
 const del = require('del')
 const mainConfig = require('./webpack.main.config');
-const {ELECTRON_RELAUNCH_CODE} = require('./config');
 const ElectronApp = require('./electron');
 
 process.title = "Electron-nuxt";
@@ -33,7 +30,7 @@ function clean () {
 }
 
 function startRenderer () {
-    nuxtProcess = fork(path.join(__dirname, 'nuxt-runner.js'), {silent: true});
+    nuxtProcess = fork(path.join(__dirname, 'nuxt-process.js'), {silent: true});
 
     nuxtProcess.stdout.pipe(nuxtLogger.stdout)
     nuxtProcess.stderr.pipe(nuxtLogger.stderr)
@@ -77,9 +74,11 @@ function startElectron () {
     electronApp = new ElectronApp(path.join(__dirname, '../dist/electron/index.js'));
     electronApp.redirectStdout(electronLogger);
 
+    electronApp.on('relaunch', () => {
+       Logger.info('Electron relaunching... ')
+    });
+
     electronApp.on('exit', code => {
-        console.log('exit electron App');
-        console.log(code);
         exitHandler('on electron exit event');
     })
 }
@@ -119,7 +118,7 @@ async function exitHandler(exitCode) {
     await electronApp.exit();
     if(nuxtProcess != null){
         console.log('try to kill nuxt pid: ' + nuxtProcess.pid)
-        nuxtProcess.kill();
+        process.kill(nuxtProcess.pid);
         nuxtProcess = null;
     }
 

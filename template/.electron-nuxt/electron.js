@@ -1,6 +1,7 @@
 const electronPath = require('electron');
 const { spawn } = require('child_process');
 const EventEmitter = require('events');
+const { kill } = require('./kill-process');
 const psTree = require('ps-tree');
 
 const ELECTRON_RELAUNCH_CODE = 9888;
@@ -41,6 +42,7 @@ class ElectronApp extends EventEmitter{
             console.log('electron process exit: ', code);
             if(code === ELECTRON_RELAUNCH_CODE) {
                 this.restart();
+                this.emit('relaunch');
             }else{
                 this._killWithAllSubProcesses();
                 this.emit('exit', code);
@@ -69,17 +71,9 @@ class ElectronApp extends EventEmitter{
             psTree(this.process.pid, (err, children) =>  {
                 if(err) reject(err);
                 children.map(p => {
-                    try{
-                        process.kill(p.PID);
-                    }catch (e) {
-                        console.log('asd@1');
-                    }
+                    kill(p.PID)
                 });
-                try{
-                    process.kill(this.process.pid);
-                }catch (e) {
-                    console.log('asd@2')
-                }
+                kill(this.process.pid);
                 this.process= null;
                 resolve();
             });

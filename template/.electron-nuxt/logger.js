@@ -10,6 +10,12 @@ const spinner = ora({
     color: 'white'
 });
 
+const staticLogger = ora({
+    isEnabled: false,
+    stream: process.stdout,
+    indent: 9,
+    color: 'white'
+});
 
 let lastLogger = '';
 
@@ -74,6 +80,10 @@ class Logger {
 
     static spinnerFail(text){
         spinner.fail(Logger._parseSpinnerText(text));
+    }
+
+    static info(text){
+        staticLogger.info(Logger._parseSpinnerText(text));
     }
 
     info(text){

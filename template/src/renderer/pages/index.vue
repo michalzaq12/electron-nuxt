@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span>HOME</span>
+        <span>HOME2</span>
         <img src="~assets/nuxt.jpg"/>
         <span>{{url}}</span>
     </div>

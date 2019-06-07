@@ -4,9 +4,9 @@
   "description": "",
   "main": "./dist/electron/index.js",
   "scripts": {
-    "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/dev-runner.js",
+    "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "recompile": "./node_modules/.bin/electron-rebuild.cmd",
-    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/dev-runner.js && npx electron-builder --config ./builder-config.js\""
+    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && npx electron-builder --config ./builder-config.js\""
   },
   "keywords": [],
   "author": "“Michał <“michal.m.zarach@gmail.com”>",
