@@ -1,8 +1,9 @@
-const { Nuxt, Builder, Generator } = require('nuxt')
-let config = require('./nuxt.config.js');
+const { Nuxt, Builder, Generator } = require('nuxt');
+const {SERVER_PORT} = require('./config');
+let nuxtConfig = require('./nuxt.config.js');
 
 
-const nuxt = new Nuxt(config);
+const nuxt = new Nuxt(nuxtConfig);
 const builder = new Builder(nuxt);
 const generator = new Generator(nuxt, builder);
 
@@ -22,7 +23,7 @@ process.on('message', ({action, target}) => {
         });
     }else {
         builder.build().then(() => {
-            nuxt.listen(9080)
+            nuxt.listen(SERVER_PORT)
             process.send({status: 'ok'})
         }).catch(err => {
             process.send({status: 'error', err: err})
