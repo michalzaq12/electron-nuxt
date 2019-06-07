@@ -63,7 +63,7 @@ function startMain () {
             }
 
             mainLogger.logWebpackStats(stats);
-            if(electronApp !== null) electronApp.restart();
+            if(electronApp !== null) electronApp.relaunch();
             resolve()
         })
     })
@@ -79,7 +79,8 @@ function startElectron () {
     });
 
     electronApp.on('exit', code => {
-        exitHandler('on electron exit event');
+        Logger.info('Killing all processes (reason: electron app close event) ');
+        exitHandler(code);
     })
 }
 

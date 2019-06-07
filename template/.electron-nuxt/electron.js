@@ -1,8 +1,8 @@
 const electronPath = require('electron');
 const { spawn } = require('child_process');
 const EventEmitter = require('events');
-const { kill } = require('./kill-process');
-const psTree = require('ps-tree');
+const { killWithAllSubProcess } = require('./kill-process');
+
 
 const ELECTRON_RELAUNCH_CODE = 9888;
 
@@ -28,21 +28,16 @@ class ElectronApp extends EventEmitter{
             args = args.concat(process.argv.slice(2))
         }
 
-        console.log('spawn process');
         this.process = spawn(electronPath, args);
-        console.log('spawned');
 
         if(this.outputStd !== null){
-            console.log('repipe std');
             this._pipe(this.outputStd);
         }
-        console.log('process pid ', this.process.pid);
+
 
         this.process.on('exit', code => {
-            console.log('electron process exit: ', code);
             if(code === ELECTRON_RELAUNCH_CODE) {
-                this.restart();
-                this.emit('relaunch');
+                this.relaunch();
             }else{
                 this._killWithAllSubProcesses();
                 this.emit('exit', code);
@@ -50,34 +45,23 @@ class ElectronApp extends EventEmitter{
         });
     }
 
-    restart(){
-        console.log('restart');
-        this._killWithAllSubProcesses().then(() => {
-            this._startProcess(false);
-        })
+    async relaunch(){
+        this.emit('relaunch');
+        await this._killWithAllSubProcesses();
+        this._startProcess();
     }
 
-    exit(){
+    async exit(){
         return this._killWithAllSubProcesses();
     }
 
-    _killWithAllSubProcesses(){
-        console.log('killWithAllSubProcesses');
-        return new Promise((resolve, reject) => {
-            if(this.process === null) resolve();
-            this.process.removeAllListeners('exit');
-            //this.unpipeAll();
-            this.closeProcessStd();
-            psTree(this.process.pid, (err, children) =>  {
-                if(err) reject(err);
-                children.map(p => {
-                    kill(p.PID)
-                });
-                kill(this.process.pid);
-                this.process= null;
-                resolve();
-            });
-        });
+    async _killWithAllSubProcesses(){
+        if(this.process === null) return Promise.resolve();
+        this.process.removeAllListeners('exit');
+        this.closeProcessStd();
+
+        await killWithAllSubProcess(this.process.pid);
+        this.process= null;
     }
 
     closeProcessStd(){
@@ -86,7 +70,6 @@ class ElectronApp extends EventEmitter{
     }
 
     redirectStdout(stream){
-        console.log('-push stream');
         this.outputStd = stream;
         this._pipe(stream);
     }
@@ -94,13 +77,6 @@ class ElectronApp extends EventEmitter{
     _pipe(stream){
         this.process.stdout.pipe(stream.stdout);
         this.process.stderr.pipe(stream.stderr);
-    }
-
-    unpipeAll(){
-        if(this.process !== null){
-            this.process.stdout.unpipe();
-            this.process.stderr.unpipe();
-        }
     }
 
 }
