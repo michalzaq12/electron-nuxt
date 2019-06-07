@@ -8,7 +8,7 @@ module.exports = {
         "output": "build"
     },
     "files": [
-        "dist/electron/**/*",
+        "dist/**/*",
         "resources/**/*"
     ],
     "dmg": {

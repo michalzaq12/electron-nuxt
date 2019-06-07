@@ -1,12 +1,15 @@
 import { BrowserWindow, globalShortcut } from 'electron'
 import { EventEmitter } from 'events';
 import {SERVER_PORT} from '../../.electron-nuxt/config';
+import path from 'path';
+
+const INDEX_PATH_ON_PRODUCTION = path.join(__dirname, '..', 'renderer', 'index.html');
 
 const eventEmitter = new EventEmitter();
 
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:${SERVER_PORT}`
-    : `file://${__dirname}/index.html`;
+    : INDEX_PATH_ON_PRODUCTION;
 
 let mainWindow = null;
 

@@ -2,7 +2,7 @@
   "name": "electron-nuxt",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/electron/index.js",
+  "main": "./dist/main/index.js",
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "recompile": "./node_modules/.bin/electron-rebuild.cmd",

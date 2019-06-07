@@ -16,7 +16,7 @@ module.exports = {
     },
     dev: process.env.NODE_ENV === 'development',
     generate:{
-        dir: path.join(__dirname, '..', 'dist', 'electron'),
+        dir: path.join(__dirname, '..', 'dist', 'renderer'),
     },
     plugins: [
         { ssr: false, src: path.join(__dirname, 'resources.js') }

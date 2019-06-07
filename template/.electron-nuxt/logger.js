@@ -86,6 +86,10 @@ class Logger {
         staticLogger.info(Logger._parseSpinnerText(text));
     }
 
+    static reset(){
+        lastLogger = '';
+    }
+
     info(text){
         text = text.toString();
         if(this.ignoreFunction !== undefined && this.ignoreFunction(text)) return;

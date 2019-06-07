@@ -1,6 +1,6 @@
 const path = require('path');
 const { fork } = require('child_process');
-const { kill } = require('./kill-process');
+const { killProcess } = require('./kill-process');
 
 const NUXT_PROCESS_PATH = path.join(__dirname, 'nuxt-process.js');
 
@@ -26,7 +26,7 @@ class NuxtApp {
 
     exit(){
         this.nuxtProcess.kill();
-        if(this.nuxtProcess && !this.nuxtProcess.killed) kill(this.nuxtProcess.pid);
+        if(this.nuxtProcess && !this.nuxtProcess.killed) killProcess(this.nuxtProcess.pid);
         this.nuxtProcess = null;
     }
 
