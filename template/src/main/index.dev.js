@@ -6,10 +6,10 @@ require('electron-debug')({
 
 import {Menu, MenuItem, app} from "electron";
 import {ELECTRON_RELAUNCH_CODE} from '../../.electron-nuxt/config';
-
+import {mainWindowCreated} from './mainWindow';
 
 const VUEJS_DEVTOOLS = {
-    id: 'nhdogjmejiglipccpnnnanhbledajbpd',
+    id: 'nhdogjmejiglipccpnnnanhbledajbpd',  // => ver 5.1.0
     electron: '>=1.2.1'
 };
 
@@ -33,9 +33,11 @@ app.on('ready', () => {
     menu.append(refreshButton);
 });
 
-app.on('window-all-closed', () => {
-    console.log('will-quit');
-   app.exit(0);
+
+mainWindowCreated(mainWindow => {
+    mainWindow.webContents.on('did-navigate-in-page', (e, url) => {
+        mainWindow.setTitle(url);
+    })
 });
 
 // Require `main` process to boot app
