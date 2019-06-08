@@ -2,29 +2,24 @@ language: node_js
 node_js:
   - '10'
 
-os:
-  - linux
-  - osx
-  - windows
 
 env:
   global:
-    - USE_HARD_LINKS=false
-  matrix:
-    - TEST_SUITE=default
-#    - TEST_SUITE=vuetify
-#    - TEST_SUITE=buefy
+    - USE_HARD_LINKS=false # fix: Build failing with EEXIST: file already exists
 
 
-# hack to get some OS-specific badges
+# Explicitly include to get some OS-specific badges
 matrix:
-  exclude:
-    - os: linux
-      env: BADGE=osx
-    - os: osx
-      env: BADGE=linux
-    - os: windows
-      env: BADGE=windows
+  include:
+    - name: "Linux - default template"
+      os: linux
+      env: TEST_SUITE=default BADGE=linux
+    - name: "OSX - default template"
+      os: osx
+      env: TEST_SUITE=default BADGE=osx
+    - name: "Windows - default template"
+      os: windows
+      env: TEST_SUITE=default BADGE=windows
 
 before_script:
   -  npm install -g vue-cli
