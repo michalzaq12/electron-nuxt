@@ -9,7 +9,10 @@ module.exports = {
     },
     "files": [
         "dist/**/*",
-        "resources/**/*"
+        {
+            from: 'src/resources/',
+            to: 'resources/'
+        }
     ],
     "dmg": {
         "contents": [

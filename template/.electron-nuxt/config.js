@@ -1,6 +1,6 @@
 const path = require('path');
 
-const RESOURCES_DIR_PATH = path.join(__dirname, '..', 'resources').replace(/\\/g, '/');
+const RESOURCES_DIR_PATH = path.join(__dirname, '..', 'src', 'resources').replace(/\\/g, '/');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -31,7 +31,7 @@ function rendererProcessProduction() {
   //resolve on runtime
   //path depends on production directory structure
 
-  //renderer entry: ./renderer/_nuxt/app.js
+  //renderer entry: ./dist/renderer/_nuxt/app.js
   //resources: ./resources/
   return `
     global.__resources = require('path').join(__dirname, '..', '..', 'resources');
@@ -42,7 +42,7 @@ function mainProcessProduction() {
   //resolve on runtime
   //path depends on production directory structure
 
-  //main entry: ./main/index.js
+  //main entry: ./dist/main/index.js
   //resources: ./resources/
   return `
     global.__resources = require('path').join(__dirname, '..', 'resources');
