@@ -1,4 +1,4 @@
-/*globals RESOURCES_RENDERER_PATH_CODE */
+/*globals INCLUDE_RESOURCES_PATH */
 
 
 /**
@@ -6,6 +6,6 @@
  */
 global.__resources = undefined;
 // noinspection BadExpressionStatementJS
-RESOURCES_RENDERER_PATH_CODE
-
+INCLUDE_RESOURCES_PATH
+if(__resources === undefined) console.error('[Renderer-process]: Resources path is undefined');
 

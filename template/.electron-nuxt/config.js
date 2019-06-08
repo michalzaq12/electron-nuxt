@@ -41,7 +41,7 @@ function rendererProcessProduction() {
 function mainProcessProduction() {
   //resolve on runtime
   //path depends on production directory structure
-  
+
   //main entry: ./main/index.js
   //resources: ./resources/
   return `

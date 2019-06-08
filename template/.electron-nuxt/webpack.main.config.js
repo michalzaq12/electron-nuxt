@@ -46,7 +46,7 @@ let mainConfig = {
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
-            'RESOURCES_RENDERER_PATH_CODE': resourcesPath.mainProcess()
+            'INCLUDE_RESOURCES_PATH': resourcesPath.mainProcess()
         })
     ],
     resolve: {

@@ -45,7 +45,7 @@ module.exports = {
 
             config.plugins.push(
                 new webpack.DefinePlugin({
-                    'RESOURCES_RENDERER_PATH_CODE': resourcesPath.renderedProcess()
+                    'INCLUDE_RESOURCES_PATH': resourcesPath.renderedProcess()
                 })
             )
 

@@ -1,9 +1,10 @@
-/* globals RESOURCES_RENDERER_PATH_CODE */
+/* globals INCLUDE_RESOURCES_PATH */
 
 // Set `__resources` path to resources files in main process
 global.__resources = undefined;
 // noinspection BadExpressionStatementJS
-RESOURCES_RENDERER_PATH_CODE
+INCLUDE_RESOURCES_PATH
+if(__resources === undefined) console.error('[Main-process]: Resources path is undefined');
 
 import { app } from 'electron'
 import {createWindow, recreateWindow} from './mainWindow'
