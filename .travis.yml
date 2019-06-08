@@ -10,15 +10,10 @@ os:
 env:
   global:
     - USE_HARD_LINKS=false
-
-matrix:
-  include:
-    - name: "Default template"
-      env: TEST_SUITE=default
-    - name: "Vuetify template"
-      env: TEST_SUITE=vuetify
-    - name: "Buefy template"
-      env: TEST_SUITE=buefy
+  matrix:
+    - TEST_SUITE=default
+#    - TEST_SUITE=vuetify
+#    - TEST_SUITE=buefy
 
 
 before_script:
