@@ -7,6 +7,6 @@
 
 Platform | CI Status
 ---------|:---------
-OSX      | [![OSX Build Status](https://travis-ci.org/michalzaq12/electron-nuxt.svg?branch=master&env=BADGE=osx)](https://travis-ci.org/michalzaq12/electron-nuxt)
-Linux    | [![Linux Build Status](https://travis-ci.org/michalzaq12/electron-nuxt.svg?branch=master&env=BADGE=linux)](https://travis-ci.org/michalzaq12/electron-nuxt)
-Windows  | [![Windows Build status](https://travis-ci.org/michalzaq12/electron-nuxt.svg?branch=master&env=BADGE=windows)](https://travis-ci.org/michalzaq12/electron-nuxt)
+OSX      | [![OSX Build Status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
+Linux    | [![Linux Build Status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
+Windows  | [![Windows Build status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=windows&label=build&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
