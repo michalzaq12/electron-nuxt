@@ -1,11 +1,12 @@
+/* globals RESOURCES_RENDERER_PATH_CODE */
+
+// Set `__resources` path to resources files in main process
+global.__resources = undefined;
+// noinspection BadExpressionStatementJS
+RESOURCES_RENDERER_PATH_CODE
+
 import { app } from 'electron'
 import {createWindow, recreateWindow} from './mainWindow'
-
-
-//Set `__resources` path to resources files in main process
-if (process.env.NODE_ENV !== 'development') {
-    global.__resources = require('path').join(__dirname, '..', 'resources')
-}
 
 
 // This method will be called when Electron has finished

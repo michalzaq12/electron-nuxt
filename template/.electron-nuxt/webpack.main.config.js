@@ -2,6 +2,7 @@
 process.env.BABEL_ENV = 'main';
 
 const path = require('path');
+const { resourcesPath } = require('./config');
 const { dependencies } = require('../package.json');
 const webpack = require('webpack');
 
@@ -43,7 +44,10 @@ let mainConfig = {
         path: path.join(__dirname, '../dist/main')
     },
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.DefinePlugin({
+            'RESOURCES_RENDERER_PATH_CODE': resourcesPath.mainProcess()
+        })
     ],
     resolve: {
         extensions: ['.js', '.json', '.node']
@@ -51,16 +55,6 @@ let mainConfig = {
     target: 'electron-main'
 };
 
-/**
- * Adjust mainConfig for development settings
- */
-if (isDev) {
-    mainConfig.plugins.push(
-        new webpack.DefinePlugin({
-            '__resources': JSON.stringify(path.join(__dirname, '..', 'resources'))
-        })
-    )
-}
 
 /**
  * Adjust mainConfig for production settings

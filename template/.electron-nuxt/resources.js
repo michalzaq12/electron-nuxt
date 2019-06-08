@@ -1,8 +1,11 @@
+/*globals RESOURCES_RENDERER_PATH_CODE */
+
+
 /**
  * Set `__resources` path to resources files in renderer process
- * nuxt bundles: ./dist/electron/_nuxt/
- * resources: ./resources/
  */
-if (process.env.NODE_ENV !== 'development') {
-    global.__resources = require('path').join(__dirname, '..', '..', 'resources')
-}
+global.__resources = undefined;
+// noinspection BadExpressionStatementJS
+RESOURCES_RENDERER_PATH_CODE
+
+

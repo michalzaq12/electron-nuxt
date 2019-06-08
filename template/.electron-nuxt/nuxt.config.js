@@ -2,6 +2,7 @@ process.env.BABEL_ENV = 'renderer'
 const path = require('path');
 const { dependencies } = require('../package.json')
 const webpack = require('webpack')
+const { resourcesPath } = require('./config');
 
 let whiteListedModules = ['nuxt']
 
@@ -28,7 +29,7 @@ module.exports = {
             //     ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
             // ];
 
-            if(isClient) config.target = 'electron-renderer'
+            if(isClient) config.target = 'electron-renderer';
 
             config.node =  {
                 __dirname: process.env.NODE_ENV !== 'production',
@@ -41,18 +42,13 @@ module.exports = {
                 config.output.publicPath = '_nuxt/';
             }
 
-            console.log(config.resolve.alias);
 
-            /**
-             * Adjust rendererConfig for development settings
-             */
-            if (process.env.NODE_ENV !== 'production') {
-                config.plugins.push(
-                    new webpack.DefinePlugin({
-                        '__resources': JSON.stringify(path.join(__dirname, '..', 'resources'))
-                    })
-                )
-            }
+            config.plugins.push(
+                new webpack.DefinePlugin({
+                    'RESOURCES_RENDERER_PATH_CODE': resourcesPath.renderedProcess()
+                })
+            )
+
         }
     },
 };
