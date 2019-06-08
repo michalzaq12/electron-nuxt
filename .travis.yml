@@ -16,6 +16,16 @@ env:
 #    - TEST_SUITE=buefy
 
 
+# hack to get some OS-specific badges
+matrix:
+  exclude:
+    - os: linux
+      env: BADGE=osx
+    - os: osx
+      env: BADGE=linux
+    - os: windows
+      env: BADGE=windows
+
 before_script:
   -  npm install -g vue-cli
 
