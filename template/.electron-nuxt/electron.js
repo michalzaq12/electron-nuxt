@@ -2,19 +2,18 @@ const electronPath = require('electron');
 const { spawn } = require('child_process');
 const EventEmitter = require('events');
 const { killWithAllSubProcess } = require('./kill-process');
+const { ELECTRON_RELAUNCH_CODE } = require('./config');
 
 
-const ELECTRON_RELAUNCH_CODE = 9888;
-
-class ElectronApp extends EventEmitter{
+class ElectronApp extends EventEmitter {
     constructor(mainProcessIndexJSPath){
         super();
         this.mainProcessIndexJSPath = mainProcessIndexJSPath;
         this.outputStd = null;
-        this._startProcess();
+        this.process = null;
     }
 
-    _startProcess(){
+    launch(){
         let args = [
             '--inspect=5858',
             this.mainProcessIndexJSPath,
@@ -30,10 +29,7 @@ class ElectronApp extends EventEmitter{
 
         this.process = spawn(electronPath, args);
 
-        if(this.outputStd !== null){
-            this._pipe(this.outputStd);
-        }
-
+        if(this.outputStd) this._pipe(this.outputStd);
 
         this.process.on('exit', code => {
             if(code === ELECTRON_RELAUNCH_CODE) {
@@ -45,10 +41,20 @@ class ElectronApp extends EventEmitter{
         });
     }
 
+    get isRunning(){
+        return this.process !== null;
+    }
+
+    get pid(){
+        if(!this.isRunning) return undefined;
+        else return this.process.pid;
+    }
+
     async relaunch(){
+        if(!this.isRunning) return;
         this.emit('relaunch');
         await this._killWithAllSubProcesses();
-        this._startProcess();
+        this.launch();
     }
 
     async exit(){
@@ -56,11 +62,11 @@ class ElectronApp extends EventEmitter{
     }
 
     async _killWithAllSubProcesses(){
-        if(this.process === null) return Promise.resolve();
+        if(!this.isRunning) return;
         this.process.removeAllListeners('exit');
         this.closeProcessStd();
 
-        await killWithAllSubProcess(this.process.pid);
+        await killWithAllSubProcess(this.pid);
         this.process= null;
     }
 
@@ -75,6 +81,7 @@ class ElectronApp extends EventEmitter{
     }
 
     _pipe(stream){
+        if(!this.isRunning) return;
         this.process.stdout.pipe(stream.stdout);
         this.process.stderr.pipe(stream.stderr);
     }

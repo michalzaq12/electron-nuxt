@@ -15,10 +15,23 @@ const nuxtLogger = new Logger('Nuxt', 'green');
 const electronLogger = new Logger('Electron', 'blue');
 electronLogger.ignore(text => text.indexOf('source: chrome-devtools://devtools/bundled/shell.js (108)') > -1);
 
-let electronApp = null;
+
 
 const nuxtApp = new NuxtApp();
 nuxtApp.redirectStdout(nuxtLogger);
+
+
+const electronApp = new ElectronApp(path.join(__dirname, '../dist/main/index.js'));
+electronApp.redirectStdout(electronLogger);
+electronApp.on('relaunch', () => {
+    Logger.info('Relaunching electron... ')
+});
+electronApp.on('exit', code => {
+    Logger.info('Killing all processes... (reason: electron app close event) ');
+    cleanupProcessAndExit(code);
+});
+
+
 
 function cleanBuildDirectory () {
     try{
@@ -34,13 +47,8 @@ function cleanBuildDirectory () {
 
 
 function startMain () {
-    return new Promise((resolve, reject) => {
-        if(isDev){
-            mainConfig.entry.main = [path.join(__dirname, '../src/main/index.dev.js')].concat(mainConfig.entry.main)
-            mainConfig.mode = 'development'
-        }
-
-        const compiler = webpack(mainConfig)
+    return new Promise(resolve => {
+        const compiler = webpack(mainConfig);
 
         compiler.watch({
             ignored: /node_modules/,
@@ -52,25 +60,9 @@ function startMain () {
             }
 
             mainLogger.logWebpackStats(stats);
-            if(electronApp !== null) electronApp.relaunch();
+            electronApp.relaunch();
             resolve()
         })
-    })
-}
-
-
-function startElectron () {
-    electronApp = new ElectronApp(path.join(__dirname, '../dist/main/index.js'));
-    electronApp.redirectStdout(electronLogger);
-
-    electronApp.on('relaunch', () => {
-        Logger.reset();
-        Logger.info('Relaunching electron... ')
-    });
-
-    electronApp.on('exit', code => {
-        Logger.info('Killing all processes (reason: electron app close event) ');
-        cleanupProcessAndExit(code);
     })
 }
 
@@ -83,7 +75,7 @@ function startElectron () {
 
     Promise.all([nuxtApp.build(), startMain()])
         .then(() => {
-            if(isDev) startElectron();
+            if(isDev) electronApp.launch();
             Logger.spinnerSucceed('Done');
             if(!isDev) cleanupProcessAndExit(0)
         })
@@ -97,7 +89,7 @@ function startElectron () {
 
 
 async function cleanupProcessAndExit(exitCode, exit = true) {
-    if(electronApp) await electronApp.exit(); //on production build electron does not start
+    await electronApp.exit();
     nuxtApp.exit();
     if(exit) process.exit();
 }

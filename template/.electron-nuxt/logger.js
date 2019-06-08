@@ -69,6 +69,7 @@ class Logger {
     }
 
     static info(text){
+        Logger.reset();
         staticLogger.info(Logger._parseSpinnerText(text));
     }
 
