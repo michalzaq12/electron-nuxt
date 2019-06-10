@@ -6,12 +6,19 @@
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "recompile": "./node_modules/.bin/electron-rebuild.cmd",
-    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && npx electron-builder --config ./builder-config.js\""
+    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && npx electron-builder --config ./builder-config.js\"",
+    "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
+    "test:e2e": "cross-env-shell NODE_ENV=test TEST_TYPE=e2e \"node .electron-nuxt/index.js && ava\"",
+    "test": "npm run test:unit && npm run test:e2e"
   },
   "keywords": [],
   "author": "“Michał <“michal.m.zarach@gmail.com”>",
   "license": "ISC",
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "ava": "^2.0.0",
+    "babel-plugin-webpack-alias-7": "^0.1.1",
+    "browser-env": "^3.2.5",
     "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "del": "^4.0.0",
@@ -21,6 +28,10 @@
     "electron-devtools-installer": "^2.2.4",
     "ora": "^3.2.0",
     "ps-tree": "^1.2.0",
+    "require-extension-hooks": "^0.3.2",
+    "require-extension-hooks-babel": "^1.0.0",
+    "require-extension-hooks-vue": "^0.4.1",
+    "spectron": "^5.0.0",
     "webpack": "^4.29.2"
   },
   "dependencies": {

@@ -71,7 +71,7 @@ function startMain () {
     const text = isDev ? 'starting development env...' : 'building for production';
     Logger.spinnerStart(text);
 
-    if(!isDev) cleanBuildDirectory();
+    if(isProd) cleanBuildDirectory();
 
     Promise.all([nuxtApp.build(), startMain()])
         .then(() => {

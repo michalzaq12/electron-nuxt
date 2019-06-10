@@ -2,7 +2,7 @@ const path = require('path');
 
 const RESOURCES_DIR_PATH = path.join(__dirname, '..', 'src', 'resources').replace(/\\/g, '/');
 
-const isDev = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   ELECTRON_RELAUNCH_CODE: 9888,
@@ -10,11 +10,11 @@ module.exports = {
 
   resourcesPath: {
     mainProcess() {
-      return isDev ? processDev() : mainProcessProduction();
+      return isProduction ? mainProcessProduction() : processDev();
     },
 
     renderedProcess() {
-      return isDev ? processDev() : rendererProcessProduction();
+      return isProduction ? rendererProcessProduction() : processDev();
     }
   }
 };
