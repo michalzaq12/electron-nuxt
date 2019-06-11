@@ -16,7 +16,8 @@ matrix:
       env: TEST_SUITE=default BADGE=linux
     - name: "OSX - default template"
       os: osx
-      env: TEST_SUITE=default BADGE=osx
+      osx_image: xcode9.4
+      env: TEST_SUITE=default BADGE=osx ELECTRON_CACHE=$HOME/.cache/electron ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
     - name: "Windows - default template"
       os: windows
       env: TEST_SUITE=default BADGE=windows
