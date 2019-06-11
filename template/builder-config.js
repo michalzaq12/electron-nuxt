@@ -4,6 +4,7 @@ module.exports = {
     "asar": false,
     "productName": "My browser",
     "appId": "org.michalzarach.my-browser",
+    "artifactName": "my-browser-${version}.${ext}",
     "directories": {
         "output": "build"
     },
@@ -30,6 +31,7 @@ module.exports = {
         ]
     },
     "mac": {
+        "target": "dmg",
         "icon": "build/icons/icon.icns"
     },
     "win": {
@@ -40,7 +42,6 @@ module.exports = {
         "icon": "build/icons"
     },
     "nsis": {
-        "differentialPackage": true,
-        "artifactName": "my-browser-${version}.${ext}"
+        "differentialPackage": true
     }
 };
