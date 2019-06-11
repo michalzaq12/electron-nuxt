@@ -4,15 +4,18 @@ let nuxtConfig = require('./nuxt.config.js');
 
 
 const nuxt = new Nuxt(nuxtConfig);
-const builder = new Builder(nuxt);
-const generator = new Generator(nuxt, builder);
 
 
-process.on('message', ({action, target}) => {
+
+process.on('message', async ({action, target}) => {
     if(action !== 'build'){
         console.warn('Unknown action');
         return;
     }
+
+    await nuxt.ready();
+    const builder = new Builder(nuxt);
+    const generator = new Generator(nuxt, builder);
 
     if(target === 'production'){
         generator.generate({build: true, init: true}).then(() => {
