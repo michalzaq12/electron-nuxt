@@ -4,7 +4,11 @@ const { dependencies } = require('../package.json')
 const webpack = require('webpack')
 const { resourcesPath } = require('./config');
 
-let whiteListedModules = ['nuxt']
+// By default all dependencies (not devDependencies) from package.json are excluded from webpack bundle,
+// however, they are still available (without any transformation) in renderer process.
+// If you really need to add dependency to webpack bundle, add it to this whitelist
+// READ MORE:
+let whiteListedModules = [];
 
 module.exports = {
     srcDir: path.join(__dirname, '..', 'src', 'renderer'),
@@ -25,9 +29,9 @@ module.exports = {
     build: {
         extend (config, { isDev, isClient }) {
 
-            // config.externals = [
-            //     ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
-            // ];
+            config.externals = [
+                ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
+            ];
 
             if(isClient) config.target = 'electron-renderer';
 
@@ -38,7 +42,7 @@ module.exports = {
 
 
             if (!isDev) {
-                // absolute path to file on production
+                // absolute path to files on production (default value: '/_nuxt/')
                 config.output.publicPath = '_nuxt/';
             }
 
