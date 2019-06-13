@@ -1,16 +1,17 @@
-/* eslint-disable */
-require('electron-debug')({
-    showDevTools: true,
-    devToolsMode: 'right'
-});
-
 import {Menu, MenuItem, app} from "electron";
 import {ELECTRON_RELAUNCH_CODE} from '../../.electron-nuxt/config';
-import {mainWindowCreated} from './mainWindow';
+import mainWindow from './mainWindow';
+import electronDebug from 'electron-debug';
+
+
+electronDebug({
+    showDevTools: false,
+    devToolsMode: 'right'
+})
 
 const VUEJS_DEVTOOLS = {
     id: 'nhdogjmejiglipccpnnnanhbledajbpd',  // => ver 5.1.0
-    electron: '>=1.2.1'
+    electron: '>=1.2.1' // electron version (dummy)
 };
 
 
@@ -34,10 +35,12 @@ app.on('ready', () => {
 });
 
 
-mainWindowCreated(mainWindow => {
-    mainWindow.webContents.on('did-navigate-in-page', (e, url) => {
-        mainWindow.setTitle(url);
+mainWindow.on('created', window => {
+    window.webContents.on('did-navigate-in-page', (e, url) => {
+        window.setTitle(url);
     })
+
+    window.webContents.openDevTools();
 });
 
 // Require `main` process to boot app

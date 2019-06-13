@@ -3,50 +3,65 @@ import { EventEmitter } from 'events';
 import {SERVER_PORT} from '../../.electron-nuxt/config';
 import path from 'path';
 
-const INDEX_PATH_ON_PRODUCTION = path.join(__dirname, '..', 'renderer', 'index.html');
+const isProduction = process.env.NODE_ENV === 'production';
 
-const eventEmitter = new EventEmitter();
-
-const winURL = process.env.NODE_ENV === 'development'
-    ? `http://localhost:${SERVER_PORT}`
-    : INDEX_PATH_ON_PRODUCTION;
-
-let mainWindow = null;
+const INDEX_PATH = path.join(__dirname, '..', 'renderer', 'index.html');
+const DEVELOPMENT_SERVER = `http://localhost:${SERVER_PORT}`;
 
 
-export function createWindow() {
-    mainWindow = new BrowserWindow({
-        height: 600,
-        width: 1000
-    });
 
+class MainWindow extends EventEmitter {
 
-    mainWindow.loadURL(winURL);
+    constructor(){
+        super();
+        this.windowHandler = null;
+    }
 
-    mainWindow.on('closed', () => {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        mainWindow = null
-    });
+    create(){
+        this.windowHandler = new BrowserWindow({
+            height: 600,
+            width: 1000,
+            webPreferences: {
+                webSecurity: isProduction
+            },
+        });
 
-    // Uncomment this for unable DevTools in production build
-    // globalShortcut.register('CommandOrControl+Shift+K', () => {
-    //     console.log('CommandOrControl+Shift+K')
-    //     mainWindow.webContents.openDevTools();
-    // });
+        const winURL = isProduction ? INDEX_PATH : DEVELOPMENT_SERVER;
+        this.windowHandler.loadURL(winURL);
 
-    console.log(__resources);
-    eventEmitter.emit('created')
+        this.windowHandler.on('closed', () => {
+            // Dereference the window object, usually you would store windows
+            // in an array if your app supports multi windows, this is the time
+            // when you should delete the corresponding element.
+            this.windowHandler = null
+        });
+
+        // Uncomment this for unable DevTools in production build
+        // globalShortcut.register('CommandOrControl+Shift+K', () => {
+        //     console.log('CommandOrControl+Shift+K')
+        //     mainWindow.webContents.openDevTools();
+        // });
+
+        this.emit('created', this.windowHandler);
+    }
+
+    recreate(){
+        if(this.windowHandler === null) this.create();
+    }
+
+    close(){
+        this.windowHandler.close();
+    }
+
+    /**
+     *
+     * @returns {BrowserWindow}
+     */
+    getWindowHandler(){
+        return this.windowHandler;
+    }
 }
 
-export function recreateWindow() {
-    if(mainWindow === null) createWindow();
-}
 
-export function mainWindowCreated(cb) {
-    eventEmitter.on('created', () => {
-        cb(mainWindow);
-    })
-}
-
+const window = new MainWindow()
+export default window;
