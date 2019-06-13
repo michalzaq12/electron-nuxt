@@ -6,20 +6,10 @@ global.__resources = undefined;
 INCLUDE_RESOURCES_PATH
 if(__resources === undefined) console.error('[Main-process]: Resources path is undefined');
 
+
+
+
 import { app } from 'electron'
-import mainWindow from './mainWindow'
-
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', () => mainWindow.create());
-
-
-// On macOS it's common to re-create a window in the app when the
-// dock icon is clicked and there are no other windows open.
-app.on('activate', () => mainWindow.recreate());
-
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -28,3 +18,6 @@ app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
 });
 
+
+// Load here all startup windows
+import './mainWindow'

@@ -1,6 +1,6 @@
 import {Menu, MenuItem, app} from "electron";
 import {ELECTRON_RELAUNCH_CODE} from '../../.electron-nuxt/config';
-import mainWindow from './mainWindow';
+import mainWinHandler from './mainWindow';
 import electronDebug from 'electron-debug';
 
 
@@ -34,14 +34,14 @@ app.on('ready', () => {
     menu.append(refreshButton);
 });
 
-
-mainWindow.on('created', window => {
-    window.webContents.on('did-navigate-in-page', (e, url) => {
-        window.setTitle(url);
+mainWinHandler.onCreated(browserWindow => {
+    browserWindow.webContents.on('did-navigate-in-page', (e, url) => {
+        browserWindow.setTitle(url);
     })
 
-    window.webContents.openDevTools();
-});
+    browserWindow.webContents.openDevTools();
+})
+
 
 // Require `main` process to boot app
 require('./index');
