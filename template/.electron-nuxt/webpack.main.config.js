@@ -9,7 +9,7 @@ const webpack = require('webpack');
 const isDev = process.env.NODE_ENV === 'development';
 const isProduction =  process.env.NODE_ENV === 'production';
 
-
+const {SERVER_PORT, SERVER_HOST} = require('./config');
 
 let mainConfig = {
     mode: isDev ? 'development' : 'production',
@@ -55,7 +55,8 @@ let mainConfig = {
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
-            'INCLUDE_RESOURCES_PATH': resourcesPath.mainProcess()
+            'INCLUDE_RESOURCES_PATH': resourcesPath.mainProcess(),
+            'process.env.DEV_SERVER_URL': `'${SERVER_HOST}:${SERVER_PORT}'`
         })
     ],
     resolve: {

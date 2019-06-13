@@ -1,11 +1,10 @@
 const isProduction = process.env.NODE_ENV === 'production';
 import {BrowserWinHandler} from './BrowserWinHandler';
-import {SERVER_PORT} from '../../.electron-nuxt/config';
 import path from 'path';
 
 
 const INDEX_PATH = path.join(__dirname, '..', 'renderer', 'index.html');
-const DEVELOPMENT_SERVER = `http://localhost:${SERVER_PORT}`;
+const DEV_SERVER_URL = process.env.DEV_SERVER_URL;
 
 
 const winHandler = new BrowserWinHandler({
@@ -14,7 +13,7 @@ const winHandler = new BrowserWinHandler({
 });
 
 winHandler.onCreated(browserWindow => {
-    const winURL = isProduction ? INDEX_PATH : DEVELOPMENT_SERVER;
+    const winURL = isProduction ? INDEX_PATH : DEV_SERVER_URL;
     browserWindow.loadURL(winURL);
 });
 

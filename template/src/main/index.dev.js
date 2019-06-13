@@ -18,7 +18,6 @@ const VUEJS_DEVTOOLS = {
 app.on('ready', () => {
     let installExtension = require('electron-devtools-installer')
     installExtension.default(VUEJS_DEVTOOLS)
-        .then(() => {})
         .catch(err => {
             console.log('Unable to install `vue-devtools`: \n', err)
         });
@@ -32,6 +31,7 @@ app.on('ready', () => {
         }
     });
     menu.append(refreshButton);
+    Menu.setApplicationMenu(menu);
 });
 
 mainWinHandler.onCreated(browserWindow => {
