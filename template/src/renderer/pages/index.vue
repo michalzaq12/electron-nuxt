@@ -2,7 +2,7 @@
     <div>
         <span>HOME22</span>
         <img src="~assets/electron-nuxt.png"/>
-        <span>{{url}}</span>
+        <span>{{externalContent}}</span>
     </div>
 </template>
 
@@ -10,12 +10,15 @@
 <script>
     import fs from 'fs';
     import path from 'path';
-    const content = fs.readFileSync(path.join(__resources, 'robots.txt'));
+
     export default {
         data(){
             return{
-                url: content
+                externalContent: ''
             }
+        },
+        mounted() {
+            this.externalContent = fs.readFileSync(path.join(__resources, 'robots.txt'));
         }
     }
 </script>

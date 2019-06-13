@@ -1,4 +1,5 @@
 process.env.BABEL_ENV = 'renderer'
+const isProduction = process.env.NODE_ENV === 'production'
 const path = require('path');
 const { dependencies } = require('../package.json')
 const webpack = require('webpack')
@@ -13,13 +14,13 @@ let whiteListedModules = [];
 module.exports = {
     srcDir: path.join(__dirname, '..', 'src', 'renderer'),
     rootDir: path.join(__dirname, '..'),
-    mode: 'spa',
+    mode: isProduction ? 'universal' : 'spa',
     head: {title: 'Electron-vue'},
     loading: false,
     router: {
         mode: 'hash'
     },
-    dev: process.env.NODE_ENV === 'development',
+    dev: !isProduction,
     generate:{
         dir: path.join(__dirname, '..', 'dist', 'renderer'),
     },
@@ -36,8 +37,8 @@ module.exports = {
             if(isClient) config.target = 'electron-renderer';
 
             config.node =  {
-                __dirname: process.env.NODE_ENV !== 'production',
-                __filename: process.env.NODE_ENV !== 'production'
+                __dirname: !isProduction,
+                __filename: !isProduction
             };
 
 
