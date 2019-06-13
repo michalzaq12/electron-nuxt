@@ -12,7 +12,7 @@ const isProduction =  process.env.NODE_ENV === 'production';
 
 
 let mainConfig = {
-    mode: isDev ? 'development' : 'production',
+    mode: isDev ? 'development' : 'none',
     entry: {
         main: isDev ?
             path.join(__dirname, '../src/main/index.dev.js')
@@ -25,8 +25,18 @@ let mainConfig = {
         rules: [
             {
                 test: /\.js$/,
-                use: 'babel-loader',
-                exclude: /node_modules/
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: [
+                            '@babel/plugin-transform-modules-commonjs',
+                            'transform-remove-console'
+                        ],
+                        compact: false,
+                        minified: false
+                    }
+                },
+                exclude: /node_modules/,
             },
             {
                 test: /\.node$/,
@@ -40,7 +50,7 @@ let mainConfig = {
     },
     output: {
         filename: 'index.js',
-        libraryTarget: 'commonjs2',
+        libraryTarget: 'commonjs-module',
         path: path.join(__dirname, '../dist/main')
     },
     plugins: [

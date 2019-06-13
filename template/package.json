@@ -17,22 +17,25 @@
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.29",
     "ava": "^2.0.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-plugin-webpack-alias-7": "^0.1.1",
     "browser-env": "^3.2.5",
     "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "del": "^4.0.0",
-    "electron": "^4.0.7",
+    "electron": "4.2.4",
     "electron-builder": "^20.41.0",
     "electron-debug": "^2.1.0",
     "electron-devtools-installer": "^2.2.4",
+    "electron-link": "^0.4.0",
+    "electron-mksnapshot": "^4.2.0",
+    "nuxt": "^2.8.1",
     "ora": "^3.2.0",
     "ps-tree": "^1.2.0",
     "require-extension-hooks": "^0.3.2",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^0.4.1",
     "spectron": "^5.0.0",
-    "webpack": "^4.29.2",
-    "nuxt": "^2.8.1"
+    "webpack": "^4.29.2"
   }
 }

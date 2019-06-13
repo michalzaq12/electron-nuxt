@@ -1,5 +1,9 @@
 /* globals INCLUDE_RESOURCES_PATH */
 
+if (typeof snapshotResult !== 'undefined') {
+    snapshotResult.setGlobals(global, process, global, {}, console, require);
+}
+
 // Set `__resources` path to resources files in main process
 global.__resources = undefined;
 // noinspection BadExpressionStatementJS
