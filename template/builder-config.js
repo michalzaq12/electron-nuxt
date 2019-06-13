@@ -1,4 +1,6 @@
 
+const ICONS_DIR = 'build/icons/';
+
 
 module.exports = {
     "asar": false,
@@ -32,14 +34,14 @@ module.exports = {
     },
     "mac": {
         "target": "dmg",
-        "icon": "build/icons/icon.icns"
+        "icon": ICONS_DIR + "icon.icns"
     },
     "win": {
-        "icon": "build/icons/win-icon.ico",
+        "icon": ICONS_DIR + "win-icon.ico",
         "publisherName": "michal"
     },
     "linux": {
-        "icon": "build/icons"
+        "icon": ICONS_DIR
     },
     "nsis": {
         "differentialPackage": true

@@ -1,7 +1,7 @@
 <template>
     <div>
         <span>HOME22</span>
-        <img src="~assets/nuxt.jpg"/>
+        <img src="~assets/electron-nuxt.png"/>
         <span>{{url}}</span>
     </div>
 </template>
