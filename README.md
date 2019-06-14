@@ -26,6 +26,8 @@
 
 ## Overview
 
+_**Project still under development**_
+
 The boilerplate for making electron applications built with vue / nuxt.
 
 Things you'll find in this boilerplate...
@@ -90,7 +92,7 @@ npm run build
 
 ### Application structure
 
-Same as [default Nuxt.js application structure](https://nuxtjs.org/guide/directory-structure/), but without **Static Directory**. If you don't want to use Webpack assets from the `assets` directory read section [static resources](#static-resources) and [resolving absolute paths in HTML](#resolving-absolute-paths-in-HTML).
+Same as [default Nuxt.js application structure](https://nuxtjs.org/guide/directory-structure/), but without **Static Directory**. If you don't want to use Webpack assets from the `assets` directory read section [static resources](#static-resources) and [resolving paths in HTML](#resolving-paths-in-HTML).
 
 ### Routing 
 
@@ -106,11 +108,14 @@ Entry point: `main/index.js`
 
 > [`BrowserWinHandler`](https://github.com/michalzaq12/electron-nuxt/blob/master/template/src/main/BrowserWinHandler.js) is helper class, which wrap [`BrowserWindow`](https://electronjs.org/docs/api/browser-window) to make it more self-manageable. This solution facilitates communication between the windows and doesn`t require a window manager.
 
-## Resolving absolute paths in HTML
+## Resolving paths in HTML
 
-If you would like to set the src of an `<img>` to the absolute path of an image, you must provide absolute path with **protocol**.
+If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide **absolute** path with **protocol**.
 
-**Brief advice:** add protocol as prefix to path eg. `file:///home/User/electron-nuxt.png`
+Examples: 
+- `~/assets/image.png`
+- `file:///home/User/electron-nuxt.png`
+- `file:///${__resources}/image2.png`
 
 ## Static resources
 
@@ -135,7 +140,7 @@ Due to [electron-builder](https://github.com/electron-userland/electron-builder)
 
 - packages mentioned in `devDependencies` aren`t packed into production build. 
 
-In conclusion, we need to pack the necessary dependencies to production build, but without subpackages, dead code, develompent tools and for example stylus files (we can compile them to css). To do this we use Webpack, which produce dist files (our entire application) and only these files will be copied (files are explicitly specified in `builder-config.js`) to production build.
+In conclusion, we need to pack the necessary dependencies to production build, but without uneeded subpackages, dead code, develompent tools and for example stylus files (we can compile them to css). To do this we use Webpack, which produce dist files (our entire application) and only these files will be copied (files are explicitly specified in `builder-config.js`) to production build.
 
 **Some `dependencies` use case**
 
@@ -147,20 +152,6 @@ In conclusion, we need to pack the necessary dependencies to production build, b
 Global variables `__dirname` and `__filename` are no longer reliable on production build. If you need reliable path to static assets read more about: [static resources](#static-resources).
 
 
-### Output application file tree (packaged with asar)
-
-```
-app.asar
-├─ dist
-│  ├─ main
-│  │  └─ index.js
-│  └─ renderer
-│     ├─ _nuxt/
-│     └─ index.html
-├─ resources/
-├─ node_modules/
-└─ package.json
-```
 
 <br>
 
