@@ -9,14 +9,14 @@ const webpack = require('webpack');
 const isDev = process.env.NODE_ENV === 'development';
 const isProduction =  process.env.NODE_ENV === 'production';
 
-const {SERVER_PORT, SERVER_HOST, DIST_DIR, MAIN_ROOT} = require('../config');
+const {SERVER_PORT, SERVER_HOST, DIST_DIR, MAIN_PROCESS_DIR} = require('../config');
 
 let mainConfig = {
     mode: isDev ? 'development' : 'production',
     entry: {
         main: isDev ?
-            path.join(MAIN_ROOT, 'index.dev.js')
-            : path.join(MAIN_ROOT, 'index.js')
+            path.join(MAIN_PROCESS_DIR, 'index.dev.js')
+            : path.join(MAIN_PROCESS_DIR, 'index.js')
     },
     externals: [
         ...Object.keys(dependencies || {})

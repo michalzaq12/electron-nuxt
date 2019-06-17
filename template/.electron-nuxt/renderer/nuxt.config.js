@@ -4,7 +4,7 @@ const path = require('path');
 const { dependencies } = require('../../package.json')
 const webpack = require('webpack')
 const resourcesPath = require('../resources-path-provider');
-const {RENDERER_ROOT, DIST_DIR, PROJECT_ROOT} = require('../config');
+const {RENDERER_PROCESS_DIR, DIST_DIR, PROJECT_ROOT} = require('../config');
 
 const userNuxtConfig = require('../../src/renderer/nuxt.config');
 
@@ -16,7 +16,7 @@ let whiteListedModules = [];
 
 module.exports = {
     ...userNuxtConfig,
-    srcDir: RENDERER_ROOT,
+    srcDir: RENDERER_PROCESS_DIR,
     rootDir: PROJECT_ROOT,
     mode: isProduction ? 'universal' : 'spa',
     router: {

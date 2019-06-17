@@ -1,6 +1,6 @@
-const path = require('path');
+const { RESOURCES_DIR } = require('./config');
 
-const RESOURCES_DIR_PATH = path.join(__dirname, '..', 'src', 'resources').replace(/\\/g, '/');
+const RESOURCES_DIR_PATH = RESOURCES_DIR.replace(/\\/g, '/');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
