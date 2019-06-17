@@ -32,7 +32,7 @@
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^0.4.1",
     "spectron": "^5.0.0",
-    "webpack": "^4.29.2",
+    "webpack": "^4.34.0",
     "nuxt": "^2.8.1"
   }
 }
