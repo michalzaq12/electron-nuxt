@@ -3,7 +3,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 const path = require('path');
 const { dependencies } = require('../../package.json')
 const webpack = require('webpack')
-const { resourcesPath } = require('../config');
+const resourcesPath = require('../resources-path-provider');
 
 const userNuxtConfig = require('../../src/renderer/nuxt.config');
 

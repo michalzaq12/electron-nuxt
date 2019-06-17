@@ -2,7 +2,7 @@
 process.env.BABEL_ENV = 'main';
 
 const path = require('path');
-const { resourcesPath } = require('./config');
+const resourcesPath = require('./resources-path-provider');
 const { dependencies } = require('../package.json');
 const webpack = require('webpack');
 
