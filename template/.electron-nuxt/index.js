@@ -70,7 +70,8 @@ function cleanBuildDirectory () {
         })
         .catch(err => {
             Logger.spinnerFail('Something went wrong');
-            console.error(err)
+            console.error(err);
+            cleanupProcessAndExit(1);
         })
 })();
 
