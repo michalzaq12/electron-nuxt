@@ -1,6 +1,7 @@
 const Logger = require('./utils/logger');
 const path = require('path')
 const del = require('del')
+const {DIST_DIR} = require('./config');
 
 const ElectronApp = require('./ElectronApp');
 const NuxtApp = require('./renderer/NuxtApp');
@@ -21,7 +22,7 @@ const nuxtApp = new NuxtApp();
 nuxtApp.redirectStdout(nuxtLogger);
 
 
-const electronApp = new ElectronApp(path.join(__dirname, '../dist/main/index.js'));
+const electronApp = new ElectronApp(path.join(DIST_DIR, 'main/index.js'));
 electronApp.redirectStdout(electronLogger);
 electronApp.on('relaunch', () => {
     Logger.info('Relaunching electron... ')
