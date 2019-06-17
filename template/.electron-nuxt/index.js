@@ -1,4 +1,4 @@
-const Logger = require('./logger');
+const Logger = require('./utils/logger');
 const path = require('path')
 const webpack = require('webpack');
 const del = require('del')

@@ -1,6 +1,6 @@
-const chalk = require('chalk');
+const chalk = require('chalk/types');
 const { Writable } = require('stream');
-const ora = require('ora');
+const ora = require('ora/index');
 const readline = require('readline');
 
 const spinner = ora({

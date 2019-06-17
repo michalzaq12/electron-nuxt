@@ -1,7 +1,7 @@
 const electronPath = require('electron');
 const { spawn } = require('child_process');
 const EventEmitter = require('events');
-const { killWithAllSubProcess } = require('./kill-process');
+const { killWithAllSubProcess } = require('./utils/kill-process');
 const { ELECTRON_RELAUNCH_CODE, ELECTRON_INSPECTION_PORT } = require('./config');
 
 
