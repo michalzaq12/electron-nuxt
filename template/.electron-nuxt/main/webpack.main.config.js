@@ -2,21 +2,21 @@
 process.env.BABEL_ENV = 'main';
 
 const path = require('path');
-const resourcesPath = require('./resources-path-provider');
-const { dependencies } = require('../package.json');
+const resourcesPath = require('../resources-path-provider');
+const { dependencies } = require('../../package.json');
 const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProduction =  process.env.NODE_ENV === 'production';
 
-const {SERVER_PORT, SERVER_HOST} = require('./config');
+const {SERVER_PORT, SERVER_HOST} = require('../config');
 
 let mainConfig = {
     mode: isDev ? 'development' : 'production',
     entry: {
         main: isDev ?
-            path.join(__dirname, '../src/main/index.dev.js')
-            : path.join(__dirname, '../src/main/index.js')
+            path.join(__dirname, '../../src/main/index.dev.js')
+            : path.join(__dirname, '../../src/main/index.js')
     },
     externals: [
         ...Object.keys(dependencies || {})
@@ -50,7 +50,7 @@ let mainConfig = {
     output: {
         filename: 'index.js',
         libraryTarget: 'commonjs2',
-        path: path.join(__dirname, '../dist/main')
+        path: path.join(__dirname, '../../dist/main')
     },
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),

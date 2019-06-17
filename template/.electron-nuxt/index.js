@@ -1,10 +1,10 @@
 const Logger = require('./utils/logger');
 const path = require('path')
-const webpack = require('webpack');
 const del = require('del')
-const mainConfig = require('./webpack.main.config');
+
 const ElectronApp = require('./ElectronApp');
 const NuxtApp = require('./renderer/NuxtApp');
+const MainApp = require('./main/MainApp');
 
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -32,6 +32,15 @@ electronApp.on('exit', code => {
 });
 
 
+const mainApp = new MainApp();
+mainApp.on('error', err => {
+    mainLogger.error(err);
+})
+mainApp.on('after-compile', webpackStats => {
+    mainLogger.logWebpackStats(webpackStats);
+    electronApp.relaunch();
+})
+
 
 function cleanBuildDirectory () {
     try{
@@ -46,34 +55,13 @@ function cleanBuildDirectory () {
 }
 
 
-function startMain () {
-    return new Promise(resolve => {
-        const compiler = webpack(mainConfig);
-
-        compiler.watch({
-            ignored: /node_modules/,
-            aggregateTimeout: 5000
-        }, (err, stats) => {
-            if (err) {
-                mainLogger.error(err);
-                return
-            }
-
-            mainLogger.logWebpackStats(stats);
-            electronApp.relaunch();
-            resolve()
-        })
-    })
-}
-
-
 (function buildPipeline () {
     const text = isDev ? 'starting development env...' : 'building for production';
     Logger.spinnerStart(text);
 
     if(isProd) cleanBuildDirectory();
 
-    Promise.all([nuxtApp.build(), startMain()])
+    Promise.all([nuxtApp.build(), mainApp.build()])
         .then(() => {
             if(isDev) electronApp.launch();
             Logger.spinnerSucceed('Done');
