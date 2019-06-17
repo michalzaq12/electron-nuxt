@@ -1,5 +1,5 @@
 const { Nuxt, Builder, Generator } = require('nuxt');
-const {SERVER_PORT} = require('./config');
+const {SERVER_PORT} = require('../config');
 let nuxtConfig = require('./nuxt.config.js');
 
 

@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const del = require('del')
 const mainConfig = require('./webpack.main.config');
 const ElectronApp = require('./electron');
-const NuxtApp = require('./nuxt-runner');
+const NuxtApp = require('./renderer/NuxtApp');
 
 
 const isDev = process.env.NODE_ENV === 'development';

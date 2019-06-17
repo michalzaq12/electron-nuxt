@@ -1,6 +1,6 @@
 const path = require('path');
 const { fork } = require('child_process');
-const { killProcess } = require('./kill-process');
+const { killProcess } = require('../kill-process');
 
 const NUXT_PROCESS_PATH = path.join(__dirname, 'nuxt-process.js');
 
