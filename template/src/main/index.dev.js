@@ -1,3 +1,4 @@
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 import {Menu, MenuItem, app} from "electron";
 import {ELECTRON_RELAUNCH_CODE} from '../../.electron-nuxt/config';
 import mainWinHandler from './mainWindow';
