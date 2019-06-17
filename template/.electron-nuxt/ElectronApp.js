@@ -2,7 +2,7 @@ const electronPath = require('electron');
 const { spawn } = require('child_process');
 const EventEmitter = require('events');
 const { killWithAllSubProcess } = require('./kill-process');
-const { ELECTRON_RELAUNCH_CODE } = require('./config');
+const { ELECTRON_RELAUNCH_CODE, ELECTRON_INSPECTION_PORT } = require('./config');
 
 
 class ElectronApp extends EventEmitter {
@@ -15,7 +15,7 @@ class ElectronApp extends EventEmitter {
 
     launch(){
         let args = [
-            '--inspect=5858',
+            `--inspect=${ELECTRON_INSPECTION_PORT}`,
             this.mainProcessIndexJSPath,
             '--auto-detect=false',
             '--no-proxy-server'
@@ -35,7 +35,7 @@ class ElectronApp extends EventEmitter {
             if(code === ELECTRON_RELAUNCH_CODE) {
                 this.relaunch();
             }else{
-                this._killWithAllSubProcesses();
+                this.exit()
                 this.emit('exit', code);
             }
         });
@@ -53,15 +53,12 @@ class ElectronApp extends EventEmitter {
     async relaunch(){
         if(!this.isRunning) return;
         this.emit('relaunch');
-        await this._killWithAllSubProcesses();
+        await this.exit();
         this.launch();
     }
 
-    async exit(){
-        return this._killWithAllSubProcesses();
-    }
 
-    async _killWithAllSubProcesses(){
+    async exit(){
         if(!this.isRunning) return;
         this.process.removeAllListeners('exit');
         this.closeProcessStd();

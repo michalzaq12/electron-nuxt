@@ -3,7 +3,7 @@ const path = require('path')
 const webpack = require('webpack');
 const del = require('del')
 const mainConfig = require('./webpack.main.config');
-const ElectronApp = require('./electron');
+const ElectronApp = require('./ElectronApp');
 const NuxtApp = require('./renderer/NuxtApp');
 
 
