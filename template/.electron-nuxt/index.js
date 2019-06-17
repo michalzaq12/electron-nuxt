@@ -81,7 +81,7 @@ function cleanBuildDirectory () {
 async function cleanupProcessAndExit(exitCode, exit = true) {
     await electronApp.exit();
     nuxtApp.exit();
-    if(exit) process.exit();
+    if(exit) process.exit(exitCode);
 }
 
 
