@@ -1,7 +1,7 @@
 {
   "name": "electron-nuxt",
   "version": "1.0.0",
-  "description": "",
+  "description": "An electron-nuxt project",
   "main": "./dist/main/index.js",
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
@@ -13,7 +13,8 @@
   },
   "keywords": [],
   "author": "“Michał <“michal.m.zarach@gmail.com”>",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.29",
     "ava": "^2.0.0",
