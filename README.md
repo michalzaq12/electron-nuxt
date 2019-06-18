@@ -75,6 +75,12 @@ npm install
 ### Available commands
 
 - Run app in development
+    <details>
+    <summary>Preview</summary>
+    
+    <img src="./docs/images/electron-dev.gif" alt="electron-nuxt-in-development">
+   
+    </details>
 ```bash
 npm run dev
 ```
