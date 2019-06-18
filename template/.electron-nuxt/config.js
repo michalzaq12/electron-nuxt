@@ -5,7 +5,7 @@ const SRC_DIR =  path.join(PROJECT_ROOT, 'src');
 
 
 const config = {
-    ELECTRON_RELAUNCH_CODE: 9888,
+    ELECTRON_RELAUNCH_CODE: 250, // valid range in unix system: <1,255>
     ELECTRON_INSPECTION_PORT: 5858,
     SERVER_PORT: 9080,
     SERVER_HOST: 'http://localhost',
