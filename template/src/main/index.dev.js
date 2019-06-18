@@ -3,26 +3,15 @@ import {Menu, MenuItem, app} from "electron";
 import {ELECTRON_RELAUNCH_CODE} from '../../.electron-nuxt/config';
 import mainWinHandler from './mainWindow';
 import electronDebug from 'electron-debug';
-
+import vueDevtools from 'vue-devtools';
 
 electronDebug({
     showDevTools: false,
     devToolsMode: 'right'
 })
 
-const VUEJS_DEVTOOLS = {
-    id: 'nhdogjmejiglipccpnnnanhbledajbpd',  // => ver 5.1.0
-    electron: '>=1.2.1' // electron version (dummy)
-};
-
-
 app.on('ready', () => {
-    let installExtension = require('electron-devtools-installer')
-    installExtension.default(VUEJS_DEVTOOLS)
-        .catch(err => {
-            console.log('Unable to install `vue-devtools`: \n', err)
-        });
-
+    vueDevtools.install();
     const menu = Menu.getApplicationMenu();
     const refreshButton = new MenuItem({
         label: 'Relaunch electron',
