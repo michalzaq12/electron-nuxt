@@ -48,9 +48,8 @@ function cleanBuildDirectory () {
         del.sync(['dist/main/*', '!.gitkeep']);
         del.sync(['dist/renderer/*', '!.gitkeep']);
         del.sync(['build/**/*.pak']);
-    }catch (e) {
-        Logger.spinnerFail('Error occurred when cleaning build directory');
-        console.error(e);
+    }catch (err) {
+        Logger.spinnerFail('Error occurred when cleaning build directory', err);
         cleanupProcessAndExit(1);
     }
 }
@@ -69,8 +68,7 @@ function cleanBuildDirectory () {
             if(!isDev) cleanupProcessAndExit(0)
         })
         .catch(err => {
-            Logger.spinnerFail('Something went wrong');
-            console.error(err);
+            Logger.spinnerFail('Something went wrong', err);
             cleanupProcessAndExit(1);
         })
 })();

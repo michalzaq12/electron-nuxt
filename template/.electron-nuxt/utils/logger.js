@@ -64,8 +64,9 @@ class Logger {
         spinner.succeed(Logger._parseSpinnerText(text));
     }
 
-    static spinnerFail(text){
+    static spinnerFail(text, error){
         spinner.fail(Logger._parseSpinnerText(text));
+        if(error) staticLogger.warn(chalk.red(error))
     }
 
     static info(text){
