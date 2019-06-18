@@ -1,4 +1,4 @@
-const isProduction = process.env.NODE_ENV === 'production';
+const isDev = process.env.NODE_ENV === 'development';
 import {BrowserWinHandler} from './BrowserWinHandler';
 import path from 'path';
 
@@ -13,8 +13,8 @@ const winHandler = new BrowserWinHandler({
 });
 
 winHandler.onCreated(browserWindow => {
-    const winURL = isProduction ? INDEX_PATH : DEV_SERVER_URL;
-    browserWindow.loadURL(winURL);
+    if(isDev) browserWindow.loadURL(DEV_SERVER_URL);
+    else browserWindow.loadFile(INDEX_PATH);
 });
 
 
