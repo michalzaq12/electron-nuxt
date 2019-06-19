@@ -1,14 +1,16 @@
 <template>
     <div class="container">
+        <!--ONLY FOR TEST PURPOSE-->
+            <span id="external-resource" style="display: none;">{{externalContent}}</span>
+            <img id="absolute-path-with-resources-const" style="display: none;" :src="`file:///${__resources}/electron-nuxt.png`"/>
+        <!-- \END -->
         <div class="content">
-            <span style="display: none">{{externalContent}}</span>
             <div class="logo">
                 <img style="max-width: 100%;" src="~assets/electron-nuxt.png"/>
             </div>
             <div class="system-info">
                 <system-information></system-information>
             </div>
-    <!--        <img :src="`file:///${__resources}/electron-nuxt.png`"/>-->
         </div>
         <div class="links">
             <div class="button" @click="openURL('https://github.com/michalzaq12/electron-nuxt')">
@@ -46,7 +48,7 @@
             }
         },
         mounted() {
-            this.externalContent = fs.readFileSync(path.join(__resources, 'robots.txt'));
+            this.externalContent = fs.readFileSync(path.join(__resources, 'external-file.txt'));
         }
     }
 </script>

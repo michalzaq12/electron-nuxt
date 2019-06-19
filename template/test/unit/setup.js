@@ -2,8 +2,9 @@ const hooks = require('require-extension-hooks')
 const env = require('browser-env')
 const path = require('path');
 
+const resourcesPathProvider = require('../../.electron-nuxt/resources-path-provider');
+global.__resources = eval(resourcesPathProvider.renderedProcess());
 
-global.__resources = 'D:\\git_repos\\electron-nuxt\\template\\src\\resources';
 
 env()
 hooks('vue').plugin('vue').push()
