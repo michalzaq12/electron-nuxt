@@ -39,7 +39,7 @@
                 node: process.versions.node,
                 platform: require('os').platform(),
                 vue: require('vue/package.json').version,
-                nuxt: require('nuxt/package').version
+                nuxt: require('nuxt/package.json').version
             }
         }
     }

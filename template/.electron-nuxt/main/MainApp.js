@@ -31,10 +31,8 @@ class MainApp extends EventEmitter {
     async _run(){
         return new Promise((resolve, reject) => {
             this._compiler.run((err, stats) => {
-                if (err || stats.hasErrors()) {
-                    this.emit('after-compile', stats);
-                    return reject('Error occurred during main process webpack compilation step');
-                }
+                this.emit('after-compile', stats);
+                if (err || stats.hasErrors()) reject('Error occurred during webpack compilation step');
                 resolve();
             })
         });
