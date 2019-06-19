@@ -3,7 +3,7 @@ const env = require('browser-env')
 const path = require('path');
 
 const resourcesPathProvider = require('../../.electron-nuxt/resources-path-provider');
-global.__resources = eval(resourcesPathProvider.renderedProcess());
+global.__resources = eval(resourcesPathProvider.nuxtServer());
 
 
 env()

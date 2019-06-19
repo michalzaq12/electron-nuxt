@@ -7,24 +7,24 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
 
     mainProcess() {
-        return isProduction ? mainProcessProduction() : processDev();
+        return isProduction ? pathFromMainOnRuntime() : staticPath();
     },
 
-    renderedProcess() {
-        return isProduction ? rendererProcessProduction() : processDev();
+    nuxtClient() {
+        return isProduction ? pathFromRendererOnRuntime() : staticPath();
     },
 
-    vueSSR: processDev
+    nuxtServer: staticPath
 }
 
-function processDev (){
+function staticPath (){
     //resolve during compilation
     return `
     global.__resources = \`${RESOURCES_DIR_PATH}\`;
   `;
 }
 
-function rendererProcessProduction() {
+function pathFromRendererOnRuntime() {
     //resolve on runtime
     //path depends on production directory structure
 
@@ -35,7 +35,7 @@ function rendererProcessProduction() {
   `;
 }
 
-function mainProcessProduction() {
+function pathFromMainOnRuntime() {
     //resolve on runtime
     //path depends on production directory structure
 

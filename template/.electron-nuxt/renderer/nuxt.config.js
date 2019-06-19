@@ -57,7 +57,7 @@ module.exports = {
 
             config.plugins.push(
                 new webpack.DefinePlugin({
-                    'INCLUDE_RESOURCES_PATH': isClient ? resourcesPath.renderedProcess() : resourcesPath.vueSSR()
+                    'INCLUDE_RESOURCES_PATH': isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
                 })
             )
 
