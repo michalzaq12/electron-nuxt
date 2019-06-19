@@ -163,6 +163,4 @@ Global variables `__dirname` and `__filename` are no longer reliable on producti
 
 # Common issues
 
-- Can`t update vue devtools: [solution](https://github.com/SimulatedGREG/electron-vue/issues/844)
-
 - Vue devtools doesn`t respond: relaunch electron (from app menu or Command/Control+E)
