@@ -1,5 +1,5 @@
 <template>
-	<div class="window">
+	<div>
 		<app-header />
 		<nuxt/>
 	</div>
@@ -15,6 +15,6 @@
 
 <style>
 	body{
-		margin: 0;
+		margin: 0 !important;
 	}
 </style>
