@@ -12,8 +12,9 @@ module.exports = {
 
     renderedProcess() {
         return isProduction ? rendererProcessProduction() : processDev();
-    }
+    },
 
+    vueSSR: processDev
 }
 
 function processDev (){

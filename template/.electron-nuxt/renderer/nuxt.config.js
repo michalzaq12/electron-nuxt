@@ -18,7 +18,7 @@ module.exports = {
     ...userNuxtConfig,
     srcDir: RENDERER_PROCESS_DIR,
     rootDir: PROJECT_ROOT,
-    mode: isProduction ? 'universal' : 'spa',
+    mode: 'universal',
     router: {
         mode: 'hash'
     },
@@ -27,7 +27,7 @@ module.exports = {
         dir: path.join(DIST_DIR, 'renderer')
     },
     plugins: [
-        { ssr: false, src: path.join(__dirname, 'resources-plugin.js') },
+        { ssr: true, src: path.join(__dirname, 'resources-plugin.js') },
         ...(userNuxtConfig.plugins || [])
     ],
     build: {
@@ -41,7 +41,7 @@ module.exports = {
                 ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
             ];
 
-            if(isClient) config.target = 'electron-renderer';
+            config.target = 'electron-renderer';
 
             config.node =  {
                 __dirname: !isProduction,
@@ -57,7 +57,7 @@ module.exports = {
 
             config.plugins.push(
                 new webpack.DefinePlugin({
-                    'INCLUDE_RESOURCES_PATH': resourcesPath.renderedProcess()
+                    'INCLUDE_RESOURCES_PATH': isClient ? resourcesPath.renderedProcess() : resourcesPath.vueSSR()
                 })
             )
 
