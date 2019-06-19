@@ -11,9 +11,9 @@ const MainApp = require('./main/MainApp');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
 
-const mainLogger = new Logger('Main', 'yellow');
+const mainLogger = new Logger('Main', 'olive');
 const nuxtLogger = new Logger('Nuxt', 'green');
-const electronLogger = new Logger('Electron', 'blue');
+const electronLogger = new Logger('Electron', 'teal');
 electronLogger.ignore(text => text.indexOf('source: chrome-devtools://devtools/bundled/shell.js (108)') > -1);
 
 

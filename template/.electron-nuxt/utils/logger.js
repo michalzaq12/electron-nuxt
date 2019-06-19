@@ -55,6 +55,10 @@ class Logger {
         return chalk.inverse('Electron-nuxt') + ': ' + chalk.underline(text);
     }
 
+    static _parseSpinnerTextError(text){
+        return chalk.inverse('Electron-nuxt') + ': ' + chalk.underline.redBright(text);
+    }
+
     static spinnerStart(text){
         if(text !== undefined) spinner.text = Logger._parseSpinnerText(text);
         spinner.start();
@@ -65,8 +69,7 @@ class Logger {
     }
 
     static spinnerFail(text, error){
-        spinner.fail(Logger._parseSpinnerText(text));
-        if(error) staticLogger.warn(chalk.red(error))
+        spinner.fail(Logger._parseSpinnerTextError(error ? error : text));
     }
 
     static info(text){
