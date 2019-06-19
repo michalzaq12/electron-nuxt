@@ -26,14 +26,14 @@
     "electron": "5.0.4",
     "electron-builder": "^20.41.0",
     "electron-debug": "^2.1.0",
-    "electron-devtools-installer": "^2.2.4",
+    "nuxt": "^2.8.1",
     "ora": "^3.2.0",
     "ps-tree": "^1.2.0",
     "require-extension-hooks": "^0.3.2",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^0.4.1",
     "spectron": "^5.0.0",
-    "webpack": "^4.34.0",
-    "nuxt": "^2.8.1"
+    "vue-devtools": "^5.1.0",
+    "webpack": "^4.34.0"
   }
 }
