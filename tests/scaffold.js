@@ -14,8 +14,9 @@ process.chdir(process.cwd() + '/builds');
 generate(templateName, cliAnswers);
 
 setTimeout(() => {
-    process.exit()
-}, 4000)
+    console.error('Project scaffolding timeout !')
+    process.exit(1)
+}, 10000)
 
 function generate (templateName, answers) {
     console.log(`${YELLOW}Generating \`${templateName}\`${END}`);

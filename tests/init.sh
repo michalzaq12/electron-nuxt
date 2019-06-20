@@ -5,6 +5,8 @@ set -e
 cd "$PWD/tests"
 node scaffold.js "$1"
 
+sleep 2
+
 # Install dependecies
 cd "$PWD/builds/$1"
 npm install
