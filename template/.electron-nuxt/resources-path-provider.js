@@ -28,10 +28,10 @@ function pathFromRendererOnRuntime() {
     //resolve on runtime
     //path depends on production directory structure
 
-    //renderer entry: ./dist/renderer/_nuxt/app.js
-    //resources: ./resources/
+    //renderer entry: ./dist/renderer/index.html
+    //resources: ./dist/resources/
     return `
-    global.__resources = require('path').join(__dirname, '..', '..', 'resources');
+    global.__resources = require('path').join(__dirname, '..', 'resources');
   `;
 }
 
@@ -40,7 +40,7 @@ function pathFromMainOnRuntime() {
     //path depends on production directory structure
 
     //main entry: ./dist/main/index.js
-    //resources: ./resources/
+    //resources: ./dist/resources/
     return `
     global.__resources = require('path').join(__dirname, '..', 'resources');
   `;

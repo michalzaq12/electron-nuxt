@@ -4,7 +4,8 @@ const ICONS_DIR = 'build/icons/';
 const windowsOS = {
     win: {
         icon: ICONS_DIR +'win-icon.ico',
-        publisherName: 'michal'
+        publisherName: 'michal',
+        target: 'nsis'
     },
 
     nsis: {
@@ -50,14 +51,22 @@ module.exports = {
     directories: {
         output: 'build'
     },
+    //default files: https://www.electron.build/configuration/contents
     files: [
-        'dist/**/*',
+        'package.json',
+        {
+            from: 'dist/main/',
+            to: 'dist/main/'
+        },
+        {
+            from: 'dist/renderer',
+            to: 'dist/renderer/'
+        },
         {
             from: 'src/resources/',
-            to: 'resources/'
+            to: 'dist/resources/'
         }
     ],
-    //default files: https://www.electron.build/configuration/contents
     ...windowsOS,
     ...linuxOS,
     ...macOS
