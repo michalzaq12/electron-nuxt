@@ -13,6 +13,10 @@ process.chdir(process.cwd() + '/builds');
 
 generate(templateName, cliAnswers);
 
+{{#isCI}}
+    console.log(`${YELLOW}CI build detected.${END}`)
+{{/isCI}}
+
 setTimeout(() => {
     console.error('Project scaffolding timeout !')
     process.exit(1)

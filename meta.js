@@ -1,6 +1,16 @@
 'use strict';
 
+const IS_CI = process.env.CI;
+
 module.exports = {
+    metalsmith: {
+      before: (metalsmith, options, helpers) =>{
+          Object.assign(
+              metalsmith.metadata(),
+              {isCI: IS_CI}
+          )
+      }
+    },
     prompts: {
         name: {
             type: 'string',
