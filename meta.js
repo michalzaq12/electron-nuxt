@@ -2,7 +2,7 @@
 
 module.exports = {
     metalsmith: {
-      before: (metalsmith, options, helpers) =>{
+      before: (metalsmith) =>{
           Object.assign(
               metalsmith.metadata(),
               {isCI: process.env.CI}
