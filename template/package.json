@@ -34,6 +34,6 @@
     "require-extension-hooks-vue": "^0.4.1",
     "spectron": "^5.0.0",
     "vue-devtools": "^5.1.0",
-    "webpack": "^4.34.0"
+    "webpack": "^4.35.0"
   }
 }
