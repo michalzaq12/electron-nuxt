@@ -1,8 +1,5 @@
 const ICONS_DIR = 'build/icons/';
 
-{{#isCI}}
-console.log('... CI ...');
-{{/isCI}}
 
 const windowsOS = {
     win: {
