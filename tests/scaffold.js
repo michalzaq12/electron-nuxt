@@ -13,6 +13,8 @@ process.chdir(process.cwd() + '/builds');
 
 generate(templateName, cliAnswers);
 
+if(process.env.CI) console.log(`${YELLOW}CI build detected.${END}`);
+
 setTimeout(() => {
     console.error('Project scaffolding timeout !')
     process.exit(1)
@@ -26,8 +28,9 @@ function generate (templateName, answers) {
         .when(/Application Id/g).respond(answers.appid)
         .when(/Application Version/g).respond(answers.appver)
         .when(/Project description/g).respond(answers.description)
-        .when(/Scss/g).respond(answers.usesass)
         .when(/css framework/g).respond(answers.cssFramework)
+        .when(/css pre-processor/g).respond(answers.cssPreprocessor)
+        .when(/icon set/g).respond(answers.iconSet)
         .when(/ESLint/g).respond(answers.eslint)
         .when(/config/g).respond(answers.eslintConfig)
         .when(/unit/g).respond(answers.unit)
