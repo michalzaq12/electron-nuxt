@@ -30,15 +30,18 @@ _**Project still under development**_
 
 The boilerplate for making electron applications built with vue / nuxt.
 
-Things you'll find in this boilerplate...
+**Things you'll find in this boilerplate:**
 
 * Auto-updating server for easy development \*
 * ES6/ES7 compilation without any extra work \*
 * Parallel build main and renderer
 * Installed newest [vue-devtools](https://github.com/vuejs/vue-devtools)
 * Ability to easily package your electron app using [electron-builder](https://github.com/electron-userland/electron-builder)
-* Pre-processor: Sass, Less, Stylus \**
 * ESLint \([`standard`](https://github.com/feross/standard) and [`airbnb-base`](https://github.com/airbnb/javascript)\) \** (TODO)
+* Built-in support for:
+    * Pre-processor: Sass, Less, Stylus \**
+    * CSS Framework: [Buefy](https://buefy.org), [Vuetify](https://vuetifyjs.com/en/) \**
+    * Icon set: [Font Awesome 5](https://fontawesome.com/icons), [Material Design Icon](https://materialdesignicons.com) \**
 * Unit Testing \([vue-test-utils](https://vue-test-utils.vuejs.org) + [AVA](https://github.com/avajs/ava)\) \**
 * End-to-end Testing \([Spectron](https://github.com/electron/spectron) + [AVA](https://github.com/avajs/ava)\) \** (waiting for merge [#364](https://github.com/electron/spectron/pull/364))
 
