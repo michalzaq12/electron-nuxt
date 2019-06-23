@@ -11,6 +11,7 @@ module.exports = {
     },
     loading: false,
     plugins: [
-        {ssr: true, src: '@/plugins/buefy.js'}
+        {ssr: true, src: '@/plugins/icons.js'},
+        {ssr: true, src: '@/plugins/buefy.js'},
     ]
 };

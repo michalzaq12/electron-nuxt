@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+        <b-button type="primary">
+            asd
+        </b-button>
+        <b-icon icon="home"></b-icon>
         <!--ONLY FOR TEST PURPOSE-->
             <span id="external-resource" style="display: none;">{{externalContent}}</span>
             <img id="absolute-path-with-resources-const" style="display: none;" :src="`file:///${__resources}/electron-nuxt.png`"/>

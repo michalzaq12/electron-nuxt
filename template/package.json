@@ -16,6 +16,7 @@
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "@mdi/font": "^3.6.95",
     "@vue/test-utils": "^1.0.0-beta.29",
     "ava": "^2.0.0",
