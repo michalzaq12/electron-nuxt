@@ -17,8 +17,7 @@
 
 <div align="center">
 
-[![Snoop Lion](https://forthebadge.com/images/badges/made-with-javascript.svg)]()
-[![Snoop Lion](https://forthebadge.com/images/badges/for-you.svg)]()
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 </div>
 
@@ -32,16 +31,22 @@ The boilerplate for making electron applications built with vue / nuxt.
 
 **Things you'll find in this boilerplate:**
 
-* Auto-updating server for easy development \*
+* Auto-updating for easy development \*
 * ES6/ES7 compilation without any extra work \*
-* Parallel build main and renderer
+* Parallel code compilation
 * Installed newest [vue-devtools](https://github.com/vuejs/vue-devtools)
 * Ability to easily package your electron app using [electron-builder](https://github.com/electron-userland/electron-builder)
-* ESLint \([`standard`](https://github.com/feross/standard) and [`airbnb-base`](https://github.com/airbnb/javascript)\) \** (TODO)
-* Built-in support for:
-    * Pre-processor: Sass, Less, Stylus \**
-    * CSS Framework: [Buefy](https://buefy.org), [Vuetify](https://vuetifyjs.com/en/) \**
-    * Icon set: [Font Awesome 5](https://fontawesome.com/icons), [Material Design Icon](https://materialdesignicons.com) \**
+* Configured ESLint (with support for [`standard`](https://github.com/feross/standard) and [`airbnb`](https://github.com/airbnb/javascript) code style) \**
+* Built-in support for CSS pre-processor: \**
+    * Sass (scss)
+    * LESS
+    * Stylus 
+* Pre-installed UI components framework: \**
+    * [Buefy](https://buefy.org) 
+    * [Vuetify](https://vuetifyjs.com/en/) 
+* Pre-installed icon set for offline usage: \**
+    * [Font Awesome 5](https://fontawesome.com/icons)
+    * [Material Design Icon](https://materialdesignicons.com) 
 * Unit Testing \([vue-test-utils](https://vue-test-utils.vuejs.org) + [AVA](https://github.com/avajs/ava)\) \**
 * End-to-end Testing \([Spectron](https://github.com/electron/spectron) + [AVA](https://github.com/avajs/ava)\) \** (waiting for merge [#364](https://github.com/electron/spectron/pull/364))
 
@@ -119,16 +124,21 @@ Entry point: `main/index.js`
 
 ## Resolving paths in HTML
 
-If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide **absolute** path with **protocol**.
+If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide **absolute** path with **protocol** (required on Linux and Mac to proper work in development enviroment).
 
-Examples: 
-- `~/assets/image.png`
-- `file:///home/User/electron-nuxt.png`
-- `file:///${__resources}/image2.png`
+**Examples:** 
+- `<img src="~/assets/image.png" />`
+- `<img src="file:///home/User/image.png" />`
+- ```<script :src=`file:///${__resources}/ex_script.js` /> ```
 
 ## Static resources
 
-Electron-nuxt provides a global variable named `__resources` that will yield a proper path to the `src/resources` directory in renderer and main process. 
+Electron-nuxt provides a global variable named `__resources` that will yield a proper path to the `src/resources` in renderer and main process. In this directory you can store all necessary resources with reliable path to them, but **you must treat all assets in this directory as read only.** (If you need also write access use [`app.getPath('appData')`](https://electronjs.org/docs/api/app#appgetpathname) instead of `__resources`).
+
+**Use case:**
+* [Tray icon](https://electronjs.org/docs/api/tray) 
+* External scripts
+* Binary data
 
 ## Building notes
 
