@@ -153,14 +153,7 @@ module.exports = {
         }
     },
     filters: {
-        'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\'',
-        'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\'',
-        'test/e2e/**/*': 'e2e',
-        'test/unit/**/*': 'unit',
-        'ava.config.js': 'e2e || unit',
-        'test/.eslintrc': 'e2e || unit',
-        '.eslintignore': 'eslint',
-        '.eslintrc.js': 'eslint'
+       
     },
     complete (data) {
         console.log('---------------------------------------------------------------------');
