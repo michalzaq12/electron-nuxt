@@ -10,6 +10,7 @@ const nuxt = new Nuxt(nuxtConfig);
 process.on('message', async ({action, target}) => {
     if(action !== 'build'){
         console.warn('Unknown action');
+        process.send({status: 'error', err: `Nuxt process: unknown action ('${action}')`})
         return;
     }
 
@@ -26,50 +27,17 @@ process.on('message', async ({action, target}) => {
             if(errors.length === 0) process.send({status: 'ok'})
             else process.send({status: 'error', err: 'Error occurred while generating pages'})
         }).catch(err => {
-            process.send({status: 'error', err: err})
-            process.exit(1)
+            console.error(err);
+            process.send({status: 'error', err: err.message})
         });
     }else {
         builder.build().then(() => {
             nuxt.listen(SERVER_PORT)
             process.send({status: 'ok'})
         }).catch(err => {
-            process.send({status: 'error', err: err})
-            process.exit(1)
+            console.error(err);
+            process.send({status: 'error', err: err.message})
         });
     }
 
 });
-
-
-// if(process.env.NODE_ENV !== 'production'){
-//     builder.build().then(() => {
-//         nuxt.listen(9080)
-//         process.send({status: 'ok'})
-//     }).catch(err => {
-//         process.send({status: 'error', err: err})
-//         process.exit(1)
-//     });
-// }else{
-//     generator.generate({build: true, init: true}).then(() => {
-//         process.send({status: 'ok'})
-//     }).catch(err => {
-//         process.send({status: 'error', err: err})
-//         process.exit(1)
-//     });
-// }
-
-
-
-
-
-// process.on('message', ({action}) => {
-//     console.log('get msg');
-//     if(action === 'exit'){
-//         console.log('msg exit');
-//         server.close(() => {
-//             console.log('Nuxt process exit ok');
-//             process.exit();
-//         })
-//     }
-// });
