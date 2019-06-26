@@ -24,7 +24,7 @@
     "babel-eslint": "^10.0.2",
     "babel-plugin-webpack-alias-7": "^0.1.1",
     "browser-env": "^3.2.5",
-    "buefy": "^0.7.7",
+    "buefy": "^0.7.8",
     "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "del": "^4.0.0",
