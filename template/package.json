@@ -8,7 +8,7 @@
     "recompile": "./node_modules/.bin/electron-rebuild.cmd",
     "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && npx electron-builder --config ./builder-config.js\"",
     "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
-    "test:e2e": "cross-env-shell NODE_ENV=test TEST_TYPE=e2e \"node .electron-nuxt/index.js && ava\"",
+    "test:e2e": "cross-env NODE_ENV=test TEST_TYPE=e2e ava",
     "test": "npm run test:unit && npm run test:e2e",
     "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src"
   },
@@ -43,7 +43,7 @@
     "require-extension-hooks": "^0.3.2",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^0.4.1",
-    "spectron": "^5.0.0",
+    "spectron": "^7.0.0",
     "vue-devtools": "^5.1.0",
     "vuetify": "^1.5.16",
     "webpack": "^4.35.0"

@@ -5,8 +5,8 @@
         </b-button>
         <b-icon icon="home"></b-icon>
         <!--ONLY FOR TEST PURPOSE-->
-            <span id="external-resource" style="display: none;">{{externalContent}}</span>
-            <img id="absolute-path-with-resources-const" style="display: none;" :src="`file:///${__resources}/electron-nuxt.png`"/>
+            <span id="external-resource">{{externalContent}}</span>
+            <img id="absolute-path-with-resources-const" :src="`file:///${__resources}/electron-nuxt.png`"/>
         <!-- \END -->
         <div class="content">
             <div class="logo">
