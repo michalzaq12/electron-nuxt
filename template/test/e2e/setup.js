@@ -8,33 +8,23 @@ const fs = require('fs');
 const YELLOW = '\x1b[33m';
 const END = '\x1b[0m';
 
-let unpackedDir = '';
-let executableName = '';
-let extension = '';
 
+let relativeAppPath = '';
 
 let os = process.platform;
 if (os === "darwin") {
-    unpackedDir = 'mac';
-    executableName = productName;
-    extension = '.app';
+    relativeAppPath = `mac/${productName}.app/Contents/MacOS/${productName}`
 } else if (os === "win32" || os === "win64") {
-    unpackedDir = 'win-unpacked';
-    executableName = productName;
-    extension = '.exe';
+    relativeAppPath = `win-unpacked/${productName}.exe`;
 } else if (os === "linux") {
-    unpackedDir = 'linux-unpacked';
-    executableName = name;
+    relativeAppPath = `linux-unpacked/${name}`;
 }
 
-const applicationPath = path.join(BUILD_DIR, `${unpackedDir}/${executableName}${extension}`);
+const applicationPath = path.join(BUILD_DIR, relativeAppPath);
 
-if (!fs.existsSync(applicationPath)) {
-    const dirname = path.dirname(applicationPath);
-    const files = fs.readdirSync(dirname);
-    console.log(`Files in directory '${dirname}': ${files}`);
+if (!fs.existsSync(applicationPath) || fs.lstatSync(applicationPath).isFile()) {
     throw new Error(`${YELLOW}[Spectron setup]:${END} Application with path: '${applicationPath}' doesn't exist. 
-        First build your app ('npm run build') or set proper path to unpacked binary.`)
+        First build your app ('npm run build') or set proper path to executable binary.`)
 }
 
 process.env.APPLICATION_PATH = applicationPath;
