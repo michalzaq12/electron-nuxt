@@ -7,6 +7,12 @@ addons:
     packages:
       - xvfb
 
+cache:
+  directories:
+    - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+
 env:
   global:
     - USE_HARD_LINKS=false # fix: Build failing with EEXIST: file already exists

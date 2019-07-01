@@ -1,13 +1,17 @@
 #!/bin/bash
 set -e
 
-# Scaffold boilerplate with given templateName
 cd "$PWD/tests"
+
+# Clean up dir if exist
+if [[ -d "$1" ]]; then rm -Rf $1; fi
+
+# Scaffold boilerplate with given templateName
 node scaffold.js "$1"
 sleep .5
 
 
-# Install dependecies
+# Install dependencies
 cd "$PWD/builds/$1"
 npm install
 
@@ -22,10 +26,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     sh -e /etc/init.d/xvfb start
     sleep 3 # give xvfb some time to start
 fi
+
 # Run e2e testing
 npm run test:e2e
 
-
-# Clean up current scaffold
-cd ..
-rm -rf "$1"
