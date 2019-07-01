@@ -6,10 +6,10 @@ import {waitForNUXT, sleep, navigateInApp} from "../helpers";
 test.beforeEach(async t => {
     t.context.app = new Application({
         path: process.env.APPLICATION_PATH,
-        startTimeout: 10000,
-        waitTimeout: 10000,
-        quitTimeout: 10000,
-        chromeDriverArgs: ["--disable-extensions"],
+        startTimeout: 50 * 1000,
+        quitTimeout: 10 * 1000,
+        waitTimeout: 10 * 1000,
+        chromeDriverArgs: ['no-sandbox', 'disable-extensions'],
         env: {
             SPECTRON: true,
             ELECTRON_ENABLE_LOGGING: true,
