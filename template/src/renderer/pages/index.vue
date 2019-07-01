@@ -5,7 +5,7 @@
         </b-button>
         <b-icon icon="home"></b-icon>
         <!--ONLY FOR TEST PURPOSE-->
-            <span id="external-resource">{{externalContent}}</span>
+            <span id="external-resource">\{{externalContent}}</span>
             <img id="absolute-path-with-resources-const" :src="`file:///${__resources}/electron-nuxt.png`"/>
         <!-- \END -->
         <div class="content">
