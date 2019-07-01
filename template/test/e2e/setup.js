@@ -16,7 +16,8 @@ let extension = '';
 let os = process.platform;
 if (os === "darwin") {
     unpackedDir = 'mac';
-    executableName = name;
+    executableName = productName;
+    extension = '.app';
 } else if (os === "win32" || os === "win64") {
     unpackedDir = 'win-unpacked';
     executableName = productName;
@@ -29,10 +30,11 @@ if (os === "darwin") {
 const applicationPath = path.join(BUILD_DIR, `${unpackedDir}/${executableName}${extension}`);
 
 if (!fs.existsSync(applicationPath)) {
-    const files = fs.readdirSync(path.dirname(applicationPath));
-    console.log(files);
-    throw new Error(`${YELLOW}[Spectron setup]: Application with path: '${applicationPath}' doesn't exist. 
-        First build your app ('npm run build') or set proper path to unpacked binary.${END}`)
+    const dirname = path.dirname(applicationPath);
+    const files = fs.readdirSync(dirname);
+    console.log(`Files in directory '${dirname}': ${files}`);
+    throw new Error(`${YELLOW}[Spectron setup]:${END} Application with path: '${applicationPath}' doesn't exist. 
+        First build your app ('npm run build') or set proper path to unpacked binary.`)
 }
 
 process.env.APPLICATION_PATH = applicationPath;
