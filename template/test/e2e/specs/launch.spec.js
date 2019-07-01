@@ -8,6 +8,7 @@ test.beforeEach(async t => {
         path: process.env.APPLICATION_PATH,
         startTimeout: 10000,
         waitTimeout: 10000,
+        quitTimeout: 10000,
         chromeDriverArgs: ["--disable-extensions"],
         env: {
             SPECTRON: true,
@@ -24,7 +25,7 @@ test.afterEach.always(async t => {
     const app = t.context.app;
 
     if (app && app.isRunning()) {
-        await Promise.race([app.stop(), sleep(2000)]);
+        await Promise.race([app.stop(), sleep(9000)]);
         //Prevention of RuntimeError: Couldn't connect to selenium server on app.stop()
     }
 });
