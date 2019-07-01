@@ -1,9 +1,9 @@
 import test from 'ava';
 import {Application} from "spectron";
-import { waitForNUXT, sleep } from "../helpers";
+import {waitForNUXT, sleep, navigateInApp} from "../helpers";
 
 
-test.before(async t => {
+test.beforeEach(async t => {
     t.context.app = new Application({
         path: process.env.APPLICATION_PATH,
         startTimeout: 10000,
@@ -20,11 +20,11 @@ test.before(async t => {
     await t.context.app.start();
 });
 
-test.after.always(async t => {
+test.afterEach.always(async t => {
     const app = t.context.app;
 
     if (app && app.isRunning()) {
-        await Promise.race([app.stop(), sleep(1000)]);
+        await Promise.race([app.stop(), sleep(2000)]);
         //Prevention of RuntimeError: Couldn't connect to selenium server on app.stop()
     }
 });
@@ -77,4 +77,32 @@ test('built app should not throw any error', async t => {
     if(rendererErrors.length > 0) rendererErrors.forEach(log => t.log(log.message));
 
     t.is(rendererErrors.length, 0);
+})
+
+
+test('vuetify components should work', async t => {
+    const app = t.context.app;
+    await waitForNUXT(app);
+
+    try{
+        await navigateInApp(app, '/test/css-framework/vuetify');
+        await app.client.waitUntilTextExists('.v-btn__content', 'BUTTON');
+        t.pass();
+    }catch (e) {
+        t.fail(e.message);
+    }
+})
+
+
+test('buefy components should work', async t => {
+    const app = t.context.app;
+    await waitForNUXT(app);
+
+    try{
+        await navigateInApp(app, '/test/css-framework/buefy');
+        await app.client.waitUntilTextExists('.button > span', 'BUTTON');
+        t.pass();
+    }catch (e) {
+        t.fail(e.message);
+    }
 })
