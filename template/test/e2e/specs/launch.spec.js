@@ -1,6 +1,6 @@
 import test from 'ava';
 import {Application} from "spectron";
-import { waitForNUXT } from "../helpers";
+import { waitForNUXT, sleep } from "../helpers";
 
 
 test.before(async t => {
@@ -24,7 +24,8 @@ test.after.always(async t => {
     const app = t.context.app;
 
     if (app && app.isRunning()) {
-        await app.stop();
+        await Promise.race([app.stop(), sleep(1000)]);
+        //Prevention of RuntimeError: Couldn't connect to selenium server on app.stop()
     }
 });
 
