@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "recompile": "./node_modules/.bin/electron-rebuild.cmd",
-    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && npx electron-builder --config ./builder-config.js\"",
+    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && electron-builder --config ./builder-config.js\"",
     "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
     "test:e2e": "cross-env NODE_ENV=test TEST_TYPE=e2e ava",
     "test": "npm run test:unit && npm run test:e2e",

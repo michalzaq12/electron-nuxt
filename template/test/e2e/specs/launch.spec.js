@@ -87,7 +87,7 @@ test('vuetify components should work', async t => {
 
     try{
         await navigateInApp(app, '/test/css-framework/vuetify');
-        await app.client.waitUntilTextExists('.v-btn__content', 'BUTTON');
+        await app.client.waitUntilTextExists('.v-btn__content', 'BUTTON', 10000);
         t.pass();
     }catch (e) {
         t.fail(e.message);
@@ -101,7 +101,7 @@ test('buefy components should work', async t => {
 
     try{
         await navigateInApp(app, '/test/css-framework/buefy');
-        await app.client.waitUntilTextExists('.button > span', 'BUTTON');
+        await app.client.waitUntilTextExists('.button > span', 'BUTTON', 10000);
         t.pass();
     }catch (e) {
         t.fail(e.message);
