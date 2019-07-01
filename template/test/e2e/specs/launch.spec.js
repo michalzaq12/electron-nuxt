@@ -37,7 +37,6 @@ test('launch', async t => {
     // Please note that getWindowCount() will return 2 if `dev tools` are opened.
     t.is(await app.client.getWindowCount(), 1);
     t.false(await win.isMinimized());
-    t.true(await win.isVisible());
 
     const {width, height} = await win.getBounds();
     t.true(width > 0);

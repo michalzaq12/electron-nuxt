@@ -29,6 +29,8 @@ if (os === "darwin") {
 const applicationPath = path.join(BUILD_DIR, `${unpackedDir}/${executableName}${extension}`);
 
 if (!fs.existsSync(applicationPath)) {
+    const files = fs.readdirSync(path.dirname(applicationPath));
+    console.log(files);
     throw new Error(`${YELLOW}[Spectron setup]: Application with path: '${applicationPath}' doesn't exist. 
         First build your app ('npm run build') or set proper path to unpacked binary.${END}`)
 }
