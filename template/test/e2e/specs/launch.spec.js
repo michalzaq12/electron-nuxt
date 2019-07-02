@@ -7,7 +7,7 @@ test.beforeEach(beforeEach);
 test.afterEach.always(afterEachAlways);
 
 
-test('launch', async t => {
+test('electron should show browser window on startup', async t => {
     const app = t.context.app;
     await app.client.waitUntilWindowLoaded();
 
@@ -21,7 +21,7 @@ test('launch', async t => {
     t.true(height > 0);
 });
 
-test('should initialize nuxt app', async t => {
+test('browser window should initialize nuxt', async t => {
     const app = t.context.app;
 
     try{
@@ -32,7 +32,7 @@ test('should initialize nuxt app', async t => {
     }
 })
 
-test('should load file content from resources directory', async t => {
+test('\'fs\' module should load file content from __resources directory', async t => {
     const app = t.context.app;
 
     try{

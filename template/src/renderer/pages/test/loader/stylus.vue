@@ -1,10 +1,10 @@
 <template>
-    <span class="__loader__stylus">TEXT</span>
+    <span class="stylus__text--red">TEXT</span>
 </template>
 
 
 <style lang="stylus" scoped>
     color = #ff0000;
-    .__loader__stylus
+    .stylus__text--red
         color: color
 </style>

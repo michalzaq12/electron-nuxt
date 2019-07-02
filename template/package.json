@@ -52,6 +52,7 @@
     "stylus-loader": "^3.0.2",
     "vue-devtools": "^5.1.0",
     "vuetify": "^1.5.16",
-    "webpack": "^4.35.0"
+    "webpack": "^4.35.0",
+    "@types/webdriverio": "^4.13.3"
   }
 }

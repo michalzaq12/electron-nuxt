@@ -8,7 +8,7 @@ test.afterEach.always(afterEachAlways);
 
 
 
-test('vuetify components should work', async t => {
+test('vuetify should render button component', async t => {
     const app = t.context.app;
 
     try{
@@ -22,7 +22,7 @@ test('vuetify components should work', async t => {
 })
 
 
-test('buefy components should work', async t => {
+test('buefy should render button component', async t => {
     const app = t.context.app;
 
     try{

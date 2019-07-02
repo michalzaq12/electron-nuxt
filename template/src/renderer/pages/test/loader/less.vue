@@ -1,11 +1,11 @@
 <template>
-    <span class="__loader__less">TEXT</span>
+    <span class="less__text--red">TEXT</span>
 </template>
 
 
 <style lang="less" scoped>
     @color: #ff0000;
-    .__loader__less {
+    .less__text--red {
         color: @color;
     }
 </style>

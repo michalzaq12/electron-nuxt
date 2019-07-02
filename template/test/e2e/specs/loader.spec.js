@@ -9,40 +9,46 @@ test.afterEach.always(afterEachAlways);
 
 const RED_HEX = '#ff0000';
 
-test('sass loader', async t => {
+test('sass', async t => {
     const app = t.context.app;
+    const ELEMENT_SELECTOR = '.sass__text--red';
 
     try{
         await app.client.nuxt.ready();
         await app.client.nuxt.navigate('/test/loader/sass');
-        const propObject = await app.client.getCssProperty('.__loader__sass', 'color');
-        t.is(propObject.parsed.hex, RED_HEX);
+        await app.client.waitForExist(ELEMENT_SELECTOR);
+        const colorProperty = await app.client.getCssProperty(ELEMENT_SELECTOR, 'color');
+        t.is(colorProperty.parsed.hex, RED_HEX);
     }catch (e) {
         t.fail(e.message);
     }
 })
 
-test('less loader', async t => {
+test('less', async t => {
     const app = t.context.app;
+    const ELEMENT_SELECTOR = '.less__text--red';
 
     try{
         await app.client.nuxt.ready();
         await app.client.nuxt.navigate('/test/loader/less');
-        const propObject = await app.client.getCssProperty('.__loader__less', 'color');
-        t.is(propObject.parsed.hex, RED_HEX);
+        await app.client.waitForExist(ELEMENT_SELECTOR);
+        const colorProperty = await app.client.getCssProperty(ELEMENT_SELECTOR, 'color');
+        t.is(colorProperty.parsed.hex, RED_HEX);
     }catch (e) {
         t.fail(e.message);
     }
 })
 
-test('stylus loader', async t => {
+test('stylus', async t => {
     const app = t.context.app;
+    const ELEMENT_SELECTOR = '.stylus__text--red';
 
     try{
         await app.client.nuxt.ready();
         await app.client.nuxt.navigate('/test/loader/stylus');
-        const propObject = await app.client.getCssProperty('.__loader__stylus', 'color');
-        t.is(propObject.parsed.hex, RED_HEX);
+        await app.client.waitForExist(ELEMENT_SELECTOR);
+        const colorProperty = await app.client.getCssProperty(ELEMENT_SELECTOR, 'color');
+        t.is(colorProperty.parsed.hex, RED_HEX);
     }catch (e) {
         t.fail(e.message);
     }

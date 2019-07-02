@@ -47,8 +47,6 @@ function addNuxtCommands(client) {
             window.$nuxt.$router.push(url);
         }, url);
 
-        await sleep(500);
-
         const ERROR_TEXT_SELECTOR = '.__nuxt-error-page > .error > .title';
         try {
             const errorText = await this.element(ERROR_TEXT_SELECTOR).getText();
