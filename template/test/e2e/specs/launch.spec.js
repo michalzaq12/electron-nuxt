@@ -107,3 +107,44 @@ test('buefy components should work', async t => {
         t.fail(e.message);
     }
 })
+
+const RED_HEX = '#ff0000';
+
+test('sass loader', async t => {
+    const app = t.context.app;
+    await waitForNUXT(app);
+
+    try{
+        await navigateInApp(app, '/test/loader/sass');
+        const propObject = await app.client.getCssProperty('.__loader__sass', 'color');
+        t.is(propObject.parsed.hex, RED_HEX);
+    }catch (e) {
+        t.fail(e.message);
+    }
+})
+
+test('less loader', async t => {
+    const app = t.context.app;
+    await waitForNUXT(app);
+
+    try{
+        await navigateInApp(app, '/test/loader/less');
+        const propObject = await app.client.getCssProperty('.__loader__less', 'color');
+        t.is(propObject.parsed.hex, RED_HEX);
+    }catch (e) {
+        t.fail(e.message);
+    }
+})
+
+test('stylus loader', async t => {
+    const app = t.context.app;
+    await waitForNUXT(app);
+
+    try{
+        await navigateInApp(app, '/test/loader/stylus');
+        const propObject = await app.client.getCssProperty('.__loader__stylus', 'color');
+        t.is(propObject.parsed.hex, RED_HEX);
+    }catch (e) {
+        t.fail(e.message);
+    }
+})
