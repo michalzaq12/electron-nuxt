@@ -1,34 +1,10 @@
 import test from 'ava';
-import {Application} from "spectron";
-import {waitForNUXT, sleep, navigateInApp} from "../helpers";
+
+import {beforeEach, afterEachAlways} from "../helpers";
 
 
-test.beforeEach(async t => {
-    t.context.app = new Application({
-        path: process.env.APPLICATION_PATH,
-        startTimeout: 50 * 1000,
-        quitTimeout: 10 * 1000,
-        waitTimeout: 10 * 1000,
-        chromeDriverArgs: ['no-sandbox', 'disable-extensions'],
-        env: {
-            SPECTRON: true,
-            ELECTRON_ENABLE_LOGGING: true,
-            ELECTRON_ENABLE_STACK_DUMPING: true,
-            ELECTRON_DISABLE_SECURITY_WARNINGS: true
-        },
-    });
-
-    await t.context.app.start();
-});
-
-test.afterEach.always(async t => {
-    const app = t.context.app;
-
-    if (app && app.isRunning()) {
-        await Promise.race([app.stop(), sleep(9000)]);
-        //Prevention of RuntimeError: Couldn't connect to selenium server on app.stop()
-    }
-});
+test.beforeEach(beforeEach);
+test.afterEach.always(afterEachAlways);
 
 
 test('launch', async t => {
@@ -47,8 +23,9 @@ test('launch', async t => {
 
 test('should initialize nuxt app', async t => {
     const app = t.context.app;
+
     try{
-        await waitForNUXT(app);
+        await app.client.nuxt.ready();
         t.pass();
     }catch (e) {
         t.fail(e.message);
@@ -57,9 +34,9 @@ test('should initialize nuxt app', async t => {
 
 test('should load file content from resources directory', async t => {
     const app = t.context.app;
-    await waitForNUXT(app);
 
     try{
+        await app.client.nuxt.ready();
         await app.client.waitUntilTextExists('#external-resource', 'EXTERNAL_FILE_CONTENT', 5000);
         t.pass();
     }catch (e) {
@@ -71,80 +48,11 @@ test('should load file content from resources directory', async t => {
 
 test('built app should not throw any error', async t => {
     const app = t.context.app;
-    await waitForNUXT(app);
+    await app.client.nuxt.ready();
     const rendererLogs = await app.client.getRenderProcessLogs();
 
     const rendererErrors = rendererLogs.filter(log => log.level === 'ERROR');
     if(rendererErrors.length > 0) rendererErrors.forEach(log => t.log(log.message));
 
     t.is(rendererErrors.length, 0);
-})
-
-
-test('vuetify components should work', async t => {
-    const app = t.context.app;
-    await waitForNUXT(app);
-
-    try{
-        await navigateInApp(app, '/test/css-framework/vuetify');
-        await app.client.waitUntilTextExists('.v-btn__content', 'BUTTON', 10000);
-        t.pass();
-    }catch (e) {
-        t.fail(e.message);
-    }
-})
-
-
-test('buefy components should work', async t => {
-    const app = t.context.app;
-    await waitForNUXT(app);
-
-    try{
-        await navigateInApp(app, '/test/css-framework/buefy');
-        await app.client.waitUntilTextExists('.button > span', 'BUTTON', 10000);
-        t.pass();
-    }catch (e) {
-        t.fail(e.message);
-    }
-})
-
-const RED_HEX = '#ff0000';
-
-test('sass loader', async t => {
-    const app = t.context.app;
-    await waitForNUXT(app);
-
-    try{
-        await navigateInApp(app, '/test/loader/sass');
-        const propObject = await app.client.getCssProperty('.__loader__sass', 'color');
-        t.is(propObject.parsed.hex, RED_HEX);
-    }catch (e) {
-        t.fail(e.message);
-    }
-})
-
-test('less loader', async t => {
-    const app = t.context.app;
-    await waitForNUXT(app);
-
-    try{
-        await navigateInApp(app, '/test/loader/less');
-        const propObject = await app.client.getCssProperty('.__loader__less', 'color');
-        t.is(propObject.parsed.hex, RED_HEX);
-    }catch (e) {
-        t.fail(e.message);
-    }
-})
-
-test('stylus loader', async t => {
-    const app = t.context.app;
-    await waitForNUXT(app);
-
-    try{
-        await navigateInApp(app, '/test/loader/stylus');
-        const propObject = await app.client.getCssProperty('.__loader__stylus', 'color');
-        t.is(propObject.parsed.hex, RED_HEX);
-    }catch (e) {
-        t.fail(e.message);
-    }
 })

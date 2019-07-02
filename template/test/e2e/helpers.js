@@ -1,30 +1,74 @@
+import {Application} from 'spectron';
 
 
-export async function waitForNUXT(app) {
-    if(app === undefined) throw new Error('App parameter is undefined');
-    await app.client.waitUntilWindowLoaded();
-    await app.client.waitUntil(async () => {
-        //https://webdriver.io/docs/api/browser/execute.html
-        const result = await app.client.execute(() => !!window.$nuxt);
-        return result.value;
-    }, 5000);
+export async function beforeEach(t) {
+    const app = t.context.app = new Application({
+        path: process.env.APPLICATION_PATH,
+        startTimeout: 50 * 1000,
+        quitTimeout: 10 * 1000,
+        waitTimeout: 10 * 1000,
+        chromeDriverArgs: ['no-sandbox', 'disable-extensions'],
+        env: {
+            SPECTRON: true,
+            ELECTRON_ENABLE_LOGGING: true,
+            ELECTRON_ENABLE_STACK_DUMPING: true,
+            ELECTRON_DISABLE_SECURITY_WARNINGS: true
+        },
+    });
+
+    await app.start();
+    addNuxtCommands(app.client);
+    return app;
 }
 
-export async function navigateInApp(app, url) {
-    if(app === undefined) throw new Error('App parameter is undefined');
-    await app.client.execute(url => {
-        window.$nuxt.$router.push(url);
-    }, url);
+export async function afterEachAlways(t) {
+    const app = t.context.app;
 
-
-    const ERROR_TEXT_SELECTOR = '.__nuxt-error-page > .error > .title';
-    try {
-        const errorText = await app.client.element(ERROR_TEXT_SELECTOR).getText();
-        return Promise.reject(new Error(`${errorText}. (url: '${url}')`));
-    }catch (e) {}
+    if (app && app.isRunning()) {
+        await Promise.race([app.stop(), sleep(9000)]);
+        //Prevention of RuntimeError: Couldn't connect to selenium server on app.stop()
+    }
 }
 
 
+function addNuxtCommands(client) {
+
+    async function ready () {
+        await this.waitUntilWindowLoaded();
+        await this.waitUntil(async () => {
+            //https://webdriver.io/docs/api/browser/execute.html
+            const result = await this.execute(() => !!window.$nuxt);
+            return result.value;
+        }, 5000);
+    }
+
+    async function navigate(url) {
+        await this.execute(url => {
+            window.$nuxt.$router.push(url);
+        }, url);
+
+        await sleep(500);
+
+        const ERROR_TEXT_SELECTOR = '.__nuxt-error-page > .error > .title';
+        try {
+            const errorText = await this.element(ERROR_TEXT_SELECTOR).getText();
+            return Promise.reject(new Error(`Nuxt: ${errorText} (url: '${url}').`));
+        }catch (e) {
+            //if the element doesnt exist, do not throw any errors
+        }
+    }
+
+
+    const clientPrototype = Object.getPrototypeOf(client)
+    Object.defineProperty(clientPrototype, 'nuxt', {
+        get: function () {
+            return {
+                ready: ready.bind(client),
+                navigate: navigate.bind(client)
+            }
+        }
+    })
+}
 
 export async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
