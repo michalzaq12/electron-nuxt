@@ -5,7 +5,7 @@ module.exports = {
       before: (metalsmith) =>{
           Object.assign(
               metalsmith.metadata(),
-              {isCI: process.env.CI}
+              {isCIServer: process.env.CI}
           )
       }
     },
@@ -36,7 +36,7 @@ module.exports = {
         },
         cssFramework: {
             type: 'list',
-            message: 'Select which css framework install',
+            message: 'Select which ui-components framework install',
             choices: [
                 {
                     name: 'none',
@@ -88,7 +88,7 @@ module.exports = {
         },
         iconSet: {
           type: 'list',
-          message: 'Select with icon set install',
+          message: 'Select which icon set install',
           choices: [
               {
                   name: 'none',
@@ -96,12 +96,12 @@ module.exports = {
                   short: 'none'
               },
               {
-                  name: 'Material Design Icon',
+                  name: 'Material Design Icon (https://materialdesignicons.com/)',
                   value: 'mdi',
-                  short: 'Material Icon'
+                  short: 'Material Design Icon'
               },
               {
-                  name: 'Font Awesome 5',
+                  name: 'Font Awesome 5 (https://fontawesome.com/icons)',
                   value: 'fa5',
                   short: 'Font Awesome 5'
               }
@@ -111,7 +111,7 @@ module.exports = {
             type: 'confirm',
             require: true,
             message: 'Use linting with ESLint?',
-            default: true
+            default: false
         },
         eslintConfig: {
             when: 'eslint',
@@ -138,12 +138,14 @@ module.exports = {
         unit: {
             type: 'confirm',
             message: 'Set up unit testing with vue-test-utils + AVA?',
-            required: true
+            required: true,
+            default: false
         },
         e2e: {
             type: 'confirm',
             message: 'Set up end-to-end testing with Spectron + AVA?',
-            require: true
+            require: true,
+            default: false
         }
     },
     helpers: {
@@ -161,11 +163,15 @@ module.exports = {
 
     },
     complete (data) {
-        console.log('---------------------------------------------------------------------');
+
+        const YELLOW = '\x1b[33m';
+        const END = '\x1b[0m';
+
+        console.log(`${YELLOW}─────────────────────────────────────────────────────────────────────${END}`);
         console.log('All set. Welcome to your new electron-nuxt project!');
         console.log('Make sure to check out the documentation for this boilerplate at');
-        console.log('https://github.com/michalzaq12/electron-nuxt#documentation');
-        console.log('\n');
+        console.log(`${YELLOW}https://github.com/michalzaq12/electron-nuxt#documentation${END}`);
+        console.log(`${YELLOW}─────────────────────────────────────────────────────────────────────${END}`);
         console.log('\t Next Steps:');
         console.log(`\t cd ${data.destDirName}`)
         console.log('\t npm install');
