@@ -2,7 +2,8 @@
 set -e
 
 # Scaffold boilerplate
-printf "Yes" | vue init . ./tests/generated_template
+# "Y" -> vue cli will ask you if yot want to override existing directory
+printf "Y" | vue init . ./tests/generated_template
 sleep .5
 
 

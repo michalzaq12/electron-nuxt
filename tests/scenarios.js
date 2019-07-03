@@ -12,7 +12,7 @@ const defaultValues = {
   eslintConfig: NONE,
   unit: false,
   e2e: false,
-  author: 'test-bot'
+  author: 'CI user'
 };
 
 const scenarios = {

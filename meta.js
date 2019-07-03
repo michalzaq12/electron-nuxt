@@ -51,6 +51,11 @@ module.exports = {
             message: 'Project description',
             default: 'An electron-nuxt project'
         },
+        author: {
+            when: 'isNotTest',
+            type: 'string',
+            message: 'Author',
+        },
         cssFramework: {
             when: 'isNotTest',
             type: 'list',
