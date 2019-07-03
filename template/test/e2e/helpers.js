@@ -17,6 +17,7 @@ export async function beforeEach(t) {
     });
 
     await app.start();
+    addExtraCommands(app.client);
     addNuxtCommands(app.client);
     return app;
 }
@@ -36,7 +37,6 @@ function addNuxtCommands(client) {
     async function ready () {
         await this.waitUntilWindowLoaded();
         await this.waitUntil(async () => {
-            //https://webdriver.io/docs/api/browser/execute.html
             const result = await this.execute(() => !!window.$nuxt);
             return result.value;
         }, 5000);
@@ -65,6 +65,18 @@ function addNuxtCommands(client) {
                 navigate: navigate.bind(client)
             }
         }
+    })
+}
+
+function addExtraCommands(client) {
+    //http://v4.webdriver.io/api/utility/addCommand.html
+    client.addCommand('hasNotError', async function (throwError = true) {
+        const rendererLogs = await this.getRenderProcessLogs();
+        const rendererErrors = rendererLogs.filter(log => log.level === 'ERROR');
+        
+        if(rendererErrors.length === 0) return true;
+        if(throwError) return Promise.reject(new Error(rendererErrors[0].message));
+        return false;
     })
 }
 

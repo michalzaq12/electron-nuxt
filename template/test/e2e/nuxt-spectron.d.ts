@@ -9,5 +9,6 @@ declare module "spectron" {
   //extends SpectronClient interface
   export interface SpectronClient {
     nuxt: NuxtSpectron;
+    hasNotError(throwError? : boolean): Promise<boolean>;
   }
 }

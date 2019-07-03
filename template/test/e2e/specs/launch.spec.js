@@ -48,11 +48,13 @@ test('\'fs\' module should load file content from __resources directory', async 
 
 test('built app should not throw any error', async t => {
     const app = t.context.app;
-    await app.client.nuxt.ready();
-    const rendererLogs = await app.client.getRenderProcessLogs();
 
-    const rendererErrors = rendererLogs.filter(log => log.level === 'ERROR');
-    if(rendererErrors.length > 0) rendererErrors.forEach(log => t.log(log.message));
+    try{
+        await app.client.nuxt.ready();
+        await app.client.hasNotError();
+        t.pass();
+    }catch (e) {
+        t.fail(e.message);
+    }
 
-    t.is(rendererErrors.length, 0);
 })
