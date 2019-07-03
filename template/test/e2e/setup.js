@@ -1,6 +1,6 @@
 const path = require('path');
 const { BUILD_DIR } = require('../../.electron-nuxt/config');
-const { productName } = require('../../builder-config');
+const { productName } = require('../../builder.config');
 const { name } = require('../../package');
 const fs = require('fs');
 
