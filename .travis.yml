@@ -10,7 +10,7 @@ addons:
 cache:
   directories:
     - node_modules
-    - tests/generated_tempalte/node_modules
+    - tests/generated_template/node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
