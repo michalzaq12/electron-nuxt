@@ -1,3 +1,6 @@
+const isWindows = (process.platform === 'win32' || process.platform === 'win64');
+import { cpus } from 'os';
+
 export default {
     "files": [
         "test/e2e/specs/**/*",
@@ -11,4 +14,5 @@ export default {
     "require": [
         "./test/e2e/setup.js"
     ],
+    concurrency: isWindows ? 1 : cpus().length
 };
