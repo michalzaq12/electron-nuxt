@@ -1,40 +1,58 @@
 'use strict';
 
+const isTest = process.env.NODE_ENV === 'test';
+const TEST_SUITE = process.env.TEST_SUITE;
+
+if(isTest && TEST_SUITE === undefined){
+    throw new Error('You must provide TEST_SUITE env variable');
+}
+const scenario = isTest && require(`./tests/scenarios`)[TEST_SUITE];
+
 module.exports = {
+    //https://github.com/vuejs-templates/webpack/blob/develop/meta.js
     metalsmith: {
       before: (metalsmith) =>{
           Object.assign(
               metalsmith.metadata(),
-              {isCIServer: process.env.CI}
+              {
+                  isCIServer: process.env.CI,
+                  isNotTest: !isTest
+              },
+              isTest ? scenario : {}
           )
       }
     },
     prompts: {
         name: {
+            when: 'isNotTest',
             type: 'string',
             required: true,
             message: 'Application Name',
             default: 'your-app'
         },
         appid: {
+            when: 'isNotTest',
             type: 'string',
             required: true,
             message: 'Application Id',
             default: 'com.example.yourapp'
         },
         appver: {
+            when: 'isNotTest',
             type: 'string',
             required: true,
             message: 'Application Version',
             default: '0.0.1'
         },
         description: {
+            when: 'isNotTest',
             type: 'string',
             required: false,
             message: 'Project description',
             default: 'An electron-nuxt project'
         },
         cssFramework: {
+            when: 'isNotTest',
             type: 'list',
             message: 'Select which ui-components framework install',
             choices: [
@@ -61,6 +79,7 @@ module.exports = {
             ]
         },
         cssPreprocessor: {
+            when: 'isNotTest',
             type: 'list',
             message: 'Select which css pre-processor install',
             choices: [
@@ -87,6 +106,7 @@ module.exports = {
             ]
         },
         iconSet: {
+            when: 'isNotTest',
           type: 'list',
           message: 'Select which icon set install',
           choices: [
@@ -108,13 +128,14 @@ module.exports = {
           ]
         },
         eslint: {
+            when: 'isNotTest',
             type: 'confirm',
             require: true,
             message: 'Use linting with ESLint?',
             default: false
         },
         eslintConfig: {
-            when: 'eslint',
+            when: 'isNotTest && eslint',
             type: 'list',
             message: 'Which ESLint config would you like to use?',
             choices: [
@@ -136,12 +157,14 @@ module.exports = {
             ]
         },
         unit: {
+            when: 'isNotTest',
             type: 'confirm',
             message: 'Set up unit testing with vue-test-utils + AVA?',
             required: true,
             default: false
         },
         e2e: {
+            when: 'isNotTest',
             type: 'confirm',
             message: 'Set up end-to-end testing with Spectron + AVA?',
             require: true,

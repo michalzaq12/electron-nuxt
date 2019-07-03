@@ -1,18 +1,13 @@
 #!/bin/bash
 set -e
 
-cd "$PWD/tests"
-
-# Clean up dir if exist
-if [[ -d "$1" ]]; then rm -Rf $1; fi
-
-# Scaffold boilerplate with given templateName
-node scaffold.js "$1"
+# Scaffold boilerplate
+printf "Yes" | vue init . ./generated_template
 sleep .5
 
 
 # Install dependencies
-cd "$PWD/builds/$1"
+cd "$PWD/generated_template"
 npm install
 
 
