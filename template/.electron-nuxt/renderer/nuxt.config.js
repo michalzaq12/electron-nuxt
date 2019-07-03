@@ -19,7 +19,6 @@ module.exports = {
     ...userNuxtConfig,
     srcDir: RENDERER_PROCESS_DIR,
     rootDir: PROJECT_ROOT,
-    mode: 'universal',
     router: {
         mode: 'hash'
     },

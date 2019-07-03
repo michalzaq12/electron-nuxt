@@ -6,6 +6,7 @@
 
 
 module.exports = {
+    mode: 'spa', // or 'universal'
     head: {
         title: 'Electron-nuxt'
     },
