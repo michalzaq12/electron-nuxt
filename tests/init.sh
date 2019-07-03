@@ -2,12 +2,12 @@
 set -e
 
 # Scaffold boilerplate
-printf "Yes" | vue init . ./generated_template
+printf "Yes" | vue init . ./tests/generated_template
 sleep .5
 
 
 # Install dependencies
-cd "$PWD/generated_template"
+cd "$PWD/tests/generated_template"
 npm install
 
 

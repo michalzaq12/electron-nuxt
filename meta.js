@@ -1,12 +1,12 @@
 'use strict';
 
-const isTest = process.env.NODE_ENV === 'test';
+const isCIServer = process.env.CI;
 const TEST_SUITE = process.env.TEST_SUITE;
 
-if(isTest && TEST_SUITE === undefined){
-    throw new Error('You must provide TEST_SUITE env variable');
+if(isCIServer && TEST_SUITE === undefined){
+    throw new Error('You must provide TEST_SUITE env variable to run test');
 }
-const scenario = isTest && require(`./tests/scenarios`)[TEST_SUITE];
+const scenario = isCIServer && require(`./tests/scenarios`)[TEST_SUITE];
 
 module.exports = {
     //https://github.com/vuejs-templates/webpack/blob/develop/meta.js
@@ -15,10 +15,10 @@ module.exports = {
           Object.assign(
               metalsmith.metadata(),
               {
-                  isCIServer: process.env.CI,
-                  isNotTest: !isTest
+                  isCIServer: isCIServer,
+                  isNotTest: !isCIServer
               },
-              isTest ? scenario : {}
+              isCIServer ? scenario : {}
           )
       }
     },
