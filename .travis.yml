@@ -21,7 +21,7 @@ before_cache:
 
 env:
   global:
-    - USE_HARD_LINKS=false # fix: Build failing with EEXIST: file already exists
+    - USE_HARD_LINKS=true
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
