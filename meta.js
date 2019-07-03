@@ -39,19 +39,24 @@ module.exports = {
             message: 'Select which css framework install',
             choices: [
                 {
-                    name: 'none (configure it yourself)',
+                    name: 'none',
                     value: 'none',
                     short: 'none'
                 },
                 {
-                    name: 'Vuetify (https://github.com/vuetifyjs/vuetify)',
+                    name: 'Vuetify (https://vuetifyjs.com)',
                     value: 'vuetify',
                     short: 'Vuetify'
                 },
                 {
-                    name: 'Buefy (https://github.com/buefy/buefy)',
+                    name: 'Buefy (https://buefy.org)',
                     value: 'buefy',
                     short: 'Buefy'
+                },
+                {
+                    name: 'Element (https://element.eleme.io)',
+                    value: 'element',
+                    short: 'Element'
                 }
             ]
         },

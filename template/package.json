@@ -19,6 +19,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@mdi/font": "^3.6.95",
+    "@types/webdriverio": "^4.13.3",
     "@vue/test-utils": "^1.0.0-beta.29",
     "ava": "^2.0.0",
     "babel-eslint": "^10.0.2",
@@ -31,6 +32,7 @@
     "electron": "5.0.4",
     "electron-builder": "^20.44.4",
     "electron-debug": "^2.1.0",
+    "element-ui": "^2.10.1",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-friendly-formatter": "^4.0.1",
@@ -52,7 +54,6 @@
     "stylus-loader": "^3.0.2",
     "vue-devtools": "^5.1.0",
     "vuetify": "^1.5.16",
-    "webpack": "^4.35.0",
-    "@types/webdriverio": "^4.13.3"
+    "webpack": "^4.35.0"
   }
 }

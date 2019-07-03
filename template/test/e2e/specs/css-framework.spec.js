@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {beforeEach, afterEachAlways} from "../helpers";
+import {beforeEach, afterEachAlways, sleep} from "../helpers";
 
 
 test.beforeEach(beforeEach);
@@ -35,3 +35,15 @@ test('buefy should render button component', async t => {
     }
 })
 
+test('Element should render button component', async t => {
+    const app = t.context.app;
+
+    try{
+        await app.client.nuxt.ready();
+        await app.client.nuxt.navigate('/test/css-framework/element');
+        await app.client.waitUntilTextExists('.el-button > span', 'BUTTON', 10000);
+        t.pass();
+    }catch (e) {
+        t.fail(e.message);
+    }
+})
