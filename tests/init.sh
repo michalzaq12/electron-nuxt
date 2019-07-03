@@ -9,6 +9,7 @@ sleep .5
 
 # Install dependencies
 cd "$PWD/tests/generated_template"
+npm set audit false
 npm install
 
 
