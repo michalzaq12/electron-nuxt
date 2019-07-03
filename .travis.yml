@@ -9,15 +9,8 @@ addons:
 
 cache:
   directories:
-    - node_modules
-    - tests/generated_template/node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
-
-# Prevention of creating new cache archive by Travis when only some logs, source map etc. changed
-before_cache:
-  - rm -rf tests/generated_template/node_modules/.cache
-  - rm -rf tests/generated_template/node_modules/ava/node_modules/.cache
 
 env:
   global:
@@ -40,7 +33,7 @@ matrix:
       os: windows
       env: TEST_SUITE=default BADGE=windows
 
-before_script:
+install:
   -  npm install -g vue-cli
 
 script: bash ./tests/init.sh
