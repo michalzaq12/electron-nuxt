@@ -14,9 +14,14 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
+before_cache:
+  - rm -rf tests/generated_template/node_modules/.cache
+
 env:
   global:
     - USE_HARD_LINKS=false # fix: Build failing with EEXIST: file already exists
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 
 # Explicitly include to get some OS-specific badges
@@ -28,7 +33,7 @@ matrix:
     - name: "OSX - default template"
       os: osx
       osx_image: xcode9.4
-      env: TEST_SUITE=default BADGE=osx ELECTRON_CACHE=$HOME/.cache/electron ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      env: TEST_SUITE=default BADGE=osx
     - name: "Windows - default template"
       os: windows
       env: TEST_SUITE=default BADGE=windows
