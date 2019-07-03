@@ -14,8 +14,10 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
+# Prevention of creating new cache archive by Travis when only some logs, source map etc. changed
 before_cache:
   - rm -rf tests/generated_template/node_modules/.cache
+  - rm -rf tests/generated_template/node_modules/ava/node_modules/.cache
 
 env:
   global:
