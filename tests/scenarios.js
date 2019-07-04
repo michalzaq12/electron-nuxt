@@ -10,8 +10,8 @@ const defaultValues = {
   iconSet: NONE,
   eslint: false,
   eslintConfig: NONE,
-  unit: false,
-  e2e: false,
+  unit: true,
+  e2e: true,
   author: 'CI user'
 };
 
@@ -20,11 +20,6 @@ const scenarios = {
   eslint: {
     ...defaultValues,
     eslint: true
-  },
-  testing: {
-    ...defaultValues,
-    unit: true,
-    e2e: true
   },
   sass: {
     ...defaultValues,
