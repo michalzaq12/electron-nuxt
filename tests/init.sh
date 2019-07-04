@@ -1,22 +1,29 @@
 #!/bin/bash
 set -e
 
-# Scaffold boilerplate with given templateName
-cd "$PWD/tests"
-node scaffold.js "$1"
+# Scaffold boilerplate
+# "Y" -> vue cli will ask you if yot want to override existing directory
+printf "Y" | vue init . ./tests/generated_template
+sleep .5
 
-sleep 2
 
-# Install dependecies
-cd "$PWD/builds/$1"
+# Install dependencies
+cd "$PWD/tests/generated_template"
+npm set audit false
 npm install
 
-# Run unit/e2e testing
-# npm test
 
-# Run webpack and build electron
+# Run webpack and build application
 npm run build
 
-# Clean up current scaffold
-cd ..
-rm -rf "$1"
+
+# Configure virtual display server on linux os
+if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    export DISPLAY=:99.0
+    sh -e /etc/init.d/xvfb start
+    sleep 3 # give xvfb some time to start
+fi
+
+# Run e2e testing
+npm run test:e2e
+

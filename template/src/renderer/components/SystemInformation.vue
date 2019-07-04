@@ -4,27 +4,27 @@
         <div class="items">
             <div class="item">
                 <div class="name">Nuxt.js:</div>
-                <div class="value">{{ nuxt }}</div>
+                <div class="value">\{{ nuxt }}</div>
             </div>
             <div class="item">
                 <div class="name">Vue.js:</div>
-                <div class="value">{{ vue }}</div>
+                <div class="value">\{{ vue }}</div>
             </div>
             <div class="item">
                 <div class="name">Electron:</div>
-                <div class="value">{{ electron }}</div>
+                <div class="value">\{{ electron }}</div>
             </div>
             <div class="item">
                 <div class="name">Node:</div>
-                <div class="value">{{ node }}</div>
+                <div class="value">\{{ node }}</div>
             </div>
             <div class="item">
                 <div class="name">Chrome:</div>
-                <div class="value">{{ chrome }}</div>
+                <div class="value">\{{ chrome }}</div>
             </div>
             <div class="item">
                 <div class="name">Platform:</div>
-                <div class="value">{{ platform }}</div>
+                <div class="value">\{{ platform }}</div>
             </div>
         </div>
     </div>

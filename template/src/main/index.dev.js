@@ -25,10 +25,6 @@ app.on('ready', () => {
 });
 
 mainWinHandler.onCreated(browserWindow => {
-    browserWindow.webContents.on('did-navigate-in-page', (e, url) => {
-        browserWindow.setTitle(url);
-    })
-
     browserWindow.webContents.openDevTools();
 })
 

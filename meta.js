@@ -1,61 +1,92 @@
 'use strict';
 
+const isCIServer = process.env.CI;
+const TEST_SUITE = process.env.TEST_SUITE;
+
+if(isCIServer && TEST_SUITE === undefined){
+    throw new Error('You must provide TEST_SUITE env variable to run test');
+}
+const scenario = isCIServer && require('./tests/scenarios')[TEST_SUITE];
+
+const CITestsFilters = require('./tests/vue-cli-filters');
+
 module.exports = {
+    //https://github.com/vuejs-templates/webpack/blob/develop/meta.js
     metalsmith: {
       before: (metalsmith) =>{
           Object.assign(
               metalsmith.metadata(),
-              {isCI: process.env.CI}
+              {
+                  isCIServer: isCIServer,
+                  isNotTest: !isCIServer
+              },
+              isCIServer ? scenario : {}
           )
       }
     },
     prompts: {
         name: {
+            when: 'isNotTest',
             type: 'string',
             required: true,
             message: 'Application Name',
             default: 'your-app'
         },
         appid: {
+            when: 'isNotTest',
             type: 'string',
             required: true,
             message: 'Application Id',
             default: 'com.example.yourapp'
         },
         appver: {
+            when: 'isNotTest',
             type: 'string',
             required: true,
             message: 'Application Version',
             default: '0.0.1'
         },
         description: {
+            when: 'isNotTest',
             type: 'string',
             required: false,
             message: 'Project description',
             default: 'An electron-nuxt project'
         },
+        author: {
+            when: 'isNotTest',
+            type: 'string',
+            message: 'Author',
+        },
         cssFramework: {
+            when: 'isNotTest',
             type: 'list',
-            message: 'Select which css framework install',
+            message: 'Select which ui-components framework install',
             choices: [
                 {
-                    name: 'none (configure it yourself)',
+                    name: 'none',
                     value: 'none',
                     short: 'none'
                 },
                 {
-                    name: 'Vuetify (https://github.com/vuetifyjs/vuetify)',
+                    name: 'Vuetify (https://vuetifyjs.com)',
                     value: 'vuetify',
                     short: 'Vuetify'
                 },
                 {
-                    name: 'Buefy (https://github.com/buefy/buefy)',
+                    name: 'Buefy (https://buefy.org)',
                     value: 'buefy',
                     short: 'Buefy'
+                },
+                {
+                    name: 'Element (https://element.eleme.io)',
+                    value: 'element',
+                    short: 'Element'
                 }
             ]
         },
         cssPreprocessor: {
+            when: 'isNotTest',
             type: 'list',
             message: 'Select which css pre-processor install',
             choices: [
@@ -82,8 +113,9 @@ module.exports = {
             ]
         },
         iconSet: {
+            when: 'isNotTest',
           type: 'list',
-          message: 'Select with icon set install',
+          message: 'Select which icon set install',
           choices: [
               {
                   name: 'none',
@@ -91,25 +123,26 @@ module.exports = {
                   short: 'none'
               },
               {
-                  name: 'Material Design Icon',
+                  name: 'Material Design Icon (https://materialdesignicons.com/)',
                   value: 'mdi',
-                  short: 'Material Icon'
+                  short: 'Material Design Icon'
               },
               {
-                  name: 'Font Awesome 5',
+                  name: 'Font Awesome 5 (https://fontawesome.com/icons)',
                   value: 'fa5',
                   short: 'Font Awesome 5'
               }
           ]
         },
         eslint: {
+            when: 'isNotTest',
             type: 'confirm',
             require: true,
             message: 'Use linting with ESLint?',
-            default: true
+            default: false
         },
         eslintConfig: {
-            when: 'eslint',
+            when: 'isNotTest && eslint',
             type: 'list',
             message: 'Which ESLint config would you like to use?',
             choices: [
@@ -131,21 +164,21 @@ module.exports = {
             ]
         },
         unit: {
+            when: 'isNotTest',
             type: 'confirm',
             message: 'Set up unit testing with vue-test-utils + AVA?',
-            required: true
+            required: true,
+            default: false
         },
         e2e: {
+            when: 'isNotTest',
             type: 'confirm',
             message: 'Set up end-to-end testing with Spectron + AVA?',
-            require: true
+            require: true,
+            default: false
         }
     },
     helpers: {
-        isEnabled (list, check, opts) {
-            if (list[check]) return opts.fn(this)
-            else return opts.inverse(this)
-        },
         testing (unit, e2e, opts) {
             if (unit || e2e) {
                 return opts.fn(this)
@@ -153,25 +186,31 @@ module.exports = {
         }
     },
     filters: {
-        'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\'',
-        'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\'',
+        ...CITestsFilters,
         'test/e2e/**/*': 'e2e',
         'test/unit/**/*': 'unit',
-        'ava.config.js': 'e2e || unit',
-        'test/.eslintrc': 'e2e || unit',
-        '.eslintignore': 'eslint',
-        '.eslintrc.js': 'eslint'
+        '.eslintrc.js': 'eslint',
+        'ava.config.js': 'unit || e2e',
+        'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\'',
+        'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\'',
+        'src/renderer/plugins/element.js': 'cssFramework === \'element\'',
+        'src/renderer/plugins/icons.js': 'iconSet !== \'none\'',
     },
-    complete (data) {
-        console.log('---------------------------------------------------------------------');
-        console.log('All set. Welcome to your new electron-nuxt project!');
-        console.log('Make sure to check out the documentation for this boilerplate at');
-        console.log('https://github.com/michalzaq12/electron-nuxt#documentation');
-        console.log('\n');
-        console.log('\t Next Steps:');
-        console.log(`\t cd ${data.destDirName}`)
-        console.log('\t npm install');
-        console.log('\t npm run dev');
+    skipInterpolation: "node_modules/**/*",
+
+    complete (data, {logger, chalk}) {
+
+        const log = text => console.log('\t' + text);
+
+        logger.log(chalk.bold('All set. Welcome to your new electron-nuxt project! \n'));
+
+        log(chalk.gray('Make sure to check out the documentation at'));
+        log(chalk.gray.underline('https://github.com/michalzaq12/electron-nuxt#documentation \n'));
+
+        log(chalk.yellow('To get started:'));
+        if (!data.inPlace) log(`\t cd ${data.destDirName}`);
+        log('\t npm install');
+        log('\t npm run dev');
 
     }
 };

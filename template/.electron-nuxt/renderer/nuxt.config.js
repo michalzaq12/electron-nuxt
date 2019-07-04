@@ -1,8 +1,9 @@
-process.env.BABEL_ENV = 'renderer'
-const isProduction = process.env.NODE_ENV === 'production'
+process.env.BABEL_ENV = 'renderer';
+const isProduction = process.env.NODE_ENV === 'production';
+const isDev = process.env.NODE_ENV === 'development';
 const path = require('path');
 const { dependencies } = require('../../package.json')
-const webpack = require('webpack')
+const webpack = require('webpack');
 const resourcesPath = require('../resources-path-provider');
 const {RENDERER_PROCESS_DIR, DIST_DIR, PROJECT_ROOT} = require('../config');
 
@@ -18,11 +19,10 @@ module.exports = {
     ...userNuxtConfig,
     srcDir: RENDERER_PROCESS_DIR,
     rootDir: PROJECT_ROOT,
-    mode: 'universal',
     router: {
         mode: 'hash'
     },
-    dev: !isProduction,
+    dev: isDev,
     generate:{
         dir: path.join(DIST_DIR, 'renderer')
     },
@@ -31,7 +31,7 @@ module.exports = {
         ...(userNuxtConfig.plugins || [])
     ],
     build: {
-        extend (config, { isDev, isClient }) {
+        extend (config, { isClient }) {
 
             if(userNuxtConfig.build !== undefined && userNuxtConfig.build.extend !== undefined){
                 userNuxtConfig.build.extend(...arguments)

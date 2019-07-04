@@ -2,10 +2,33 @@ language: node_js
 node_js:
   - '10'
 
+addons:
+  apt:
+    packages:
+      - xvfb
+
+cache:
+  directories:
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+
+os:
+  - linux
+  - osx
 
 env:
+  matrix:
+    - TEST_SUITE=buefy
+    - TEST_SUITE=vuetify
+    - TEST_SUITE=element
+    - TEST_SUITE=sass
+    - TEST_SUITE=less
+    - TEST_SUITE=stylus
+    - TEST_SUITE=eslint
   global:
-    - USE_HARD_LINKS=false # fix: Build failing with EEXIST: file already exists
+    - USE_HARD_LINKS=true
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 
 # Explicitly include to get some OS-specific badges
@@ -17,12 +40,12 @@ matrix:
     - name: "OSX - default template"
       os: osx
       osx_image: xcode9.4
-      env: TEST_SUITE=default BADGE=osx ELECTRON_CACHE=$HOME/.cache/electron ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      env: TEST_SUITE=default BADGE=osx
     - name: "Windows - default template"
       os: windows
       env: TEST_SUITE=default BADGE=windows
 
-before_script:
+install:
   -  npm install -g vue-cli
 
-script: bash ./tests/init.sh $TEST_SUITE
+script: bash ./tests/init.sh

@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/michalzaq12/electron-nuxt/issues"
   },
-  "homepage": "https://github.com/michalzaq12/electron-nuxt#readme",
-  "devDependencies": {
-    "suppose": "^0.6.2"
-  }
+  "homepage": "https://github.com/michalzaq12/electron-nuxt#readme"
 }

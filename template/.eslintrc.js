@@ -11,8 +11,8 @@ module.exports = {
         parser: 'babel-eslint'
     },
     extends: [
-        "eslint:recommended",
-        "airbnb",
+        {{#if_eq eslintConfig 'standard'}}'standard',{{/if_eq}}
+        {{#if_eq eslintConfig 'airbnb'}}'airbnb',{{/if_eq}}
         "plugin:vue/recommended",
     ],
     // required to lint *.vue files
