@@ -58,6 +58,10 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     {{/if_eq}}
+    {{#if_eq eslintConfig 'airbnb'}}
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    {{/if_eq}}
     {{/eslint}}
     {{#if_eq cssPreprocessor 'less'}}
     "less": "^3.9.0",
