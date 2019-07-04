@@ -17,7 +17,7 @@
     {{/testing}}
     {{#if eslint}}
     "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src",
-    "lint:fix": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix ./src"
+    "lint:fix": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix ./src",
     {{/if}}
     "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"
   },
