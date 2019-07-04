@@ -1,15 +1,23 @@
 {
-  "name": "electron-nuxt",
-  "version": "1.0.0",
-  "description": "An electron-nuxt project",
+  "name": "{{ name }}",
+  "version": "{{ appver }}",
+  "description": "{{ description }}",
   "main": "./dist/main/index.js",
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && electron-builder --config ./builder.config.js\"",
+    {{#if unit}}
     "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
+    {{/if}}
+    {{#if e2e}}
     "test:e2e": "cross-env NODE_ENV=test TEST_TYPE=e2e ava",
-    "test": "npm run test:unit && npm run test:e2e",
+    {{/if}}
+    {{#testing unit e2e}}
+    "test": "{{#unit}}npm run test:unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run test:e2e{{/e2e}}",
+    {{/testing}}
+    {{#if eslint}}
     "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src",
+    {{/if}}
     "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [],

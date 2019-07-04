@@ -8,13 +8,13 @@
 module.exports = {
     mode: 'spa', // or 'universal'
     head: {
-        title: 'Electron-nuxt'
+        title: '{{name}}'
     },
     loading: false,
     plugins: [
-        {ssr: true, src: '@/plugins/icons.js'},
-        {ssr: true, src: '@/plugins/buefy.js'},
-        {ssr: true, src: '@/plugins/vuetify.js'},
-        {ssr: true, src: '@/plugins/element.js'},
+        {{#unless_eq iconSet 'none'}}{ssr: true, src: '@/plugins/icons.js'},{{/unless}}
+        {{#if_eq cssFramework 'buefy'}}{ssr: true, src: '@/plugins/buefy.js'},{{/if_eq}}
+        {{#if_eq cssFramework 'vuetify'}}{ssr: true, src: '@/plugins/vuetify.js'},{{/if_eq}}
+        {{#if_eq cssFramework 'element'}}{ssr: true, src: '@/plugins/element.js'},{{/if_eq}}
     ]
 };
