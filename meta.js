@@ -196,20 +196,21 @@ module.exports = {
         'src/renderer/plugins/element.js': 'cssFramework === \'element\'',
         'src/renderer/plugins/icons.js': 'iconSet !== \'none\'',
     },
-    complete (data) {
+    skipInterpolation: "node_modules/**/*",
 
-        const YELLOW = '\x1b[33m';
-        const END = '\x1b[0m';
+    complete (data, {logger, chalk}) {
 
-        console.log(`${YELLOW}─────────────────────────────────────────────────────────────────────${END}`);
-        console.log('All set. Welcome to your new electron-nuxt project!');
-        console.log('Make sure to check out the documentation for this boilerplate at');
-        console.log(`${YELLOW}https://github.com/michalzaq12/electron-nuxt#documentation${END}`);
-        console.log(`${YELLOW}─────────────────────────────────────────────────────────────────────${END}`);
-        console.log('\t Next Steps:');
-        console.log(`\t cd ${data.destDirName}`)
-        console.log('\t npm install');
-        console.log('\t npm run dev');
+        const log = text => console.log('\t' + text);
+
+        logger.log(chalk.bold('All set. Welcome to your new electron-nuxt project! \n'));
+
+        log(chalk.gray('Make sure to check out the documentation at'));
+        log(chalk.gray.underline('https://github.com/michalzaq12/electron-nuxt#documentation \n'));
+
+        log(chalk.yellow('To get started:'));
+        if (!data.inPlace) log(`\t cd ${data.destDirName}`);
+        log('\t npm install');
+        log('\t npm run dev');
 
     }
 };
