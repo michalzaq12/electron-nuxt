@@ -177,10 +177,6 @@ module.exports = {
         }
     },
     helpers: {
-        isEnabled (list, check, opts) {
-            if (list[check]) return opts.fn(this)
-            else return opts.inverse(this)
-        },
         testing (unit, e2e, opts) {
             if (unit || e2e) {
                 return opts.fn(this)
@@ -188,7 +184,17 @@ module.exports = {
         }
     },
     filters: {
-
+        'src/renderer/pages/test': 'isCIServer',
+        'test/e2e/spec/css-framework.spec.js': 'isCIServer',
+        'test/e2e/spec/loader.spec.js': 'isCIServer',
+        'test/e2e/**/*': 'e2e',
+        'test/unit/**/*': 'unit',
+        '.eslintrc.js': 'eslint',
+        'ava.config.js': 'unit || e2e',
+        'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\'',
+        'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\'',
+        'src/renderer/plugins/element.js': 'cssFramework === \'element\'',
+        'src/renderer/plugins/icons.js': 'iconSet !== \'none\'',
     },
     complete (data) {
 
