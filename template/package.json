@@ -73,7 +73,6 @@
     {{#if_eq cssFramework 'vuetify'}}
     "vuetify": "^1.5.16",
     {{/if_eq}}
-    "webpack": "^4.35.0",
     {{#if unit}}
     "@vue/test-utils": "^1.0.0-beta.29",
     "require-extension-hooks": "^0.3.2",
@@ -81,5 +80,6 @@
     "require-extension-hooks-vue": "^0.4.1",
     "babel-plugin-webpack-alias-7": "^0.1.1",
     {{/if}}
-}
+    "webpack": "^4.35.0"
+    }
 }

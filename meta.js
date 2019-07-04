@@ -184,7 +184,7 @@ module.exports = {
         }
     },
     filters: {
-        'src/renderer/pages/test': 'isCIServer',
+        'src/renderer/pages/test/**/*': 'isCIServer',
         'test/e2e/spec/css-framework.spec.js': 'isCIServer',
         'test/e2e/spec/loader.spec.js': 'isCIServer',
         'test/e2e/**/*': 'e2e',
