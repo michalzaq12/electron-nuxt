@@ -6,7 +6,9 @@ const TEST_SUITE = process.env.TEST_SUITE;
 if(isCIServer && TEST_SUITE === undefined){
     throw new Error('You must provide TEST_SUITE env variable to run test');
 }
-const scenario = isCIServer && require(`./tests/scenarios`)[TEST_SUITE];
+const scenario = isCIServer && require('./tests/scenarios')[TEST_SUITE];
+
+const CITestsFilters = require('./tests/vue-cli-filters');
 
 module.exports = {
     //https://github.com/vuejs-templates/webpack/blob/develop/meta.js
@@ -184,9 +186,7 @@ module.exports = {
         }
     },
     filters: {
-        'src/renderer/pages/test/**/*': 'isCIServer',
-        'test/e2e/spec/css-framework.spec.js': 'isCIServer',
-        'test/e2e/spec/loader.spec.js': 'isCIServer',
+        ...CITestsFilters,
         'test/e2e/**/*': 'e2e',
         'test/unit/**/*': 'unit',
         '.eslintrc.js': 'eslint',
