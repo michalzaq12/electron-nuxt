@@ -12,7 +12,19 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
+os:
+  - linux
+  - osx
+
 env:
+  matrix:
+    - TEST_SUITE=buefy
+    - TEST_SUITE=vuetify
+    - TEST_SUITE=element
+    - TEST_SUITE=sass
+    - TEST_SUITE=less
+    - TEST_SUITE=stylus
+    - TEST_SUITE=eslint
   global:
     - USE_HARD_LINKS=true
     - ELECTRON_CACHE=$HOME/.cache/electron
