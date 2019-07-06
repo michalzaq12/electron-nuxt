@@ -26,5 +26,4 @@ const result = template(data);
 const json = JSON.parse(result);
 
 fs.writeFileSync(path.join(__dirname, 'package.json'), JSON.stringify(json, null, 2));
-fs.copyFileSync(path.join(__dirname, '../template/package-lock.json'), path.join(__dirname, 'package-lock.json'))
 

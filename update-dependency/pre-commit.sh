@@ -9,7 +9,6 @@ if ["$username" == "depfu"] || ["$username" == "depfu[bot]"]; then
 else
     node ./update-dependency/generate.js
     git add ./update-dependency/package.json
-    git add ./update-dependency/package-lock.json
 fi
 
 
