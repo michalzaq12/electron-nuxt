@@ -1,98 +1,61 @@
 {
-  "name": "{{ name }}",
-  "version": "{{ appver }}",
-  "description": "{{ description }}",
+  "name": "electron-nuxt",
+  "version": "0.0.1",
+  "description": "An electron-nuxt project",
   "main": "./dist/main/index.js",
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && electron-builder --config ./builder.config.js\"",
-    {{#ifTrueOrDev unit}}
     "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
-    {{/ifTrueOrDev}}
-    {{#ifTrueOrDev e2e}}
     "test:e2e": "cross-env NODE_ENV=test TEST_TYPE=e2e ava",
-    {{/ifTrueOrDev}}
-    {{#or unit e2e}}
-    "test": "{{#unit}}npm run test:unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run test:e2e{{/e2e}}",
-    {{/or}}
-    {{#ifTrueOrDev eslint}}
+    "test": "",
     "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src",
     "lint:fix": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix ./src",
-    {{/ifTrueOrDev}}
-    "postinstall": "electron-builder install-app-deps {{#ifTrueOrDev eslint}}& npm run lint:fix{{/ifTrueOrDev}}"
+    "postinstall": "electron-builder install-app-deps & npm run lint:fix"
   },
   "keywords": [],
   "author": "“Michał <“michal.m.zarach@gmail.com”>",
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "devDependencies": {
-    {{#ifEqOrDev iconSet 'fa5'}}
     "@fortawesome/fontawesome-free": "^5.9.0",
-    {{/ifEqOrDev}}
-    {{#ifEqOrDev iconSet 'mdi'}}
     "@mdi/font": "^3.6.95",
-    {{/ifEqOrDev}}
     "chalk": "^2.4.2",
-    {{#or unit e2e}}
     "ava": "^2.0.0",
-    {{/or}}
     "browser-env": "^3.2.5",
-    {{#ifEqOrDev cssFramework 'buefy'}}
     "buefy": "^0.7.7",
-    {{/ifEqOrDev}}
     "cross-env": "^5.2.0",
     "del": "^4.0.0",
     "electron": "5.0.4",
     "electron-builder": "^20.44.4",
     "electron-debug": "^2.1.0",
-    {{#ifEqOrDev cssFramework 'element'}}
     "element-ui": "^2.10.1",
-    {{/ifEqOrDev}}
-    {{#ifTrueOrDev eslint}}
     "babel-eslint": "^10.0.2",
     "eslint": "^5.3.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-vue": "5.2.2",
-    {{#ifEqOrDev eslintConfig 'airbnb'}}
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
-    {{/ifEqOrDev}}
-    {{#ifEqOrDev eslintConfig 'airbnb'}}
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    {{/ifEqOrDev}}
-    {{/ifTrueOrDev}}
-    {{#ifEqOrDev cssPreprocessor 'less'}}
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    {{/ifEqOrDev}}
     "nuxt": "^2.8.1",
-    {{#ifEqOrDev cssPreprocessor 'sass'}}
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
-    {{/ifEqOrDev}}
     "ora": "^3.2.0",
     "ps-tree": "^1.2.0",
-    {{#ifEqOrDev cssPreprocessor 'stylus'}}
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    {{/ifEqOrDev}}
-    {{#ifTrueOrDev e2e}}
     "spectron": "^7.0.0",
     "@types/webdriverio": "^4.13.3",
-    {{/ifTrueOrDev}}
     "vue-devtools": "^5.1.0",
-    {{#ifEqOrDev cssFramework 'vuetify'}}
     "vuetify": "^1.5.16",
-    {{/ifEqOrDev}}
-    {{#ifTrueOrDev unit}}
     "@vue/test-utils": "^1.0.0-beta.29",
     "require-extension-hooks": "^0.3.2",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^0.4.1",
     "babel-plugin-webpack-alias-7": "^0.1.1",
-    {{/ifTrueOrDev}}
     "webpack": "^4.35.0"
-    }
+  }
 }

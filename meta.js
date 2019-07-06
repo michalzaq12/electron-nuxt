@@ -9,6 +9,7 @@ if(isCIServer && TEST_SUITE === undefined){
 const scenario = isCIServer && require('./tests/scenarios')[TEST_SUITE];
 
 const CITestsFilters = require('./tests/vue-cli-filters');
+const hbsHelpers = require('./hbs-helpers');
 
 module.exports = {
     //https://github.com/vuejs-templates/webpack/blob/develop/meta.js
@@ -52,7 +53,7 @@ module.exports = {
             required: false,
             message: 'Project description',
             default: 'An electron-nuxt project'
-        },
+    },
         author: {
             when: 'isNotTest',
             type: 'string',
@@ -183,7 +184,8 @@ module.exports = {
             if (unit || e2e) {
                 return opts.fn(this)
             }
-        }
+        },
+        ...hbsHelpers
     },
     filters: {
         ...CITestsFilters,
