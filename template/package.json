@@ -16,7 +16,7 @@
     "test": "{{#unit}}npm run test:unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run test:e2e{{/e2e}}",
     {{/testing}}
     {{#if eslint}}
-    "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src",
+    "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src ./.electron-nuxt",
     "lint:fix": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix ./src",
     {{/if}}
     "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"

@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/michalzaq12/electron-nuxt#readme",
   "scripts": {
-    "lint": "eslint --no-eslintrc --config .eslintrc.js --ext .js,.vue ./template"
+    "lint": "eslint --no-eslintrc --config .eslintrc.js --ext .js,.vue ./template ./template/.electron-nuxt"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
