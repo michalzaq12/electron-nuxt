@@ -16,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/michalzaq12/electron-nuxt/issues"
   },
-  "homepage": "https://github.com/michalzaq12/electron-nuxt#readme"
+  "homepage": "https://github.com/michalzaq12/electron-nuxt#readme",
+  "scripts": {
+    "lint": "eslint --no-eslintrc --config .eslintrc.js --ext .js,.vue ./template"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.3"
+  }
 }

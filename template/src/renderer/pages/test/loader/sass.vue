@@ -1,7 +1,6 @@
 <template>
-    <span class="sass__text--red">TEXT</span>
+  <span class="sass__text--red">TEXT</span>
 </template>
-
 
 <style lang="scss" scoped>
     $color: #ff0000;

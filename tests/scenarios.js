@@ -1,4 +1,4 @@
-const NONE = 'none';
+const NONE = 'none'
 
 const defaultValues = {
   name: 'your-app',
@@ -13,7 +13,7 @@ const defaultValues = {
   unit: true,
   e2e: true,
   author: 'CI user'
-};
+}
 
 const scenarios = {
   default: defaultValues,
@@ -45,7 +45,6 @@ const scenarios = {
     ...defaultValues,
     cssFramework: 'element'
   }
-};
+}
 
-
-module.exports = scenarios;
+module.exports = scenarios

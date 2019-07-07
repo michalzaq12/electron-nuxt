@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <b-button type="primary">BUTTON</b-button>
-        <b-icon icon="home"></b-icon>
-    </div>
+  <div>
+    <b-button type="primary">
+      BUTTON
+    </b-button>
+    <b-icon icon="home" />
+  </div>
 </template>
