@@ -1,13 +1,7 @@
-/* globals INCLUDE_RESOURCES_PATH */
-
-// Set `__resources` path to resources files in main process
 import { app } from 'electron'
 
 // Load here all startup windows
 import './mainWindow'
-
-global.__resources = INCLUDE_RESOURCES_PATH // eslint-disable-line no-unused-expressions
-// noinspection BadExpressionStatementJS
 
 if (__resources === undefined) console.error('[Main-process]: Resources path is undefined')
 
