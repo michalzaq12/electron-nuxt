@@ -1,5 +1,4 @@
 template/.eslintrc.js
-template/package.json
 template/ava.config.js
 template/builder.config.js
 
