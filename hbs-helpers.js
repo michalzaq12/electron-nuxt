@@ -21,9 +21,6 @@ module.exports = {
 
   dependency: (name, comma = true) => {
     const version = ((dependencies || {})[name]) || ((devDependencies || {})[name]);
-    console.log(version);
-    const line =  `"${name}": "${version}"` + (comma ? ',' : '');
-    console.log(line);
-    return line;
+    return  `"${name}": "${version}"` + (comma ? ',' : '');
   }
 }

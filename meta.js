@@ -201,7 +201,7 @@ module.exports = {
     try{
       const projectDir = data.inPlace ? process.cwd() : path.join(process.cwd(), data.destDirName);
       fs.unlinkSync(path.join(projectDir, 'package.json'));
-      fs.renameSync(path.join(projectDir, 'package-template.json'), path.join(projectDir, 'package.json'));
+      fs.renameSync(path.join(projectDir, 'package-template.hbs'), path.join(projectDir, 'package.json'));
     }catch (e) {
       logger.log(chalk.red('Error occurred in vue-cli oncomplete function'));
       log(e);
