@@ -1,7 +1,6 @@
 <template>
-    <span class="stylus__text--red">TEXT</span>
+  <span class="stylus__text--red">TEXT</span>
 </template>
-
 
 <style lang="stylus" scoped>
     color = #ff0000;

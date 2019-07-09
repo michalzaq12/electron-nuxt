@@ -1,17 +1,30 @@
 <template>
-    <header class="main-header">
-        <nav>
-            <div><nuxt-link to="/" exact>System info</nuxt-link></div>
-            <div><nuxt-link to="/other" exact>Next page</nuxt-link></div>
-        </nav>
-    </header>
+  <header class="main-header">
+    <nav>
+      <div>
+        <nuxt-link
+          to="/"
+          exact
+        >
+          System info
+        </nuxt-link>
+      </div>
+      <div>
+        <nuxt-link
+          to="/other"
+          exact
+        >
+          Next page
+        </nuxt-link>
+      </div>
+    </nav>
+  </header>
 </template>
 
-
 <script>
-    export default {
+export default {
 
-    }
+}
 </script>
 
 <style scoped>
