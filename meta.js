@@ -1,4 +1,6 @@
 'use strict'
+const fs = require('fs');
+const path = require('path');
 
 const isCIServer = process.env.CI
 const TEST_SUITE = process.env.TEST_SUITE
@@ -9,6 +11,7 @@ if (isCIServer && TEST_SUITE === undefined) {
 const scenario = isCIServer && require('./tests/scenarios')[TEST_SUITE]
 
 const CITestsFilters = require('./tests/vue-cli-filters')
+const hbsHelpers = require('./hbs-helpers')
 
 module.exports = {
   // https://github.com/vuejs-templates/webpack/blob/develop/meta.js
@@ -178,13 +181,7 @@ module.exports = {
       default: false
     }
   },
-  helpers: {
-    testing (unit, e2e, opts) {
-      if (unit || e2e) {
-        return opts.fn(this)
-      }
-    }
-  },
+  helpers: hbsHelpers,
   filters: {
     ...CITestsFilters,
     'test/e2e/**/*': 'e2e',
@@ -200,6 +197,15 @@ module.exports = {
 
   complete (data, { logger, chalk }) {
     const log = text => console.log('\t' + text)
+
+    try{
+      const projectDir = data.inPlace ? process.cwd() : path.join(process.cwd(), data.destDirName);
+      fs.unlinkSync(path.join(projectDir, 'package.json'));
+      fs.renameSync(path.join(projectDir, 'package-template.json'), path.join(projectDir, 'package.json'));
+    }catch (e) {
+      logger.log(chalk.red('Error occurred in vue-cli oncomplete function'));
+      log(e);
+    }
 
     logger.log(chalk.bold('All set. Welcome to your new electron-nuxt project! \n'))
 

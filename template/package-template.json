@@ -1,0 +1,103 @@
+{
+  "name": "{{ name }}",
+  "version": "{{ appver }}",
+  "description": "{{ description }}",
+  "main": "./dist/main/index.js",
+  "scripts": {
+    "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
+    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && electron-builder --config ./builder.config.js\"",
+    {{#if unit}}
+    "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
+    {{/if}}
+    {{#if e2e}}
+    "test:e2e": "cross-env NODE_ENV=test TEST_TYPE=e2e ava",
+    {{/if}}
+    {{#testing unit e2e}}
+    "test": "{{#unit}}npm run test:unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run test:e2e{{/e2e}}",
+    {{/testing}}
+    {{#if eslint}}
+    "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src ./.electron-nuxt",
+    "lint:fix": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix ./src",
+    {{/if}}
+    "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"
+  },
+  "keywords": [],
+  "author": "“Michał <“michal.m.zarach@gmail.com”>",
+  "license": "MIT",
+  "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
+  "devDependencies": {
+    {{#if_eq iconSet 'fa5'}}
+    {{dependency '@fortawesome/fontawesome-free'}}
+    {{/if_eq}}
+    {{#if_eq iconSet 'mdi'}}
+    {{dependency '@mdi/font'}}
+    {{/if_eq}}
+    {{dependency 'chalk'}}
+    {{#testing unit e2e}}
+    {{dependency 'ava'}}
+    {{/testing}}
+    {{dependency 'browser-env'}}
+    {{#if_eq cssFramework 'buefy'}}
+    {{dependency 'buefy'}}
+    {{/if_eq}}
+    {{dependency 'cross-env'}}
+    {{dependency 'del'}}
+    {{dependency 'electron'}}
+    {{dependency 'electron-builder'}}
+    {{dependency 'electron-debug'}}
+    {{#if_eq cssFramework 'element'}}
+    {{dependency 'element-ui'}}
+    {{/if_eq}}
+    {{#eslint}}
+    {{dependency 'babel-eslint'}}
+    {{dependency 'eslint'}}
+    {{dependency 'eslint-friendly-formatter'}}
+    {{dependency 'eslint-loader'}}
+    {{dependency 'eslint-plugin-vue'}}
+    {{#if_eq eslintConfig 'airbnb'}}
+    {{dependency 'eslint-config-airbnb'}}
+    {{dependency 'eslint-plugin-import'}}
+    {{dependency 'eslint-plugin-jsx-a11y'}}
+    {{dependency 'eslint-plugin-react'}}
+    {{/if_eq}}
+    {{#if_eq eslintConfig 'standard'}}
+    {{dependency 'eslint-config-standard'}}
+    {{dependency 'eslint-plugin-import'}}
+    {{dependency 'eslint-plugin-node'}}
+    {{dependency 'eslint-plugin-promise'}}
+    {{dependency 'eslint-plugin-standard'}}
+    {{/if_eq}}
+    {{/eslint}}
+    {{#if_eq cssPreprocessor 'less'}}
+    {{dependency 'less'}}
+    {{dependency 'less-loader'}}
+    {{/if_eq}}
+    {{dependency 'nuxt'}}
+    {{#if_eq cssPreprocessor 'sass'}}
+    {{dependency 'node-sass'}}
+    {{dependency 'sass-loader'}}
+    {{/if_eq}}
+    {{dependency 'ora'}}
+    {{dependency 'ps-tree'}}
+    {{#if_eq cssPreprocessor 'stylus'}}
+    {{dependency 'stylus'}}
+    {{dependency 'stylus-loader'}}
+    {{/if_eq}}
+    {{#if e2e}}
+    {{dependency 'spectron'}}
+    {{dependency '@types/webdriverio'}}
+    {{/if}}
+    {{dependency 'vue-devtools'}}
+    {{#if_eq cssFramework 'vuetify'}}
+    {{dependency 'vuetify'}}
+    {{/if_eq}}
+    {{#if unit}}
+    {{dependency '@vue/test-utils'}}
+    {{dependency 'require-extension-hooks'}}
+    {{dependency 'require-extension-hooks-babel'}}
+    {{dependency 'require-extension-hooks-vue'}}
+    {{dependency 'babel-plugin-webpack-alias-7'}}
+    {{/if}}
+    {{dependency 'webpack' false}}
+  }
+}
