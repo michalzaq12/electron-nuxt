@@ -17,15 +17,16 @@
 
 <div align="center">
 
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=for-the-badge&color=yellow)](https://standardjs.com)
+[![Code quality](https://img.shields.io/codefactor/grade/github/michalzaq12/electron-nuxt.svg?style=for-the-badge)](https://www.codefactor.io/repository/github/michalzaq12/electron-nuxt)
+
+![Template version](https://img.shields.io/github/package-json/version/michalzaq12/electron-nuxt.svg?label=TEMPLATE%20VERSION&style=for-the-badge)
 
 </div>
 
 <br>
 
 ## Overview
-
-_**Project still under development**_
 
 The boilerplate for making electron applications built with vue / nuxt.
 
@@ -34,7 +35,7 @@ The boilerplate for making electron applications built with vue / nuxt.
 * Auto-updating for easy development \*
 * ES6/ES7 compilation without any extra work \*
 * Parallel code compilation
-* Installed newest [vue-devtools](https://github.com/vuejs/vue-devtools)
+* Installed latest [vue-devtools](https://github.com/vuejs/vue-devtools)
 * Ability to easily package your electron app using [electron-builder](https://github.com/electron-userland/electron-builder)
 * Configured ESLint (with support for [`standard`](https://github.com/feross/standard) and [`airbnb`](https://github.com/airbnb/javascript) code style) \**
 * Built-in support for CSS pre-processor: \**
@@ -44,11 +45,12 @@ The boilerplate for making electron applications built with vue / nuxt.
 * Pre-installed UI components framework: \**
     * [Buefy](https://buefy.org)
     * [Vuetify](https://vuetifyjs.com/en/)
+    * [Element](https://element.eleme.io/#/en-US)
 * Pre-installed icon set for offline usage: \**
     * [Font Awesome 5](https://fontawesome.com/icons)
     * [Material Design Icon](https://materialdesignicons.com)
 * Unit Testing \([vue-test-utils](https://vue-test-utils.vuejs.org) + [AVA](https://github.com/avajs/ava)\) \**
-* End-to-end Testing \([Spectron](https://github.com/electron/spectron) + [AVA](https://github.com/avajs/ava)\) \** (waiting for merge [#364](https://github.com/electron/spectron/pull/364))
+* End-to-end Testing \([Spectron](https://github.com/electron/spectron) + [AVA](https://github.com/avajs/ava)\) \** 
 
 \* available in renderer and main process <br>
 \** customizable during vue-cli scaffolding
@@ -66,7 +68,7 @@ npm install -g vue-cli
 vue init michalzaq12/electron-nuxt <project-name>
 ```
 
-> If you already have instaled vue-cli >= 3, you will need to install global bridge *(since version 3.0 vue-cli package name has changed from vue-cli to @vue/cli)*:
+> If you already have installed vue-cli >= 3, you will need to install global bridge *(since version 3.0 vue-cli package name has changed from vue-cli to @vue/cli)*:
 >
 > `npm install -g @vue/cli-init`
 >
@@ -120,16 +122,16 @@ Nuxt.js automatically generates the vue-router configuration based on your file 
 
 Entry point: `main/index.js`
 
-> [`BrowserWinHandler`](https://github.com/michalzaq12/electron-nuxt/blob/master/template/src/main/BrowserWinHandler.js) is helper class, which wrap [`BrowserWindow`](https://electronjs.org/docs/api/browser-window) to make it more self-manageable. This solution facilitates communication between the windows and doesn`t require a window manager.
+> [`BrowserWinHandler`](https://github.com/michalzaq12/electron-nuxt/blob/master/template/src/main/BrowserWinHandler.js) is helper class, which wrap [`BrowserWindow`](https://electronjs.org/docs/api/browser-window) to make it more self-manageable. This solution facilitates communication between the windows and doesn't require a window manager.
 
 ## Resolving paths in HTML
 
-If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide **absolute** path with **protocol** (required on Linux and Mac to proper work in development enviroment).
+If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide **absolute** path with **protocol** (required on Linux and Mac to proper work in development environment).
 
 **Examples:**
 - `<img src="~/assets/image.png" />`
 - `<img src="file:///home/User/image.png" />`
-- ```<script :src=`file:///${__resources}/ex_script.js` /> ```
+- ```<script :src="`file:///${__resources}/ex_script.js`" /> ```
 
 ## Static resources
 
@@ -142,7 +144,7 @@ Electron-nuxt provides a global variable named `__resources` that will yield a p
 
 ## Building notes
 
-Electron-nuxt support [electron-builder](https://github.com/electron-userland/electron-builder) to build and distribute your production ready application. Further customization can be made in `builder-config.js` file.
+Electron-nuxt support [electron-builder](https://github.com/electron-userland/electron-builder) to build and distribute your production ready application. Further customization can be made in `builder.config.js` file.
 
 ### `dependencies` vs `devDependencies`
 
@@ -155,11 +157,11 @@ Due to [electron-builder](https://github.com/electron-userland/electron-builder)
 
 > If your package uses some modules only for build, test, or bundles them into a dist file (i.e. what will be used by the consumer project), then those modules should not be mentioned in dependencies. We still list them in devDependencies for development. [~ghybs](https://stackoverflow.com/a/50803712)
 
-- packages mentioned in `dependencies` are packed into production build with all subdependencies *(this behavior can`t be configured)*.
+- packages mentioned in `dependencies` are packed into production build with all sub-dependencies *(this behavior can`t be configured)*.
 
 - packages mentioned in `devDependencies` aren`t packed into production build.
 
-In conclusion, we need to pack the necessary dependencies to production build, but without uneeded subpackages, dead code, develompent tools and for example stylus files (we can compile them to css). To do this we use Webpack, which produce dist files (our entire application) and only these files will be copied (files are explicitly specified in `builder-config.js`) to production build.
+In conclusion, we need to pack the necessary dependencies to production build, but without unneeded sub-packages, dead code, development tools and for example stylus files (we can compile them to css). To do this we use Webpack, which produce dist files (our entire application) and only these files will be copied (files are explicitly specified in `builder-config.js`) to production build.
 
 **Some `dependencies` use case**
 
@@ -170,10 +172,31 @@ In conclusion, we need to pack the necessary dependencies to production build, b
 
 Global variables `__dirname` and `__filename` are no longer reliable on production build. If you need reliable path to static assets read more about: [static resources](#static-resources).
 
+## Testing
 
+Electron-nuxt supports both unit testing and end-to-end testing for the renderer process. During vue-cli scaffolding you will have the option to include testing support.
+
+
+### end-to-end
+
+*Running*: ```npm run test:e2e```
+
+Electron-nuxt makes use of Spectron for end-to-end testing.
+Spectron is the official electron testing framework that uses both ChromeDriver and WebDriverIO v4 for manipulating DOM elements. 
+
+[Spectron app properties](https://github.com/electron-userland/spectron#properties): 
+- [...]
+- `client`: WebdriverIO's `browser` object ([WebDriver v4 doc](http://v4.webdriver.io/api.html))
+- `electron`: alias for `require('electron')` from within your app ([Electron API doc](https://electronjs.org/docs/api))
+- `browserWindow`: access to the current `BrowserWindow`
+- `nuxt`: electron-nuxt provides some helper methods:
+    - `.ready() : Promise<void>`: resolve promise when nuxt app is ready
+    - `.navigate(path: string) : Promise<void>`: navigate to page. Throw error when page (for provided path) doesn't exist. 
+
+See also: [electron-nuxt test specs](https://github.com/michalzaq12/electron-nuxt/tree/master/template/test/e2e/specs)
 
 <br>
 
 # Common issues
 
-- Vue devtools doesn`t respond: relaunch electron (from app menu or Command/Control+E)
+- Vue devtools doesn't respond: relaunch electron (from app menu or `Command/Control+E`)
