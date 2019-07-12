@@ -9,7 +9,7 @@
     "cross-env": "^5.2.0",
     "del": "^4.0.0",
     "electron": "5.0.6",
-    "electron-builder": "^20.44.4",
+    "electron-builder": "^21.0.15",
     "electron-debug": "^2.1.0",
     "element-ui": "^2.10.1",
     "babel-eslint": "^10.0.2",
