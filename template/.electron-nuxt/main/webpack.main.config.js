@@ -3,8 +3,8 @@ process.env.BABEL_ENV = 'main'
 
 const path = require('path')
 const resourcesPath = require('../resources-path-provider')
-const { dependencies } = require('../../package.json')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProduction = process.env.NODE_ENV === 'production'
@@ -18,9 +18,11 @@ let mainConfig = {
       ? path.join(MAIN_PROCESS_DIR, 'index.dev.js')
       : path.join(MAIN_PROCESS_DIR, 'index.js')
   },
-  externals: [
-    ...Object.keys(dependencies || {})
-  ],
+  externals: [nodeExternals({
+    modulesFromFile: {
+      include: ['dependencies']
+    }
+  })],
   module: {
     rules: [
       {
