@@ -2,8 +2,8 @@ process.env.BABEL_ENV = 'renderer'
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 const path = require('path')
-const { dependencies } = require('../../package.json')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 const resourcesPath = require('../resources-path-provider')
 const { RENDERER_PROCESS_DIR, DIST_DIR, PROJECT_ROOT } = require('../config')
 
@@ -36,9 +36,11 @@ module.exports = {
         userNuxtConfig.build.extend(...arguments)
       }
 
-      config.externals = [
-        ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
-      ]
+      config.externals = [nodeExternals({
+        modulesFromFile: {
+          include: ['dependencies']
+        }
+      })]
 
       config.target = 'electron-renderer'
 
