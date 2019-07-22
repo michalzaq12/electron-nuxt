@@ -2,10 +2,8 @@ language: node_js
 node_js:
   - '10'
 
-addons:
-  apt:
-    packages:
-      - xvfb
+services:
+  - xvfb
 
 cache:
   directories:
