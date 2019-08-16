@@ -26,6 +26,10 @@
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "devDependencies": {
+    {{dependency '@xpda-dev/core'}}
+    {{dependency '@xpda-dev/electron-launcher'}}
+    {{dependency '@xpda-dev/electron-builder'}}
+    {{dependency '@xpda-dev/webpack-step'}}
     {{#if_eq iconSet 'fa5'}}
     {{dependency '@fortawesome/fontawesome-free'}}
     {{/if_eq}}
@@ -98,7 +102,6 @@
     {{dependency 'require-extension-hooks-vue'}}
     {{dependency 'babel-plugin-webpack-alias-7'}}
     {{/if}}
-    {{dependency 'webpack'}}
-    {{dependency 'webpack-node-externals' false}}
+    {{dependency 'webpack' false}}
   }
 }
