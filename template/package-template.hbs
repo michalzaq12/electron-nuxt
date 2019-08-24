@@ -5,7 +5,7 @@
   "main": "./dist/main/index.js",
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
-    "build": "cross-env-shell NODE_ENV=production \"node .electron-nuxt/index.js && electron-builder --config ./builder.config.js\"",
+    "build": "cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
     {{#if unit}}
     "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
     {{/if}}

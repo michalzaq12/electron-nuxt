@@ -30,7 +30,7 @@ const webpackConfig = Webpack.getBaseConfig({
     : path.join(MAIN_PROCESS_DIR, 'index.js'),
   output: {
     filename: 'index.js',
-    path: DIST_DIR
+    path: path.join(DIST_DIR, 'main')
   },
   plugins: [
     new webpack.DefinePlugin({
