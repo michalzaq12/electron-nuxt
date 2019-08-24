@@ -22,7 +22,7 @@
     "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"
   },
   "keywords": [],
-  "author": "“Michał <“michal.m.zarach@gmail.com”>",
+  "author": "{{ author }}",
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "devDependencies": {
@@ -36,7 +36,6 @@
     {{#if_eq iconSet 'mdi'}}
     {{dependency '@mdi/font'}}
     {{/if_eq}}
-    {{dependency 'chalk'}}
     {{#testing unit e2e}}
     {{dependency 'ava'}}
     {{/testing}}
@@ -45,7 +44,6 @@
     {{dependency 'buefy'}}
     {{/if_eq}}
     {{dependency 'cross-env'}}
-    {{dependency 'del'}}
     {{dependency 'electron'}}
     {{dependency 'electron-builder'}}
     {{dependency 'electron-debug'}}
@@ -81,8 +79,6 @@
     {{dependency 'node-sass'}}
     {{dependency 'sass-loader'}}
     {{/if_eq}}
-    {{dependency 'ora'}}
-    {{dependency 'ps-tree'}}
     {{#if_eq cssPreprocessor 'stylus'}}
     {{dependency 'stylus'}}
     {{dependency 'stylus-loader'}}
@@ -102,6 +98,7 @@
     {{dependency 'require-extension-hooks-vue'}}
     {{dependency 'babel-plugin-webpack-alias-7'}}
     {{/if}}
-    {{dependency 'webpack' false}}
+    {{dependency 'webpack'}}
+    {{dependency 'webpack-node-externals' false}}
   }
 }
