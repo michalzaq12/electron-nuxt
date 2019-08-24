@@ -19,7 +19,9 @@ const launcher = new ElectronLauncher({
 })
 
 const builder = new ElectronBuilder({
-  builderOptions: path.join(__dirname, '../builder.config.js')
+  cliOptions: {
+    config: path.join(__dirname, '../builder.config.js')
+  }
 })
 
 const webpackConfig = Webpack.getBaseConfig({
