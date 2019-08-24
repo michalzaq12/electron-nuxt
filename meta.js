@@ -60,7 +60,7 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       message: 'Author',
-      default: 'michalzaq12 <"michal.m.zarach@gmail.com">'
+      default: 'michalzaq12 <michal.m.zarach@gmail.com>'
     },
     cssFramework: {
       when: 'isNotTest',
