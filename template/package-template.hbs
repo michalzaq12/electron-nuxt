@@ -22,7 +22,7 @@
     "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"
   },
   "keywords": [],
-  "author": "{{ author }}",
+  "author": "{{#if isCIServer}}michalzaq12 <“michal.m.zarach@gmail.com”>{{else}}{{ author }}{{/if}}",
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "devDependencies": {

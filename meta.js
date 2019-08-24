@@ -59,8 +59,7 @@ module.exports = {
     author: {
       when: 'isNotTest',
       type: 'string',
-      message: 'Author',
-      default: 'michalzaq12 <michal.m.zarach@gmail.com>'
+      message: 'Author'
     },
     cssFramework: {
       when: 'isNotTest',
