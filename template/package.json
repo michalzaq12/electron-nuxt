@@ -5,7 +5,7 @@
     "@xpda-dev/electron-builder": "^0.1.0",
     "@xpda-dev/webpack-step": "^0.1.0",
     "@fortawesome/fontawesome-free": "^5.9.0",
-    "@mdi/font": "^3.6.95",
+    "@mdi/font": "^4.1.95",
     "ava": "^2.0.0",
     "browser-env": "^3.2.5",
     "buefy": "^0.8.1",
