@@ -15,7 +15,7 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const launcher = new ElectronLauncher({
   electronPath: electron,
-  entryFile: path.join(DIST_DIR, 'index.js')
+  entryFile: path.join(DIST_DIR, 'main/index.js')
 })
 
 const builder = new ElectronBuilder({
@@ -42,7 +42,7 @@ const webpackConfig = Webpack.getBaseConfig({
 
 const webpackMain = new Webpack({
   webpackConfig: webpackConfig,
-  launcher: launcher
+  launcher: launcher // need to restart launcher after compilation
 })
 
 const nuxt = new NuxtApp(new Logger('Nuxt', 'green'))
