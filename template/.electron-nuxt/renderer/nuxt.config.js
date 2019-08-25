@@ -9,12 +9,6 @@ const { RENDERER_PROCESS_DIR, DIST_DIR, PROJECT_ROOT } = require('../config')
 
 const userNuxtConfig = require('../../src/renderer/nuxt.config')
 
-// By default all dependencies (not devDependencies) from package.json are excluded from webpack bundle,
-// however, they are still available (without any transformation) in renderer process.
-// If you really need to add dependency to webpack bundle, add it to this whitelist
-// READ MORE:
-let whiteListedModules = []
-
 module.exports = {
   ...userNuxtConfig,
   srcDir: RENDERER_PROCESS_DIR,
