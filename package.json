@@ -21,7 +21,7 @@
     "lint": "eslint --no-eslintrc --config .eslintrc.js --ext .js,.vue ./template ./template/.electron-nuxt"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.2",
+    "babel-eslint": "^10.0.3",
     "eslint": "^6.1.0",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.0",
