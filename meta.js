@@ -137,10 +137,16 @@ module.exports = {
         }
       ]
     },
-    eslint: {
-      when: 'isNotTest',
+    typescript: {
       type: 'confirm',
-      require: true,
+      required: true,
+      message: 'Use typescript?',
+      default: false,
+    },
+    eslint: {
+      when: 'isNotTest && !typescript',
+      type: 'confirm',
+      required: true,
       message: 'Use linting with ESLint?',
       default: false
     },
@@ -186,6 +192,8 @@ module.exports = {
     ...CITestsFilters,
     'test/e2e/**/*': 'e2e',
     'test/unit/**/*': 'unit',
+    'src/renderer/tsconfig.json': 'typescript',
+    'src/main/tsconfig.json': 'typescript',
     '.eslintrc.js': 'eslint',
     'ava.config.js': 'unit || e2e',
     'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\'',

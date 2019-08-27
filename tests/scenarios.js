@@ -8,6 +8,7 @@ const defaultValues = {
   cssFramework: NONE,
   cssPreprocessor: NONE,
   iconSet: NONE,
+  typescript: false,
   eslint: false,
   eslintConfig: NONE,
   unit: true,
