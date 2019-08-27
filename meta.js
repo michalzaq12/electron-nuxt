@@ -145,14 +145,14 @@ module.exports = {
       default: false,
     },
     eslint: {
-      when: 'isNotTest && (typescript==false)',
+      when: '(isNotTest && !typescript)',
       type: 'confirm',
       required: true,
       message: 'Use linting with ESLint?',
       default: false
     },
     eslintConfig: {
-      when: 'isNotTest && eslint',
+      when: '(isNotTest && !typescript && eslint)',
       type: 'list',
       message: 'Which ESLint config would you like to use?',
       choices: [
@@ -195,7 +195,7 @@ module.exports = {
     'test/unit/**/*': 'unit',
     'src/renderer/tsconfig.json': 'typescript',
     'src/main/tsconfig.json': 'typescript',
-    '.eslintrc.js': 'eslint',
+    '.eslintrc.js': '!typescript && eslint',
     'ava.config.js': 'unit || e2e',
     'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\'',
     'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\'',

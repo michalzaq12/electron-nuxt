@@ -22,6 +22,10 @@ const scenarios = {
     ...defaultValues,
     eslint: true
   },
+  typescript: {
+    ...defaultValues,
+    typescript: true
+  },
   sass: {
     ...defaultValues,
     cssPreprocessor: 'sass'
