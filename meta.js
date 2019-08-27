@@ -138,13 +138,14 @@ module.exports = {
       ]
     },
     typescript: {
+      when: 'isNotTest',
       type: 'confirm',
       required: true,
       message: 'Use typescript?',
       default: false,
     },
     eslint: {
-      when: 'isNotTest && !typescript',
+      when: 'isNotTest && (typescript==false)',
       type: 'confirm',
       required: true,
       message: 'Use linting with ESLint?',
@@ -183,7 +184,7 @@ module.exports = {
       when: 'isNotTest',
       type: 'confirm',
       message: 'Set up end-to-end testing with Spectron + AVA?',
-      require: true,
+      required: true,
       default: false
     }
   },
