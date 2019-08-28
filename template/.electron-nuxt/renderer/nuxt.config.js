@@ -12,7 +12,7 @@ const userNuxtConfig = require('../../src/renderer/nuxt.config')
 module.exports = {
   ...userNuxtConfig,
   srcDir: RENDERER_PROCESS_DIR,
-  rootDir: PROJECT_ROOT,
+  rootDir: RENDERER_PROCESS_DIR,
   router: {
     mode: 'hash'
   },

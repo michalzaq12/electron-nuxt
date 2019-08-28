@@ -194,6 +194,7 @@ module.exports = {
     'test/e2e/**/*': 'e2e',
     'test/unit/**/*': 'unit',
     'src/renderer/tsconfig.json': 'typescript',
+    'src/renderer/index.d.ts': 'typescript',
     'src/main/tsconfig.json': 'typescript',
     '.eslintrc.js': '!typescript && eslint',
     'ava.config.js': 'unit || e2e',

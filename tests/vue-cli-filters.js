@@ -8,7 +8,7 @@ module.exports = {
   'src/renderer/pages/test/loader/sass.vue': 'cssPreprocessor === \'sass\'',
   'src/renderer/pages/test/loader/stylus.vue': 'cssPreprocessor === \'stylus\'',
 
-  'src/renderer/pages/test/typescript': 'typescript',
+  'src/renderer/pages/test/typescript/**/*': 'typescript',
 
   'test/e2e/spec/css-framework.spec.js': 'isCIServer',
   'test/e2e/spec/loader.spec.js': 'isCIServer'
