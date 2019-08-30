@@ -5,7 +5,7 @@ const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const resourcesPath = require('../resources-path-provider')
-const { RENDERER_PROCESS_DIR, DIST_DIR, PROJECT_ROOT } = require('../config')
+const { RENDERER_PROCESS_DIR, DIST_DIR } = require('../config')
 
 const userNuxtConfig = require('../../src/renderer/nuxt.config')
 

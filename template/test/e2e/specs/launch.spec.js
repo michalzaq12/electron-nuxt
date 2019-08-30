@@ -35,6 +35,8 @@ test('\'fs\' module should load file content from __resources directory', async 
 
   try {
     await app.client.nuxt.ready()
+    await app.client.nuxt.navigate('/test/basic')
+    await app.client.hasNotError()
     await app.client.waitUntilTextExists('#external-resource', 'EXTERNAL_FILE_CONTENT', 5000)
     t.pass()
   } catch (e) {
