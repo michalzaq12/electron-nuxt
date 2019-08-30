@@ -9,7 +9,7 @@ test.afterEach.always(afterEachAlways);
 
 const RED_HEX = '#ff0000';
 
-{{#if_eq cssPreprocessor 'sass'}}
+
 test('sass', async t => {
   const app = t.context.app;
   const ELEMENT_SELECTOR = '.sass__text--red';
@@ -24,9 +24,9 @@ test('sass', async t => {
     t.fail(e.message);
   }
 })
-{{/if_eq}}
 
-{{#if_eq cssPreprocessor 'less'}}
+
+
 test('less', async t => {
   const app = t.context.app;
   const ELEMENT_SELECTOR = '.less__text--red';
@@ -41,9 +41,9 @@ test('less', async t => {
     t.fail(e.message);
   }
 })
-{{/if_eq}}
 
-{{#if_eq cssPreprocessor 'stylus'}}
+
+
 test('stylus', async t => {
   const app = t.context.app;
   const ELEMENT_SELECTOR = '.stylus__text--red';
@@ -58,4 +58,4 @@ test('stylus', async t => {
     t.fail(e.message);
   }
 })
-{{/if_eq}}
+

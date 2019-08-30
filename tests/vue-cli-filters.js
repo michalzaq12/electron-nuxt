@@ -1,15 +1,13 @@
+const TEST_SUITE = process.env.TEST_SUITE
 module.exports = {
   'src/renderer/pages/test/**/*': 'isCIServer',
 
-  'src/renderer/pages/test/css-framework/buefy.vue': 'cssFramework === \'buefy\'',
-  'src/renderer/pages/test/css-framework/vuetify.vue': 'cssFramework === \'vuetify\'',
-  'src/renderer/pages/test/css-framework/element.vue': 'cssFramework === \'element\'',
-  'src/renderer/pages/test/loader/less.vue': 'cssPreprocessor === \'less\'',
-  'src/renderer/pages/test/loader/sass.vue': 'cssPreprocessor === \'sass\'',
-  'src/renderer/pages/test/loader/stylus.vue': 'cssPreprocessor === \'stylus\'',
+  'src/renderer/pages/test/css-framework/**/*': TEST_SUITE === 'css_frameworks',
+  'test/e2e/spec/css-framework.spec.js': TEST_SUITE === 'css_frameworks',
 
-  'src/renderer/pages/test/typescript/**/*': 'typescript',
+  'src/renderer/pages/test/loader/**/*': process.env.TEST_SUITE === 'loaders',
+  'test/e2e/spec/loader.spec.js': process.env.TEST_SUITE === 'loaders',
 
-  'test/e2e/spec/css-framework.spec.js': 'isCIServer',
-  'test/e2e/spec/loader.spec.js': 'isCIServer'
+  'src/renderer/pages/test/typescript/**/*': process.env.TEST_SUITE === 'typescript',
+  //TODO add e2e typescript test
 }

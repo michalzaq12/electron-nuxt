@@ -5,7 +5,7 @@ import {beforeEach, afterEachAlways, sleep} from "../helpers";
 test.beforeEach(beforeEach);
 test.afterEach.always(afterEachAlways);
 
-{{#if_eq cssFramework 'vuetify'}}
+
 test('vuetify should render button component', async t => {
   const app = t.context.app;
 
@@ -18,9 +18,9 @@ test('vuetify should render button component', async t => {
     t.fail(e.message);
   }
 })
-{{/if_eq}}
 
-{{#if_eq cssFramework 'buefy'}}
+
+
 test('buefy should render button component', async t => {
   const app = t.context.app;
 
@@ -33,9 +33,9 @@ test('buefy should render button component', async t => {
     t.fail(e.message);
   }
 })
-{{/if_eq}}
 
-{{#if_eq cssFramework 'element'}}
+
+
 test('Element should render button component', async t => {
   const app = t.context.app;
 
@@ -48,4 +48,4 @@ test('Element should render button component', async t => {
     t.fail(e.message);
   }
 })
-{{/if_eq}}
+
