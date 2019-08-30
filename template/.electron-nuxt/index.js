@@ -41,6 +41,7 @@ const webpackConfig = Webpack.getBaseConfig({
 })
 
 const webpackMain = new Webpack({
+  logger: new Logger('Main', 'olive'),
   webpackConfig: webpackConfig,
   launcher: launcher // need to restart launcher after compilation
 })
