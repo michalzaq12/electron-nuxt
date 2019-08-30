@@ -75,6 +75,9 @@
     {{dependency 'less-loader'}}
     {{/if_eq}}
     {{dependency 'nuxt'}}
+    {{#if typescript}}
+    {{dependency '@nuxt/typescript-build'}}
+    {{/if}}
     {{#if_eq cssPreprocessor 'sass'}}
     {{dependency 'node-sass'}}
     {{dependency 'sass-loader'}}

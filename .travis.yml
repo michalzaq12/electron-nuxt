@@ -16,6 +16,7 @@ os:
 
 env:
   matrix:
+    - TEST_SUITE=typescript
     - TEST_SUITE=buefy
     - TEST_SUITE=vuetify
     - TEST_SUITE=element

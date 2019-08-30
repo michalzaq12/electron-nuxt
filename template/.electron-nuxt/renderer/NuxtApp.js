@@ -27,7 +27,7 @@ class NuxtApp {
 
   redirectStdout () {
     this.nuxtProcess.stdout.pipe(this.logger.stdout)
-    this.nuxtProcess.stderr.pipe(this.logger.stdout)
+    this.nuxtProcess.stderr.pipe(this.logger.stderr)
   }
 
   async terminate () {

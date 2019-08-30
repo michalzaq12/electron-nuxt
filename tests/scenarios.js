@@ -8,6 +8,7 @@ const defaultValues = {
   cssFramework: NONE,
   cssPreprocessor: NONE,
   iconSet: NONE,
+  typescript: false,
   eslint: false,
   eslintConfig: NONE,
   unit: true,
@@ -20,6 +21,10 @@ const scenarios = {
   eslint: {
     ...defaultValues,
     eslint: true
+  },
+  typescript: {
+    ...defaultValues,
+    typescript: true
   },
   sass: {
     ...defaultValues,

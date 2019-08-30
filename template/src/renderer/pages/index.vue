@@ -35,7 +35,7 @@ import fs from 'fs';
 import path from 'path';
 {{/if}}
 import {remote} from 'electron';
-import SystemInformation from '@/components/SystemInformation';
+import SystemInformation from '@/components/SystemInformation.vue';
 
 export default {
   components: {

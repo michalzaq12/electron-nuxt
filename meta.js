@@ -137,15 +137,22 @@ module.exports = {
         }
       ]
     },
-    eslint: {
+    typescript: {
       when: 'isNotTest',
       type: 'confirm',
-      require: true,
+      required: true,
+      message: 'Use typescript?',
+      default: false,
+    },
+    eslint: {
+      when: '(isNotTest && !typescript)',
+      type: 'confirm',
+      required: true,
       message: 'Use linting with ESLint?',
       default: false
     },
     eslintConfig: {
-      when: 'isNotTest && eslint',
+      when: '(isNotTest && !typescript && eslint)',
       type: 'list',
       message: 'Which ESLint config would you like to use?',
       choices: [
@@ -177,7 +184,7 @@ module.exports = {
       when: 'isNotTest',
       type: 'confirm',
       message: 'Set up end-to-end testing with Spectron + AVA?',
-      require: true,
+      required: true,
       default: false
     }
   },
@@ -186,7 +193,10 @@ module.exports = {
     ...CITestsFilters,
     'test/e2e/**/*': 'e2e',
     'test/unit/**/*': 'unit',
-    '.eslintrc.js': 'eslint',
+    'src/renderer/tsconfig.json': 'typescript',
+    'src/renderer/index.d.ts': 'typescript',
+    'src/main/tsconfig.json': 'typescript',
+    '.eslintrc.js': '!typescript && eslint',
     'ava.config.js': 'unit || e2e',
     'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\'',
     'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\'',
