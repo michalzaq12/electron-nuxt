@@ -21,7 +21,6 @@ env:
     - TEST_SUITE=loaders
     - TEST_SUITE=eslint
   global:
-    - USE_HARD_LINKS=true
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
