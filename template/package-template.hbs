@@ -57,10 +57,8 @@
     {{dependency 'eslint-loader'}}
     {{dependency 'eslint-plugin-vue'}}
     {{#if_eq eslintConfig 'airbnb'}}
-    {{dependency 'eslint-config-airbnb'}}
+    {{dependency 'eslint-config-airbnb-base'}}
     {{dependency 'eslint-plugin-import'}}
-    {{dependency 'eslint-plugin-jsx-a11y'}}
-    {{dependency 'eslint-plugin-react'}}
     {{/if_eq}}
     {{#if_eq eslintConfig 'standard'}}
     {{dependency 'eslint-config-standard'}}

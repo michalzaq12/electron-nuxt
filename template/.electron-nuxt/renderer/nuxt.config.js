@@ -27,7 +27,7 @@ module.exports = {
   build: {
     extend (config, { isClient }) {
       if (userNuxtConfig.build !== undefined && userNuxtConfig.build.extend !== undefined) {
-        userNuxtConfig.build.extend(...arguments)
+        userNuxtConfig.build.extend(...arguments) // eslint-disable-line prefer-rest-params
       }
 
       config.externals = [nodeExternals({

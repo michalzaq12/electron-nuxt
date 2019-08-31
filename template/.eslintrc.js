@@ -12,7 +12,7 @@ module.exports = {
   },
   extends: [
     {{#if_eq eslintConfig 'standard'}}'standard',{{/if_eq}}
-    {{#if_eq eslintConfig 'airbnb'}}'airbnb',{{/if_eq}}
+    {{#if_eq eslintConfig 'airbnb'}}'airbnb-base',{{/if_eq}}
     "plugin:vue/recommended",
   ],
   // required to lint *.vue files
@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     // StandardJS — The Rules
     "indent": ["error", 2], // 2 spaces – for indentation
+    "max-len": ["error", { "code": 120}],
     "no-console": "off",
     "import/no-extraneous-dependencies": "off",
 
@@ -33,6 +34,7 @@ module.exports = {
     'import/extensions': 0,
     'import/newline-after-import': 0,
     'no-multi-assign': 0,
+    'no-underscore-dangle': 0,
 
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
 
