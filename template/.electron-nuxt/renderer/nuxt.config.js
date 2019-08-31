@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 process.env.BABEL_ENV = 'renderer'
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
