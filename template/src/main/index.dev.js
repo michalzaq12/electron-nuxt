@@ -3,7 +3,7 @@ import { ELECTRON_RELAUNCH_CODE } from '../../.electron-nuxt/config'
 import mainWinHandler from './mainWindow'
 import electronDebug from 'electron-debug'
 import vueDevtools from 'vue-devtools'
-process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
 electronDebug({
   showDevTools: false,

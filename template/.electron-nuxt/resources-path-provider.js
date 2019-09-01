@@ -4,19 +4,6 @@ const RESOURCES_DIR_PATH = RESOURCES_DIR.replace(/\\/g, '/')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-module.exports = {
-
-  mainProcess () {
-    return isProduction ? pathFromMainOnRuntime() : staticPath()
-  },
-
-  nuxtClient () {
-    return isProduction ? pathFromRendererOnRuntime() : staticPath()
-  },
-
-  nuxtServer: staticPath
-}
-
 function staticPath () {
   // resolve during compilation
   return `
@@ -44,4 +31,17 @@ function pathFromMainOnRuntime () {
   return `
     global.__resources = require('path').join(__dirname, '..', 'resources');
   `
+}
+
+module.exports = {
+
+  mainProcess () {
+    return isProduction ? pathFromMainOnRuntime() : staticPath()
+  },
+
+  nuxtClient () {
+    return isProduction ? pathFromRendererOnRuntime() : staticPath()
+  },
+
+  nuxtServer: staticPath
 }

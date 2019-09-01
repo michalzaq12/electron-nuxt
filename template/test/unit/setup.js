@@ -12,11 +12,11 @@ hooks(['vue', 'js']).exclude(
   ({ filename }) => filename.match(/\/node_modules\//) || filename.includes('alias.js')
 )
   .plugin('babel', {
-    'plugins': [
+    plugins: [
       [
         'babel-plugin-webpack-alias-7',
         {
-          'config': path.join(__dirname, 'alias.js').replace(/\\/g, '/')
+          config: path.join(__dirname, 'alias.js').replace(/\\/g, '/')
         }
       ]
     ]

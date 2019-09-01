@@ -26,29 +26,13 @@ const scenarios = {
     ...defaultValues,
     typescript: true
   },
-  sass: {
+  loaders: {
     ...defaultValues,
-    cssPreprocessor: 'sass'
+    cssPreprocessor: 'all'
   },
-  less: {
+  css_frameworks: {
     ...defaultValues,
-    cssPreprocessor: 'less'
-  },
-  stylus: {
-    ...defaultValues,
-    cssPreprocessor: 'stylus'
-  },
-  vuetify: {
-    ...defaultValues,
-    cssFramework: 'vuetify'
-  },
-  buefy: {
-    ...defaultValues,
-    cssFramework: 'buefy'
-  },
-  element: {
-    ...defaultValues,
-    cssFramework: 'element'
+    cssFramework: 'all'
   }
 }
 

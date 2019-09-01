@@ -1,61 +1,45 @@
 <template>
-    <div class="e-nuxt-container">
-        {{#if isCIServer}}
-        <!--ONLY FOR TEST PURPOSE-->
-            <span id="external-resource">\{{externalContent}}</span>
-            <img id="absolute-path-with-resources-const" :src="`file:///${__resources}/electron-nuxt.png`"/>
-        <!-- \END -->
-        {{/if}}
-        <div class="e-nuxt-content">
-            <div class="e-nuxt-logo">
-                <img style="max-width: 100%;" src="~assets/electron-nuxt.png"/>
-            </div>
-            <div class="e-nuxt-system-info">
-                <system-information></system-information>
-            </div>
-        </div>
-        <div class="e-nuxt-links">
-            <div class="e-nuxt-button" @click="openURL('https://github.com/michalzaq12/electron-nuxt')">
-                Github
-            </div>
-            <div class="e-nuxt-button" @click="openURL('https://nuxtjs.org/guide')">
-                Nuxt.js
-            </div>
-            <div class="e-nuxt-button" @click="openURL('https://electronjs.org/docs')">
-                Electron.js
-            </div>
-        </div>
+  <div class="e-nuxt-container">
+    <div class="e-nuxt-content">
+      <div class="e-nuxt-logo">
+        <img style="max-width: 100%;" src="~assets/electron-nuxt.png">
+      </div>
+      <div class="e-nuxt-system-info">
+        <system-information />
+      </div>
     </div>
+    <div class="e-nuxt-links">
+      <div class="e-nuxt-button" @click="openURL('https://github.com/michalzaq12/electron-nuxt')">
+        Github
+      </div>
+      <div class="e-nuxt-button" @click="openURL('https://nuxtjs.org/guide')">
+        Nuxt.js
+      </div>
+      <div class="e-nuxt-button" @click="openURL('https://electronjs.org/docs')">
+        Electron.js
+      </div>
+    </div>
+  </div>
 </template>
 
-
 <script>
-{{#if isCIServer}}
-import fs from 'fs';
-import path from 'path';
-{{/if}}
-import {remote} from 'electron';
-import SystemInformation from '@/components/SystemInformation.vue';
+import { remote } from 'electron'
+import SystemInformation from '@/components/SystemInformation.vue'
 
 export default {
   components: {
     SystemInformation
   },
-  data(){
-    return{
+  data () {
+    return {
       externalContent: ''
     }
   },
   methods: {
-    openURL(url){
-      remote.shell.openExternal(url);
+    openURL (url) {
+      remote.shell.openExternal(url)
     }
-  },
-  {{#if isCIServer}}
-  mounted() {
-    this.externalContent = fs.readFileSync(path.join(__resources, 'external-file.txt'));
   }
-  {{/if}}
 }
 </script>
 

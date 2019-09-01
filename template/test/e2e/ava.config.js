@@ -2,16 +2,16 @@ import { cpus } from 'os'
 const isWindows = (process.platform === 'win32' || process.platform === 'win64')
 
 export default {
-  'files': [
+  files: [
     'test/e2e/specs/**/*'
   ],
-  'helpers': [
+  helpers: [
     'test/e2e/helpers.js'
   ],
-  'sources': [
+  sources: [
     'src/**/*'
   ],
-  'require': [
+  require: [
     './test/e2e/setup.js'
   ],
   concurrency: isWindows ? 1 : cpus().length

@@ -4,7 +4,7 @@ import { app } from 'electron'
 /**
  * Set `__resources` path to resources files in renderer process
  */
-global.__resources = undefined
+global.__resources = undefined // eslint-disable-line no-underscore-dangle
 // noinspection BadExpressionStatementJS
 INCLUDE_RESOURCES_PATH // eslint-disable-line no-unused-expressions
 if (__resources === undefined) console.error('[Main-process]: Resources path is undefined')

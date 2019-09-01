@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 process.env.BABEL_ENV = 'renderer'
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
@@ -5,7 +6,7 @@ const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const resourcesPath = require('../resources-path-provider')
-const { RENDERER_PROCESS_DIR, DIST_DIR, PROJECT_ROOT } = require('../config')
+const { RENDERER_PROCESS_DIR, DIST_DIR } = require('../config')
 
 const userNuxtConfig = require('../../src/renderer/nuxt.config')
 
@@ -27,7 +28,7 @@ module.exports = {
   build: {
     extend (config, { isClient }) {
       if (userNuxtConfig.build !== undefined && userNuxtConfig.build.extend !== undefined) {
-        userNuxtConfig.build.extend(...arguments)
+        userNuxtConfig.build.extend(...arguments) // eslint-disable-line prefer-rest-params
       }
 
       config.externals = [nodeExternals({
@@ -50,7 +51,7 @@ module.exports = {
 
       config.plugins.push(
         new webpack.DefinePlugin({
-          'INCLUDE_RESOURCES_PATH': isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
+          INCLUDE_RESOURCES_PATH: isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
         })
       )
     }

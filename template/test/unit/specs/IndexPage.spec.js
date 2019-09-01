@@ -1,6 +1,6 @@
 import test from 'ava'
 import { shallowMount } from '@vue/test-utils'
-import Index from '@/pages/index.vue'
+import Index from '@/pages/basic.vue'
 
 // // available wrapper methods/properties: https://vue-test-utils.vuejs.org/api/wrapper
 let wrapper

@@ -6,7 +6,4 @@ template/src/renderer/nuxt.config.js
 template/src/renderer/plugins/buefy.js
 template/src/renderer/plugins/icons.js
 template/src/renderer/plugins/vuetify.js
-template/src/renderer/pages/index.vue
 
-template/test/e2e/specs/loader.spec.js
-template/test/e2e/specs/css-framework.spec.js

@@ -2,7 +2,7 @@ import { BrowserWindow, app } from 'electron'
 import { EventEmitter } from 'events'
 const isProduction = process.env.NODE_ENV === 'production'
 
-export class BrowserWinHandler {
+export default class BrowserWinHandler {
   /**
      * @param [options] {object} - browser window options
      * @param [allowRecreate] {boolean}

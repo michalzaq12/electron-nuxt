@@ -17,15 +17,10 @@ os:
 env:
   matrix:
     - TEST_SUITE=typescript
-    - TEST_SUITE=buefy
-    - TEST_SUITE=vuetify
-    - TEST_SUITE=element
-    - TEST_SUITE=sass
-    - TEST_SUITE=less
-    - TEST_SUITE=stylus
+    - TEST_SUITE=css_frameworks
+    - TEST_SUITE=loaders
     - TEST_SUITE=eslint
   global:
-    - USE_HARD_LINKS=true
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 

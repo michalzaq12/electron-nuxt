@@ -19,5 +19,8 @@ module.exports = {
     'vue'
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    "vue/max-attributes-per-line": "off",
+    "vue/singleline-html-element-content-newline": "off"
+  }
 }

@@ -9,7 +9,7 @@ const END = '\x1b[0m'
 
 let relativeAppPath = ''
 
-let os = process.platform
+const os = process.platform
 if (os === 'darwin') {
   relativeAppPath = `mac/${productName}.app/Contents/MacOS/${productName}`
 } else if (os === 'win32' || os === 'win64') {

@@ -25,6 +25,9 @@
   "author": "{{#if isCIServer}}michalzaq12 <“michal.m.zarach@gmail.com”>{{else}}{{ author }}{{/if}}",
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
+  "engines" : {
+    "node" : ">=8.10.0"
+  },
   "devDependencies": {
     {{dependency '@xpda-dev/core'}}
     {{dependency '@xpda-dev/electron-launcher'}}
@@ -57,10 +60,8 @@
     {{dependency 'eslint-loader'}}
     {{dependency 'eslint-plugin-vue'}}
     {{#if_eq eslintConfig 'airbnb'}}
-    {{dependency 'eslint-config-airbnb'}}
+    {{dependency 'eslint-config-airbnb-base'}}
     {{dependency 'eslint-plugin-import'}}
-    {{dependency 'eslint-plugin-jsx-a11y'}}
-    {{dependency 'eslint-plugin-react'}}
     {{/if_eq}}
     {{#if_eq eslintConfig 'standard'}}
     {{dependency 'eslint-config-standard'}}
