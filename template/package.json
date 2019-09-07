@@ -7,6 +7,7 @@
     "@fortawesome/fontawesome-free": "5.9.0",
     "@mdi/font": "4.2.95",
     "@nuxt/typescript-build": "0.1.11",
+    "@nuxtjs/vuetify": "1.6.1",
     "ava": "2.0.0",
     "browser-env": "3.2.5",
     "buefy": "0.8.2",

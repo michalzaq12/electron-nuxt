@@ -199,7 +199,6 @@ module.exports = {
     '.eslintrc.js': '!typescript && eslint',
     'ava.config.js': 'unit || e2e',
     'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\' || cssFramework === \'all\'',
-    'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\' || cssFramework === \'all\'',
     'src/renderer/plugins/element.js': 'cssFramework === \'element\' || cssFramework === \'all\'',
     'src/renderer/plugins/icons.js': 'iconSet !== \'none\''
   },
