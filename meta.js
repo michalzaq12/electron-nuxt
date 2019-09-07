@@ -174,10 +174,11 @@ module.exports = {
     'src/renderer/tsconfig.json': 'typescript',
     'src/renderer/index.d.ts': 'typescript',
     'src/main/tsconfig.json': 'typescript',
-    '.eslintrc.js': '!typescript && eslint',
+    '.eslintrc.js': 'eslint',
     'ava.config.js': 'unit || e2e',
     'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\' || cssFramework === \'all\'',
     'src/renderer/plugins/element.js': 'cssFramework === \'element\' || cssFramework === \'all\'',
+    'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\' || cssFramework === \'all\'',
     'src/renderer/plugins/icons.js': 'iconSet !== \'none\''
   },
   skipInterpolation: 'node_modules/**/*',

@@ -16,8 +16,8 @@
     "test": "{{#unit}}npm run test:unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run test:e2e{{/e2e}}",
     {{/testing}}
     {{#if eslint}}
-    "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src ./.electron-nuxt",
-    "lint:fix": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix ./src",
+    "lint": "node_modules/.bin/eslint --ext .js,.vue{{#if typescript}},.ts{{/if}} -f ./node_modules/eslint-friendly-formatter ./src",
+    "lint:fix": "npm run lint -- --fix",
     {{/if}}
     "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"
   },
@@ -53,30 +53,21 @@
     {{#if_eq cssFramework 'element'}}
     {{dependency 'element-ui'}}
     {{/if_eq}}
-    {{#eslint}}
-    {{dependency 'babel-eslint'}}
+    {{#if eslint}}
     {{dependency 'eslint'}}
+    {{#unless typescript}}{{dependency 'babel-eslint'}}{{/unless}}
     {{dependency 'eslint-friendly-formatter'}}
     {{dependency 'eslint-loader'}}
-    {{dependency 'eslint-plugin-vue'}}
-    {{#if_eq eslintConfig 'airbnb'}}
-    {{dependency 'eslint-config-airbnb-base'}}
-    {{dependency 'eslint-plugin-import'}}
-    {{/if_eq}}
-    {{#if_eq eslintConfig 'standard'}}
-    {{dependency 'eslint-config-standard'}}
-    {{dependency 'eslint-plugin-import'}}
-    {{dependency 'eslint-plugin-node'}}
-    {{dependency 'eslint-plugin-promise'}}
-    {{dependency 'eslint-plugin-standard'}}
-    {{/if_eq}}
-    {{/eslint}}
+    {{#unless typescript}}{{dependency '@nuxtjs/eslint-config'}}{{/unless}}
+    {{#if typescript}}{{dependency '@nuxtjs/eslint-config-typescript'}}{{/if}}
+    {{/if}}
     {{#if_eq cssPreprocessor 'less'}}
     {{dependency 'less'}}
     {{dependency 'less-loader'}}
     {{/if_eq}}
     {{dependency 'nuxt'}}
     {{#if typescript}}
+    {{dependency 'typescript'}}
     {{dependency '@nuxt/typescript-build'}}
     {{/if}}
     {{#if_eq cssPreprocessor 'sass'}}
@@ -93,6 +84,7 @@
     {{/if}}
     {{dependency 'vue-devtools'}}
     {{#if_eq cssFramework 'vuetify'}}
+    {{dependency 'roboto-fontface'}}
     {{dependency 'vuetify'}}
     {{dependency '@nuxtjs/vuetify'}}
     {{/if_eq}}

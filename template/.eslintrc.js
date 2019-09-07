@@ -8,32 +8,32 @@ module.exports = {
     __resources: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    sourceType: 'module',
+    {{#unless typescript}}parser: 'babel-eslint'{{/unless}}
   },
   extends: [
-    {{#if_eq eslintConfig 'standard'}}'standard',{{/if_eq}}
-    {{#if_eq eslintConfig 'airbnb'}}'airbnb-base',{{/if_eq}}
-    "plugin:vue/recommended",
-  ],
-  // required to lint *.vue files
-  plugins: [
-    'vue'
+    {{#unless typescript}}'@nuxtjs'{{/unless}}
+    {{#if typescript}}'@nuxtjs/eslint-config-typescript'{{/if}}
   ],
   // add your custom rules here
   rules: {
     // StandardJS — The Rules
-    "indent": ["error", 2], // 2 spaces – for indentation
-    "max-len": ["error", { "code": 120}],
-    "no-console": "off",
-    "import/no-extraneous-dependencies": "off",
+        "indent": ["error", 2], // 2 spaces – for indentation
+        "max-len": ["error", { "code": 120}],
+        "no-console": "off",
+        "arrow-parens": ["error", "as-needed"],
+        "curly": ["error", "multi-line"],
+        "import/no-extraneous-dependencies": "off",
+        "require-await": 0,
 
-    "global-require": 0,
-    'import/no-unresolved': 0,
-    'import/newline-after-import': 0,
-    'no-underscore-dangle': 0,
+        "global-require": 0,
+        'import/no-unresolved': 0,
+        'import/newline-after-import': 0,
+        'no-underscore-dangle': 0,
 
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
 
-    "vue/max-attributes-per-line": "off",
+        "vue/max-attributes-per-line": "off",
+        "vue/singleline-html-element-content-newline" : 0
   }
 }
