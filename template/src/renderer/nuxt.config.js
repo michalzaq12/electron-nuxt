@@ -14,10 +14,24 @@ module.exports = {
   plugins: [
     {{#unless_eq iconSet 'none'}}{ssr: true, src: '@/plugins/icons.js'},{{/unless_eq}}
     {{#if_eq cssFramework 'buefy'}}{ssr: true, src: '@/plugins/buefy.js'},{{/if_eq}}
-    {{#if_eq cssFramework 'vuetify'}}{ssr: true, src: '@/plugins/vuetify.js'},{{/if_eq}}
     {{#if_eq cssFramework 'element'}}{ssr: true, src: '@/plugins/element.js'},{{/if_eq}}
   ],
-  {{#if typescript}}
-  modules: ['@nuxt/typescript-build']
-  {{/if}}
+  modules: [
+    {{#if typescript}}'@nuxt/typescript-build',{{/if}}
+    {{#if_eq cssFramework 'vuetify'}}'@nuxtjs/vuetify',{{/if_eq}}
+  ],
+  {{#if_eq cssFramework 'vuetify'}}
+          vuetify: {
+            theme: {
+              themes: {
+                light: {
+                  primary: '#1867c0',
+                  secondary: '#b0bec5',
+                  accent: '#8c9eff',
+                  error: '#b71c1c',
+                },
+              },
+            }
+          }
+  {{/if_eq}}
 };

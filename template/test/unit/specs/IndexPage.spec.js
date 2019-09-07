@@ -14,7 +14,7 @@ test.beforeEach(() => {
   })
 })
 
-test('Should read external file from resources directory', (t) => {
+test('Should read external file from resources directory', t => {
   const text = wrapper.find('#external-resource').text()
   t.true(text.includes('EXTERNAL_FILE_CONTENT'))
 })

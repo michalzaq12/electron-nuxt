@@ -34,10 +34,11 @@ The boilerplate for making electron applications built with vue / nuxt.
 
 * Auto-updating for easy development \*
 * ES6/ES7 compilation without any extra work \*
+* Typescript support [WIP](only in renderer process for now)
 * Parallel code compilation
 * Installed latest [vue-devtools](https://github.com/vuejs/vue-devtools)
 * Ability to easily package your electron app using [electron-builder](https://github.com/electron-userland/electron-builder)
-* Configured ESLint (with support for [`standard`](https://github.com/feross/standard) and [`airbnb`](https://github.com/airbnb/javascript) code style) \**
+* Configured ESLint ([`standard`](https://github.com/feross/standard) code style) with support for typescript linting\**
 * Built-in support for CSS pre-processor: \**
     * Sass (scss)
     * LESS

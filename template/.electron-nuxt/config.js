@@ -9,8 +9,8 @@ const config = {
   SERVER_PORT: 9080,
   SERVER_HOST: 'http://localhost',
 
-  PROJECT_ROOT: PROJECT_ROOT,
-  SRC_DIR: SRC_DIR,
+  PROJECT_ROOT,
+  SRC_DIR,
   MAIN_PROCESS_DIR: path.join(SRC_DIR, 'main'),
   RENDERER_PROCESS_DIR: path.join(SRC_DIR, 'renderer'),
   RESOURCES_DIR: path.join(SRC_DIR, 'resources'),

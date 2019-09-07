@@ -8,19 +8,28 @@ module.exports = {
     __resources: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    sourceType: 'module'
   },
   extends: [
-    'standard',
-    'plugin:vue/recommended',
+    '@nuxtjs/eslint-config-typescript',
   ],
-  // required to lint *.vue files
-  plugins: [
-    'vue'
-  ],
-  // add your custom rules here
   rules: {
+    "indent": ["error", 2], // 2 spaces – for indentation
+    "max-len": ["error", { "code": 120}],
+    "no-console": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "curly": ["error", "multi-line"],
+    "import/no-extraneous-dependencies": "off",
+    "require-await": 0,
+
+    "global-require": 0,
+    'import/no-unresolved': 0,
+    'import/newline-after-import': 0,
+    'no-underscore-dangle': 0,
+
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+
     "vue/max-attributes-per-line": "off",
-    "vue/singleline-html-element-content-newline": "off"
+    "vue/singleline-html-element-content-newline" : 0
   }
 }
