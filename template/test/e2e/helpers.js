@@ -55,7 +55,7 @@ function addNuxtCommands (client) {
 
   const clientPrototype = Object.getPrototypeOf(client)
   Object.defineProperty(clientPrototype, 'nuxt', {
-    get: function () {
+    get () {
       return {
         ready: ready.bind(client),
         navigate: navigate.bind(client)

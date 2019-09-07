@@ -1,5 +1,5 @@
-import BrowserWinHandler from './BrowserWinHandler'
 import path from 'path'
+import BrowserWinHandler from './BrowserWinHandler'
 const isDev = process.env.NODE_ENV === 'development'
 
 const INDEX_PATH = path.join(__dirname, '..', 'renderer', 'index.html')

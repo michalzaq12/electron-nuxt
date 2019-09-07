@@ -1,5 +1,5 @@
-import { BrowserWindow, app } from 'electron'
 import { EventEmitter } from 'events'
+import { BrowserWindow, app } from 'electron'
 const isProduction = process.env.NODE_ENV === 'production'
 
 export default class BrowserWinHandler {

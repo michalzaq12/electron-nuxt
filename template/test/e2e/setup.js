@@ -1,11 +1,11 @@
 const path = require('path')
+const fs = require('fs')
 const { BUILD_DIR } = require('../../.electron-nuxt/config')
 const { productName } = require('../../builder.config')
 const { name } = require('../../package')
-const fs = require('fs')
 
-const YELLOW = '\x1b[33m'
-const END = '\x1b[0m'
+const YELLOW = '\x1B[33m'
+const END = '\x1B[0m'
 
 let relativeAppPath = ''
 
