@@ -10,6 +10,15 @@ module.exports = {
       return opts.inverse(this)
     }
   },
+
+  and: (a, b, opts) => {
+    if (a && b) {
+      return opts.fn(this)
+    }else{
+      return opts.inverse(this)
+    }
+  },
+
   // Remove testing in next version
   testing: (a, b, opts) => {
     if (a || b) {

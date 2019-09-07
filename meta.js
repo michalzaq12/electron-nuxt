@@ -145,33 +145,11 @@ module.exports = {
       default: false,
     },
     eslint: {
-      when: '(isNotTest && !typescript)',
+      when: 'isNotTest',
       type: 'confirm',
       required: true,
       message: 'Use linting with ESLint?',
       default: false
-    },
-    eslintConfig: {
-      when: '(isNotTest && !typescript && eslint)',
-      type: 'list',
-      message: 'Which ESLint config would you like to use?',
-      choices: [
-        {
-          name: 'Standard (https://github.com/feross/standard)',
-          value: 'standard',
-          short: 'Standard'
-        },
-        {
-          name: 'Airbnb (https://github.com/airbnb/javascript)',
-          value: 'airbnb',
-          short: 'Airbnb'
-        },
-        {
-          name: 'none (configure it yourself)',
-          value: 'none',
-          short: 'none'
-        }
-      ]
     },
     unit: {
       when: 'isNotTest',
