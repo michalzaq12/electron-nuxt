@@ -100,8 +100,12 @@ npm run dev
 npm run build
 ```
 
-<br>
+## Supporting electron-nuxt
 
+
+[![Support button](https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png)](https://www.buymeacoffee.com/TLS0y2kjI)
+
+<br>
 
 # Documentation
 
