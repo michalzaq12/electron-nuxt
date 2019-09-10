@@ -28,7 +28,7 @@
     "nuxt": "2.8.1",
     "node-sass": "4.12.0",
     "sass-loader": "8.0.0",
-    "stylus": "0.54.5",
+    "stylus": "0.54.7",
     "stylus-loader": "3.0.2",
     "spectron": "7.0.0",
     "typescript": "3.5.3",
