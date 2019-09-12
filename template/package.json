@@ -23,7 +23,7 @@
     "eslint-loader": "3.0.0",
     "@nuxtjs/eslint-config-typescript": "0.1.2",
     "@nuxtjs/eslint-config": "1.1.2",
-    "less": "3.9.0",
+    "less": "3.10.3",
     "less-loader": "5.0.0",
     "nuxt": "2.8.1",
     "node-sass": "4.12.0",
