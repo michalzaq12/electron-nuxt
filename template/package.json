@@ -10,7 +10,7 @@
     "@nuxtjs/vuetify": "1.6.1",
     "ava": "2.4.0",
     "browser-env": "3.2.6",
-    "buefy": "0.8.4",
+    "buefy": "0.8.5",
     "cross-env": "6.0.2",
     "electron": "5.0.10",
     "electron-builder": "21.2.0",
