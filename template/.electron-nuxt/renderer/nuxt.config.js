@@ -8,10 +8,7 @@ const deepmerge = require('deepmerge')
 const nodeExternals = require('webpack-node-externals')
 const resourcesPath = require('../resources-path-provider')
 const { RENDERER_PROCESS_DIR, DIST_DIR } = require('../config')
-
 const userNuxtConfig = require('../../src/renderer/nuxt.config')
-const hasExtendFunction = (userNuxtConfig.build !== undefined && userNuxtConfig.build.extend !== undefined)
-
 
 const baseConfig = {
   srcDir: RENDERER_PROCESS_DIR,
@@ -25,10 +22,8 @@ const baseConfig = {
   },
   plugins: [
     { ssr: true, src: path.join(__dirname, 'resources-plugin.js') }
-  ],
-  build: {}
-}
-
+  ]
+};
 
 const baseExtend = (config, { isClient }) => {
   config.externals = [nodeExternals({
@@ -57,16 +52,22 @@ const baseExtend = (config, { isClient }) => {
 
 }
 
-
-if(hasExtendFunction){
-  const userExtend = userNuxtConfig.build.extend;
-  userNuxtConfig.build.extend = () => {
-    baseExtend(...arguments)// eslint-disable-line prefer-rest-params
-    userExtend(...arguments)// eslint-disable-line prefer-rest-params
+const mergeConfig = customConfig => {
+  const hasExtendFunction = (customConfig.build !== undefined && customConfig.build.extend !== undefined);
+  if(hasExtendFunction){
+    const userExtend = customConfig.build.extend;
+    customConfig.build.extend = function() {
+      baseExtend(...arguments) // eslint-disable-line prefer-rest-params
+      userExtend(...arguments) // eslint-disable-line prefer-rest-params
+    }
+  } else {
+    if(baseConfig.build === undefined) baseConfig.build = {};
+    baseConfig.build.extend = baseExtend;
   }
-} else {
-  baseConfig.build.extend = baseExtend;
+  return deepmerge(baseConfig, customConfig);
 }
 
 
-module.exports = deepmerge(baseConfig, userNuxtConfig);
+module.exports = mergeConfig(userNuxtConfig);
+module.exports.mergeConfig = mergeConfig;
+module.exports.baseConfig = baseConfig;
