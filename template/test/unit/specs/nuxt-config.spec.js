@@ -31,7 +31,8 @@ test('merge extend function', t => {
 
   const FAKE_WEBPACK_CONFIG = {
     output: {},
-    plugins: []
+    plugins: [],
+    resolve: {}
   };
 
   const OVERRIDE_FIELDS = 'override_fields';

@@ -34,6 +34,11 @@ const baseExtend = (config, { isClient }) => {
 
   config.target = 'electron-renderer'
 
+  // exclude browser field resolution
+  const mainFields = ['esnext', 'main'];
+  config.resolve.mainFields = mainFields;
+  config.resolve.aliasFields = mainFields;
+
   config.node = {
     __dirname: !isProduction,
     __filename: !isProduction
