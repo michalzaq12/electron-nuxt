@@ -6,7 +6,7 @@
     "@xpda-dev/webpack-step": "^0.1.2",
     "@fortawesome/fontawesome-free": "5.11.2",
     "@mdi/font": "4.5.95",
-    "@nuxt/typescript-build": "0.1.11",
+    "@nuxt/typescript-build": "0.3.2",
     "@nuxtjs/vuetify": "1.6.1",
     "ava": "2.4.0",
     "browser-env": "3.2.6",
@@ -26,13 +26,13 @@
     "@nuxtjs/eslint-config": "1.1.2",
     "less": "3.10.3",
     "less-loader": "5.0.0",
-    "nuxt": "2.8.1",
+    "nuxt": "2.10.2",
     "node-sass": "4.12.0",
     "sass-loader": "8.0.0",
     "stylus": "0.54.7",
     "stylus-loader": "3.0.2",
     "spectron": "7.0.0",
-    "typescript": "3.5.3",
+    "typescript": "3.6.4",
     "@types/webdriverio": "4.13.3",
     "vue-devtools": "5.1.3",
     "vuetify": "2.0.11",
@@ -41,7 +41,7 @@
     "require-extension-hooks-babel": "1.0.0",
     "require-extension-hooks-vue": "0.4.2",
     "babel-plugin-webpack-alias-7": "0.1.1",
-    "webpack": "4.41.0",
+    "webpack": "4.41.2",
     "webpack-node-externals": "1.7.2"
   }
 }
