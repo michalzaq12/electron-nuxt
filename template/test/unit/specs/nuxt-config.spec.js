@@ -3,7 +3,7 @@ import { mergeConfig, baseConfig } from '../../../.electron-nuxt/renderer/nuxt.c
 
 
 
-test('merge config', t => {
+test('should merge users config with base (objects and arrays)', t => {
 
   const userConfig = {
     router: {
@@ -27,7 +27,7 @@ test('merge config', t => {
 
 
 
-test('merge extend function', t => {
+test('should merge users extend function with base', t => {
 
   const FAKE_WEBPACK_CONFIG = {
     output: {},
