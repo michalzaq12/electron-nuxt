@@ -12,9 +12,7 @@
     {{#if e2e}}
     "test:e2e": "cross-env NODE_ENV=test TEST_TYPE=e2e ava",
     {{/if}}
-    {{#testing unit e2e}}
-    "test": "{{#unit}}npm run test:unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run test:e2e{{/e2e}}",
-    {{/testing}}
+    "test": "{{#if unit}}npm run test:unit{{/if}}{{#if unit}}{{#if e2e}} && {{/if}}{{/if}}{{#if e2e}}npm run test:e2e{{/if}}",
     {{#if eslint}}
     "lint": "node_modules/.bin/eslint --ext .js,.vue{{#if typescript}},.ts{{/if}} -f ./node_modules/eslint-friendly-formatter ./src",
     "lint:fix": "npm run lint -- --fix",
