@@ -15,4 +15,4 @@ npm install
 npm run build
 
 # Run e2e testing
-npm run test:e2e
+npm run test

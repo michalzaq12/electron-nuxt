@@ -14,11 +14,11 @@ npm run dev
 # build electron application for production
 npm run build
 
-{{#testing unit e2e}}
-# run {{#unit}}unit{{/unit}}{{#unit}}{{#e2e}} & {{/e2e}}{{/unit}}{{#e2e}}end-to-end{{/e2e}} tests
+{{#or unit e2e}}
+# run tests
 npm test
 
-{{/testing}}
+{{/or}}
 
 {{#if eslint}}
 # lint all JS/Vue component files in `src/`
@@ -29,4 +29,4 @@ npm run lint
 
 ---
 
-This project was generated with [electron-nuxt](https://github.com/michalzaq12/electron-nuxt) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://github.com/michalzaq12/electron-nuxt/blob/master/README.md).
+This project was generated with [electron-nuxt](https://github.com/michalzaq12/electron-nuxt) v{{templateVersion}} using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://github.com/michalzaq12/electron-nuxt/blob/master/README.md).

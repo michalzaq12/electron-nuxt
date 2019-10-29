@@ -1,4 +1,5 @@
 const {devDependencies, dependencies} = require('./template/package');
+const {version} = require('./package');
 
 
 
@@ -19,13 +20,8 @@ module.exports = {
     }
   },
 
-  // Remove testing in next version
-  testing: (a, b, opts) => {
-    if (a || b) {
-      return opts.fn(this)
-    }else{
-      return opts.inverse(this)
-    }
+  templateVersion: () => {
+    return version;
   },
 
   dependency: (name, comma = true) => {

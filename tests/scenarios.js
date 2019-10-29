@@ -24,6 +24,7 @@ const scenarios = {
   },
   typescript: {
     ...defaultValues,
+    unit: false,
     typescript: true
   },
   loaders: {

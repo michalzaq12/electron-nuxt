@@ -16,8 +16,10 @@ module.exports = {
     {{#if_eq cssFramework 'buefy'}}{ssr: true, src: '@/plugins/buefy.js'},{{/if_eq}}
     {{#if_eq cssFramework 'element'}}{ssr: true, src: '@/plugins/element.js'},{{/if_eq}}
   ],
-  modules: [
+  buildModules: [
     {{#if typescript}}'@nuxt/typescript-build',{{/if}}
+  ],
+  modules: [
     {{#if_eq cssFramework 'vuetify'}}'@nuxtjs/vuetify',{{/if_eq}}
   ],
   {{#if_eq cssFramework 'vuetify'}}
