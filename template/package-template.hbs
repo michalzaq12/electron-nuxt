@@ -38,9 +38,9 @@
     {{#if_eq iconSet 'mdi'}}
     {{dependency '@mdi/font'}}
     {{/if_eq}}
-    {{#testing unit e2e}}
+    {{#or unit e2e}}
     {{dependency 'ava'}}
-    {{/testing}}
+    {{/or}}
     {{dependency 'browser-env'}}
     {{#if_eq cssFramework 'buefy'}}
     {{dependency 'buefy'}}
