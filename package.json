@@ -24,6 +24,6 @@
     "@nuxtjs/eslint-config-typescript": "1.0.0",
     "babel-eslint": "10.0.3",
     "eslint": "5.16.0",
-    "typescript": "3.7.4"
+    "typescript": "3.7.5"
   }
 }
