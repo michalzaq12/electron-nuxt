@@ -12,15 +12,28 @@ function checkNodeVersion(){
   const requiredMinVersion = engines.node.replace(/[=<>]/g, '');
   const installedVersion = process.versions.node;
   if(compare(requiredMinVersion, installedVersion) === 1){
+
     console.log(FG_RED);
     console.log(`\tYou are running version v${installedVersion} of Node.js, which is not supported by Electron-nuxt.`);
     console.log(`\tThe official Node.js version that is supported is ${requiredMinVersion} or greater.`);
     console.log(RESET);
-    console.log('\n Please visit https://nodejs.org/en/ to find instructions on how to update Node.js.')
+    console.log('\n\tPlease visit https://nodejs.org/en/ to find instructions on how to update Node.js.\n')
 
-    process.exit(1);
-  }else {
-    process.exit(0);
+    throw new Error('Invalid node version');
+  }
+}
+
+//https://github.com/yarnpkg/yarn/issues/5063
+function disallowNpm() {
+  const execPath = process.env.npm_execpath;
+  if(!execPath.includes('yarn')){
+
+    console.log(FG_RED);
+    console.log(`\tElectron-nuxt supports only Yarn package manager.`);
+    console.log(RESET);
+    console.log('\n\tPlease visit https://legacy.yarnpkg.com/en/docs/install to find instructions on how to install Yarn.\n')
+
+    throw new Error('Invalid package manager');
   }
 }
 
@@ -65,4 +78,11 @@ function compare(a, b) {
   return 0;
 }
 
-checkNodeVersion();
+try{
+  checkNodeVersion();
+  disallowNpm();
+  process.exit(0);
+}catch (e) {
+  process.exit(1);
+}
+
