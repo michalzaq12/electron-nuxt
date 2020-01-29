@@ -4,8 +4,8 @@
   "description": "{{ description }}",
   "main": "./dist/main/index.js",
   "scripts": {
-    "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
-    "build": "cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
+    "dev": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
+    "build": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
     {{#if unit}}
     "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
     {{/if}}
@@ -17,6 +17,7 @@
     "lint": "node_modules/.bin/eslint --ext .js,.vue{{#if typescript}},.ts{{/if}} -f ./node_modules/eslint-friendly-formatter ./src",
     "lint:fix": "npm run lint -- --fix",
     {{/if}}
+    "preinstall": "node .electron-nuxt/check-engines.js",
     "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"
   },
   "keywords": [],
@@ -24,7 +25,7 @@
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "engines" : {
-    "node" : ">=8.10.0"
+    "node" : ">=12.8.1"
   },
   "devDependencies": {
     {{dependency '@xpda-dev/core'}}
