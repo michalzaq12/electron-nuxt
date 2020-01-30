@@ -41,5 +41,6 @@ matrix:
 
 install:
   -  npm install -g vue-cli
+  -  npm install -g yarn
 
 script: bash ./tests/init.sh
