@@ -12,13 +12,13 @@
     {{#if e2e}}
     "test:e2e": "cross-env NODE_ENV=test TEST_TYPE=e2e ava",
     {{/if}}
-    "test": "{{#if unit}}npm run test:unit{{/if}}{{#if unit}}{{#if e2e}} && {{/if}}{{/if}}{{#if e2e}}npm run test:e2e{{/if}}",
+    "test": "{{#if unit}}yarn run test:unit{{/if}}{{#if unit}}{{#if e2e}} && {{/if}}{{/if}}{{#if e2e}}yarn run test:e2e{{/if}}",
     {{#if eslint}}
     "lint": "node_modules/.bin/eslint --ext .js,.vue{{#if typescript}},.ts{{/if}} -f ./node_modules/eslint-friendly-formatter ./src",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "yarn run lint -- --fix",
     {{/if}}
     "preinstall": "node .electron-nuxt/check-engines.js",
-    "postinstall": "electron-builder install-app-deps {{#if eslint}}& npm run lint:fix{{/if}}"
+    "postinstall": "electron-builder install-app-deps {{#if eslint}}& yarn run lint:fix{{/if}}"
   },
   "keywords": [],
   "author": "{{#if isCIServer}}michalzaq12 <“michal.m.zarach@gmail.com”>{{else}}{{ author }}{{/if}}",
@@ -26,6 +26,9 @@
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "engines" : {
     "node" : ">=12.8.1"
+  },
+  "resolutions": {
+    "@types/node": "12.12.6"
   },
   "devDependencies": {
     {{dependency '@xpda-dev/core'}}
