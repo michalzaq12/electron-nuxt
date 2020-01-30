@@ -9,10 +9,10 @@ sleep .5
 # Install dependencies
 cd "$PWD/tests/generated_template"
 npm set audit false
-npm install
+yarn install
 
 # Run webpack and build application
-npm run build
+yarn run build
 
 # Run e2e testing
-npm run test
+yarn run test

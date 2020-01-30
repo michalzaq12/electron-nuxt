@@ -77,7 +77,7 @@ vue init michalzaq12/electron-nuxt <project-name>
 
 ```bash
 cd <project-name>
-npm install
+yarn install
 ```
 
 
@@ -93,11 +93,11 @@ npm install
 
     </details>
 ```bash
-npm run dev
+yarn run dev
 ```
 - Build your app for production
 ```bash
-npm run build
+yarn run build
 ```
 
 ## Supporting electron-nuxt

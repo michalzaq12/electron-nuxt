@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '10'
+  - '12'
 
 services:
   - xvfb
@@ -41,5 +41,6 @@ matrix:
 
 install:
   -  npm install -g vue-cli
+  -  npm install -g yarn
 
 script: bash ./tests/init.sh

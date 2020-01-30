@@ -6,23 +6,23 @@
 
 ``` bash
 # install dependencies
-npm install
+yarn install
 
 # serve app with hot reload
-npm run dev
+yarn run dev
 
 # build electron application for production
-npm run build
+yarn run build
 
 {{#or unit e2e}}
-# run tests
-npm test
+# yarn tests
+yarn test
 
 {{/or}}
 
 {{#if eslint}}
 # lint all JS/Vue component files in `src/`
-npm run lint
+yarn run lint
 
 {{/if}}
 ```
