@@ -18,12 +18,16 @@
   },
   "homepage": "https://github.com/michalzaq12/electron-nuxt#readme",
   "scripts": {
-    "lint": "eslint --no-eslintrc --config .eslintrc.js --ext .js,.ts,.vue ./template ./template/.electron-nuxt"
+    "lint": "eslint --no-eslintrc --config .eslintrc.js --ext .js,.ts,.vue ./template ./template/.electron-nuxt",
+	  "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "1.0.0",
     "babel-eslint": "10.0.3",
     "eslint": "5.16.0",
-    "typescript": "3.7.5"
+    "typescript": "3.7.5",
+    "vuepress": "1.3.0",
+    "@vuepress/plugin-back-to-top": "^1.3.0"
   }
 }

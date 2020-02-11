@@ -8,3 +8,4 @@ npm-debug.log
 npm-debug.*.log
 !.gitkeep
 template/package-lock.json
+docs/.vuepress/dist
