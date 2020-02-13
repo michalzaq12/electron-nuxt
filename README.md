@@ -32,7 +32,7 @@ The boilerplate for making electron applications built with vue / nuxt.
 
 **Currently runs with:**
 
-- Electron **v7.0.0**
+- Electron **v8.0.0**
 - Electron Builder **v22.0.0**
 - Vue **v2.0.0**
 - Nuxt **v2.0.0**

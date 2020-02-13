@@ -27,6 +27,7 @@ env:
 
 # Explicitly include to get some OS-specific badges
 matrix:
+  fast_finish: true
   include:
     - name: "Linux - default template"
       os: linux
@@ -38,6 +39,8 @@ matrix:
     - name: "Windows - default template"
       os: windows
       env: TEST_SUITE=default BADGE=windows
+  allow_failures:
+    - os: windows
 
 install:
   -  npm install -g vue-cli

@@ -7,7 +7,7 @@ export async function beforeEach (t) {
     quitTimeout: 10 * 1000,
     waitTimeout: 10 * 1000,
     //https://github.com/puppeteer/puppeteer/blob/v1.0.0/docs/troubleshooting.md#tips
-    chromeDriverArgs: ['no-sandbox', 'disable-dev-shm-usage', 'disable-extensions'],
+    chromeDriverArgs: ['--headless', '--no-sandbox', '--disable-dev-shm-usage', '--disable-extensions'],
     env: {
       SPECTRON: true,
       ELECTRON_ENABLE_LOGGING: true,
