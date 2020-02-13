@@ -1,6 +1,6 @@
 {
   "name": "electron-nuxt",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "An Electron & Nuxt.js quick start boilerplate with vue-cli support",
   "main": "meta.js",
   "directories": {
