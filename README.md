@@ -78,7 +78,7 @@ yarn install
 yarn run dev 
 ```
 
-**Take a look at the [documentation](). Here you will find useful information about configuration, project structure, and building your app**
+**Take a look at the [documentation](https://michalzaq12.github.io/electron-nuxt/). Here you will find useful information about configuration, project structure, and building your app**
 
 
 ## Made with electron-nuxt
