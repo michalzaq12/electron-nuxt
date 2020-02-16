@@ -8,7 +8,7 @@
     "@mdi/font": "4.9.95",
     "@nuxt/typescript-build": "0.5.6",
     "@nuxtjs/vuetify": "1.10.3",
-    "ava": "2.4.0",
+    "ava": "3.3.0",
     "browser-env": "3.3.0",
     "buefy": "0.8.10",
     "cross-env": "7.0.0",
