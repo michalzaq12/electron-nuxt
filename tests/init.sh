@@ -3,7 +3,10 @@ set -e
 
 # Scaffold boilerplate
 # "Y" -> vue cli will ask you if yot want to override existing directory
-printf "Y" | vue init . ./tests/generated_template
+#printf "Y" | vue init ./ ./tests/generated_template
+
+# change auto confirm to interactive mode for vue-cli@3.x.x
+vue init ./ ./tests/generated_template
 sleep .5
 
 # Install dependencies
