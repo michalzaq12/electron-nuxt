@@ -1,5 +1,4 @@
-const NUXT_SSR_MODE = require ('./.electron-nuxt/config').NUXT_SSR_MODE
-const ICONS_DIR = 'build/icons/'
+–const ICONS_DIR = 'build/icons/'
 
 const windowsOS = {
   win: {

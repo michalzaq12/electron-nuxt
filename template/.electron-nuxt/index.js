@@ -37,7 +37,7 @@ const webpackConfig = Webpack.getBaseConfig({
       INCLUDE_RESOURCES_PATH: resourcesPath.mainProcess(),
       'process.env.DEV_SERVER_URL': `'${SERVER_HOST}:${SERVER_PORT}'`,
       'process.env.NUXT_SSR_MODE':NUXT_SSR_MODE ,
-      'process.env.PRODUCTION_SERVER_URL':`${SERVER_HOST_PRODUCTION}:${SERVER_PORT_PRODUCTION}`
+      'process.env.PRODUCTION_SERVER_URL':`'${SERVER_HOST_PRODUCTION}:${SERVER_PORT_PRODUCTION}'`
     })
   ]
 })
