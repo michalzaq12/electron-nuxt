@@ -1,3 +1,5 @@
+import {NUXT_SSR_MODE} from './.electron-nuxt/config'
+import { idText } from 'typescript'
 const ICONS_DIR = 'build/icons/'
 
 const windowsOS = {
@@ -41,6 +43,26 @@ const macOS = {
   }
 }
 
+const files=[
+  'package.json',
+  {
+    from: 'dist/main/',
+    to: 'dist/main/'
+  },
+  {
+    from: 'src/resources/',
+    to: 'dist/resources/'
+  }
+]
+//if not ssr mode, add nuxt generate dist to Electron
+if(!NUXT_SSR_MODE){
+  files.push({
+    from: 'dist/renderer',
+    to: 'dist/renderer/'
+  })
+}
+
+
 module.exports = {
   asar: false,
   productName: 'My browser',
@@ -50,21 +72,7 @@ module.exports = {
     output: 'build'
   },
   // default files: https://www.electron.build/configuration/contents
-  files: [
-    'package.json',
-    {
-      from: 'dist/main/',
-      to: 'dist/main/'
-    },
-    {
-      from: 'dist/renderer',
-      to: 'dist/renderer/'
-    },
-    {
-      from: 'src/resources/',
-      to: 'dist/resources/'
-    }
-  ],
+  files: files,
   ...windowsOS,
   ...linuxOS,
   ...macOS

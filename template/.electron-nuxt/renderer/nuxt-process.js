@@ -1,5 +1,5 @@
 const { Nuxt, Builder, Generator } = require('nuxt')
-const { SERVER_PORT } = require('../config')
+const { SERVER_PORT,NUXT_SSR_MODE } = require('../config')
 const nuxtConfig = require('./nuxt.config.js')
 
 const nuxt = new Nuxt(nuxtConfig)
@@ -28,12 +28,23 @@ process.on('message', async ({ action, target }) => {
       process.send({ status: 'error', err: err.message })
     })
   } else {
-    generator.generate({ build: true, init: true }).then(({ errors }) => {
-      if (errors.length === 0) process.send({ status: 'ok' })
-      else process.send({ status: 'error', err: 'Error occurred while generating pages' })
-    }).catch(err => {
-      console.error(err)
-      process.send({ status: 'error', err: err.message })
-    })
+    //build nuxt on ssr mode
+    if(NUXT_SSR_MODE){
+      builder.build().then(()=>{
+        process.send({ status: 'ok' })
+      }).catch(err => {
+        console.error(err)
+        process.send({ status: 'error', err: err.message })
+      })
+    }else{
+      generator.generate({ build: true, init: true }).then(({ errors }) => {
+        if (errors.length === 0) process.send({ status: 'ok' })
+        else process.send({ status: 'error', err: 'Error occurred while generating pages' })
+      }).catch(err => {
+        console.error(err)
+        process.send({ status: 'error', err: err.message })
+      })
+    }
+    
   }
 })

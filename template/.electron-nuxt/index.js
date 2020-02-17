@@ -8,7 +8,7 @@ const { ElectronLauncher } = require('@xpda-dev/electron-launcher')
 const { ElectronBuilder } = require('@xpda-dev/electron-builder')
 const { Webpack } = require('@xpda-dev/webpack-step')
 const resourcesPath = require('./resources-path-provider')
-const { DIST_DIR, MAIN_PROCESS_DIR, SERVER_HOST, SERVER_PORT } = require('./config')
+const { DIST_DIR, MAIN_PROCESS_DIR, SERVER_HOST, SERVER_PORT,SERVER_HOST_PRODUCTION,SERVER_PORT_PRODUCTION,NUXT_SSR_MODE } = require('./config')
 const NuxtApp = require('./renderer/NuxtApp')
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -35,7 +35,9 @@ const webpackConfig = Webpack.getBaseConfig({
   plugins: [
     new webpack.DefinePlugin({
       INCLUDE_RESOURCES_PATH: resourcesPath.mainProcess(),
-      'process.env.DEV_SERVER_URL': `'${SERVER_HOST}:${SERVER_PORT}'`
+      'process.env.DEV_SERVER_URL': `'${SERVER_HOST}:${SERVER_PORT}'`,
+      'process.env.NUXT_SSR_MODE':NUXT_SSR_MODE ,
+      'process.env.PRODUCTION_SERVER_URL':`${SERVER_HOST_PRODUCTION}:${SERVER_PORT_PRODUCTION}`
     })
   ]
 })

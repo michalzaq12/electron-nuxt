@@ -4,6 +4,8 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const INDEX_PATH = path.join(__dirname, '..', 'renderer', 'index.html')
 const DEV_SERVER_URL = process.env.DEV_SERVER_URL // eslint-disable-line prefer-destructuring
+const PRODUCTION_SERVER_URL = process.env.PRODUCTION_SERVER_URL
+const NUXT_SSR_MODE = process.env.NUXT_SSR_MODE
 
 const winHandler = new BrowserWinHandler({
   height: 600,
@@ -11,8 +13,16 @@ const winHandler = new BrowserWinHandler({
 })
 
 winHandler.onCreated(browserWindow => {
-  if (isDev) browserWindow.loadURL(DEV_SERVER_URL)
-  else browserWindow.loadFile(INDEX_PATH)
+  if (isDev){
+    browserWindow.loadURL(DEV_SERVER_URL)
+  }else{
+    //load remote server url for ssr mode
+    if(NUXT_SSR_MODE){
+      browserWindow.loadURL(PRODUCTION_SERVER_URL)
+    }else{
+      browserWindow.loadFile(INDEX_PATH)
+    }
+  }
 })
 
 export default winHandler
