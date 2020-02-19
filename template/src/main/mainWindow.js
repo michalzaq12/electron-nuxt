@@ -13,16 +13,15 @@ const winHandler = new BrowserWinHandler({
 })
 
 winHandler.onCreated(browserWindow => {
-  if (isDev){
+  if (isDev) {
     browserWindow.loadURL(DEV_SERVER_URL)
-  }else{
+  } else if (NUXT_SSR_MODE) {
     //load remote server url for ssr mode
-    if(NUXT_SSR_MODE){
-      browserWindow.loadURL(PRODUCTION_SERVER_URL)
-    }else{
-      browserWindow.loadFile(INDEX_PATH)
-    }
+    browserWindow.loadURL(PRODUCTION_SERVER_URL)
+  } else {
+    browserWindow.loadFile(INDEX_PATH)
   }
+
 })
 
 export default winHandler
