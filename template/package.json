@@ -41,7 +41,7 @@
     "require-extension-hooks-babel": "1.0.0",
     "require-extension-hooks-vue": "0.4.2",
     "babel-plugin-webpack-alias-7": "0.1.1",
-    "webpack": "4.42.0",
+    "webpack": "4.42.1",
     "webpack-node-externals": "1.7.2"
   }
 }
