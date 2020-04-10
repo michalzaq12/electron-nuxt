@@ -6,7 +6,7 @@
     "@xpda-dev/webpack-step": "^0.1.2",
     "@fortawesome/fontawesome-free": "5.13.0",
     "@mdi/font": "5.0.45",
-    "@nuxt/typescript-build": "0.5.8",
+    "@nuxt/typescript-build": "0.6.4",
     "@nuxtjs/vuetify": "1.11.0",
     "ava": "2.4.0",
     "browser-env": "3.3.0",
