@@ -5,7 +5,7 @@
     "@xpda-dev/electron-builder": "^0.1.1",
     "@xpda-dev/webpack-step": "^0.1.2",
     "@fortawesome/fontawesome-free": "5.13.0",
-    "@mdi/font": "5.0.45",
+    "@mdi/font": "5.1.45",
     "@nuxt/typescript-build": "0.5.8",
     "@nuxtjs/vuetify": "1.11.0",
     "ava": "2.4.0",
