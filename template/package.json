@@ -1,8 +1,8 @@
 {
   "devDependencies": {
     "@xpda-dev/core": "^0.1.5",
-    "@xpda-dev/electron-launcher": "^0.1.1",
-    "@xpda-dev/electron-builder": "^0.1.1",
+    "@xpda-dev/electron-launcher": "^0.2.1",
+    "@xpda-dev/electron-builder": "^0.2.1",
     "@xpda-dev/webpack-step": "^0.1.2",
     "@fortawesome/fontawesome-free": "5.13.0",
     "@mdi/font": "5.1.45",
