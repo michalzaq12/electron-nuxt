@@ -4,8 +4,8 @@
   "description": "{{ description }}",
   "main": "./dist/main/index.js",
   "scripts": {
-    "dev": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
-    "build": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
+    "dev": "node .electron-nuxt/dev.js",
+    "build": "node .electron-nuxt/build.js",
     {{#if unit}}
     "test:unit": "cross-env NODE_ENV=test TEST_TYPE=unit ava",
     {{/if}}
