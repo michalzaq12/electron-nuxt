@@ -7,7 +7,7 @@ const webpack = require('webpack')
 const deepmerge = require('deepmerge')
 const nodeExternals = require('webpack-node-externals')
 const resourcesPath = require('../resources-path-provider')
-const { RENDERER_PROCESS_DIR, DIST_DIR } = require('../config')
+const { RENDERER_PROCESS_DIR, DIST_DIR, DISABLE_BABEL_LOADER } = require('../config')
 const userNuxtConfig = require('../../src/renderer/nuxt.config')
 
 const baseConfig = {
@@ -53,6 +53,27 @@ const baseExtend = (config, { isClient }) => {
     new webpack.DefinePlugin({
       INCLUDE_RESOURCES_PATH: isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
     })
+  )
+
+  config.module = config.module || {}
+  config.module.rules = config.module.rules || []
+
+  if (DISABLE_BABEL_LOADER) {
+    // https://github.com/nuxt/typescript/blob/master/packages/typescript-build/src/index.ts#L55
+    const jsLoader = config.module.rules.find(el => el.test.test('sample.js') === true)
+    if (jsLoader) jsLoader.use = [path.join(__dirname, 'do-nothing-loader.js')]
+  }
+
+  // https://github.com/smt116/node-native-ext-loader#basepath-default-
+  const basePathToNativeModules = isProduction ? ['_nuxt'] : []
+  config.module.rules.push(
+    {
+      test: /\.node$/,
+      loader: 'native-ext-loader',
+      options: {
+        basePath: basePathToNativeModules
+      }
+    }
   )
 
 }
