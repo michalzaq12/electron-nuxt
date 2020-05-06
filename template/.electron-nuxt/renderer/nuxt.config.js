@@ -61,6 +61,18 @@ const baseExtend = (config, { isClient }) => {
     jsLoader.use = [path.join(__dirname, 'do-nothing-loader.js')]
   }
 
+  // https://github.com/smt116/node-native-ext-loader#basepath-default-
+  const basePathToNativeModules = isProduction ? ['_nuxt'] : []
+  config.module.rules.push(
+    {
+      test: /\.node$/,
+      loader: 'native-ext-loader',
+      options: {
+        basePath: basePathToNativeModules
+      }
+    }
+  )
+
 }
 
 const mergeConfig = customConfig => {
