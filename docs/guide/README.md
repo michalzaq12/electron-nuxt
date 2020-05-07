@@ -46,6 +46,64 @@ Electron-nuxt provides a global variable named `__resources` that will yield a p
 
 Electron-nuxt support [electron-builder](https://github.com/electron-userland/electron-builder) to build and distribute your production ready application. Further customization can be made in `builder.config.js` file.
 
+### Electron-builder arguments (1.6.0)
+
+Any electron-builder command line argument can by passed through`build` script.
+
+- `package.json`: `"build": "node ./electron-nuxt/build.js --win"`
+- cli: `yarn run build -- --win` 
+
+
+
+### Cross platform compilation (1.6.0)
+
+[GitHub Action](https://github.com/michalzaq12/action-electron-nuxt) for building and releasing electron-nuxt apps
+
+**Add a workflow file** to your project (e.g. `.github/workflows/build.yml`).
+Using the workflow below, GitHub will build your app every time you push a commit to master branch.
+
+See also: https://github.com/michalzaq12/action-electron-nuxt#configuration
+
+   ```yml
+   name: Build/release
+
+   on:
+     push:
+       branches:
+         - master
+
+   jobs:
+     release:
+       runs-on: ${{ matrix.os }}
+
+       strategy:
+         matrix:
+           os: [macos-latest, ubuntu-latest, windows-latest]
+
+       steps:
+         - name: Check out Git repository
+           uses: actions/checkout@v1
+
+         - name: Install Node.js, NPM and Yarn
+           uses: actions/setup-node@v1
+           with:
+             node-version: 10
+
+         - name: Build/release Electron app
+           uses: michalzaq12/action-electron-nuxt@v1
+           with:
+             # GitHub token, automatically provided to the action
+             # (No need to define this secret in the repo settings)
+             # type: string
+             github_token: ${{ secrets.github_token }}
+
+             # If the commit is tagged with a version (e.g. "v1.0.0")
+             # type: boolean
+             release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+   ```
+
+**If you use Travis CI this [example](https://gist.github.com/nwittwer/60aef18c9b4e9506534bdcc0e4a7c3f5) may be useful**
+
 ### `dependencies` vs `devDependencies`
 
 Due to [electron-builder](https://github.com/electron-userland/electron-builder) the distinction between `dependencies` and `devDependencies` is very important. Incorrect assignment can cause the package to grow by several MB, the build time also increases.

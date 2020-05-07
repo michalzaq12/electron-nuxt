@@ -32,10 +32,10 @@ The boilerplate for making electron applications built with vue / nuxt.
 
 **Currently runs with:**
 
-- Electron **v8.0.0**
-- Electron Builder **v22.0.0**
-- Vue **v2.0.0**
-- Nuxt **v2.0.0**
+- Electron **v8**
+- Electron Builder **v22**
+- Vue **v2**
+- Nuxt **v2**
 
 **Things you'll find in this boilerplate:**
 
@@ -45,6 +45,7 @@ The boilerplate for making electron applications built with vue / nuxt.
 * Parallel code compilation
 * Installed latest [vue-devtools](https://github.com/vuejs/vue-devtools)
 * Ability to easily package your electron app using [electron-builder](https://github.com/electron-userland/electron-builder)
+* [GitHub Action](https://github.com/michalzaq12/action-electron-nuxt) for releasing cross-platform apps (>1.6.0)
 * Configured ESLint ([`standard`](https://github.com/feross/standard) code style) with support for typescript linting\**
 * Built-in support for CSS pre-processor: \**
     * Sass (scss)
