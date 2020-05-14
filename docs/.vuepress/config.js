@@ -6,6 +6,7 @@ module.exports = {
     themeConfig: {
         repo: 'michalzaq12/electron-nuxt',
         editLinks: true,
+        docsDir: 'docs',
         editLinkText: 'Help us improve this page!',
         nav: [
           { text: 'Home', link: '/' },
