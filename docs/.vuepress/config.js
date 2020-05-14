@@ -18,6 +18,12 @@ module.exports = {
     },
     plugins: [
       '@vuepress/last-updated',
-      '@vuepress/back-to-top'
+      '@vuepress/back-to-top',
+      [
+        '@vuepress/google-analytics',
+        {
+          'ga': 'UA-166633477-1'
+        }
+      ]
     ],
 }
