@@ -13,7 +13,7 @@
     "buefy": "0.8.20",
     "cross-env": "7.0.2",
     "deepmerge": "4.2.2",
-    "electron": "8.3.0",
+    "electron": "9.0.1",
     "electron-builder": "22.7.0",
     "electron-debug": "3.0.1",
     "roboto-fontface": "0.10.0",
