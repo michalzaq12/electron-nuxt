@@ -27,7 +27,7 @@
     "less": "3.11.3",
     "less-loader": "6.1.2",
     "native-ext-loader": "2.3.0",
-    "nuxt": "2.12.2",
+    "nuxt": "2.14.5",
     "node-sass": "4.14.1",
     "sass-loader": "8.0.2",
     "stylus": "0.54.7",
