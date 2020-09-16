@@ -37,7 +37,7 @@
     "@types/webdriverio": "4.13.3",
     "vue-devtools": "5.1.4",
     "vuetify": "2.3.10",
-    "@vue/test-utils": "1.0.3",
+    "@vue/test-utils": "1.1.0",
     "require-extension-hooks": "0.3.3",
     "require-extension-hooks-babel": "1.0.0",
     "require-extension-hooks-vue": "0.4.2",
