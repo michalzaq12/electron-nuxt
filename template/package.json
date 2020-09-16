@@ -4,7 +4,7 @@
     "@xpda-dev/electron-launcher": "^0.2.1",
     "@xpda-dev/electron-builder": "^0.2.1",
     "@xpda-dev/webpack-step": "^0.1.2",
-    "@fortawesome/fontawesome-free": "5.13.1",
+    "@fortawesome/fontawesome-free": "5.14.0",
     "@mdi/font": "5.5.55",
     "@nuxt/typescript-build": "0.5.8",
     "@nuxtjs/vuetify": "1.11.2",
