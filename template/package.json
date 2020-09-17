@@ -29,7 +29,7 @@
     "native-ext-loader": "2.3.0",
     "nuxt": "2.14.5",
     "node-sass": "4.14.1",
-    "sass-loader": "8.0.2",
+    "sass-loader": "10.0.2",
     "stylus": "0.54.8",
     "stylus-loader": "3.0.2",
     "spectron": "10.0.1",
