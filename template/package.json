@@ -24,7 +24,7 @@
     "eslint-loader": "4.0.2",
     "@nuxtjs/eslint-config-typescript": "1.0.2",
     "@nuxtjs/eslint-config": "1.1.2",
-    "less": "3.11.3",
+    "less": "3.12.2",
     "less-loader": "7.0.1",
     "native-ext-loader": "2.3.0",
     "nuxt": "2.14.5",
