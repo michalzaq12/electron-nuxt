@@ -36,7 +36,7 @@
     "typescript": "3.7.5",
     "@types/webdriverio": "4.13.3",
     "vue-devtools": "5.1.4",
-    "vuetify": "2.3.10",
+    "vuetify": "2.3.12",
     "@vue/test-utils": "1.1.0",
     "require-extension-hooks": "0.3.3",
     "require-extension-hooks-babel": "1.0.0",
