@@ -9,9 +9,9 @@
 
 <div align="center">
 
-[![Windows Build status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=windows&label=Windows&style=for-the-badge&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
-[![Linux Build status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=linux&label=Linux&style=for-the-badge&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
-[![OSX Build status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=osx&label=Mac&style=for-the-badge&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
+[![Windows Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/build?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
+[![Linux Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/build?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
+[![OSX Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/build?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
 
 </div>
 
