@@ -13,15 +13,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
           node-version: 12
+          
       - run: npm install -g vue-cli
+
       - name: Run headless test
-          uses: GabrielBB/xvfb-action@v1
-          with:
-            run: bash ./tests/init.sh
-          env:
-            CI: true
-            TEST_SUITE: ${{ matrix.test-suite }}
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: bash ./tests/init.sh
+        env:
+          CI: true
+          TEST_SUITE: ${{ matrix.test-suite }}
