@@ -9,9 +9,9 @@
 
 <div align="center">
 
-[![Windows Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/build?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
-[![Linux Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/build?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
-[![OSX Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/build?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
+[![Windows Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/os-windows?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
+[![Linux Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/os-linux?label=LINUX&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
+[![OSX Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/os-mac?label=MACOS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
 
 </div>
 

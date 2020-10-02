@@ -1,4 +1,4 @@
-name: Build electron-nuxt app
+name: Build electron-nuxt app (macos)
 
 on: [push]
 
@@ -8,8 +8,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
-        test-suite: ['typescript', 'css_frameworks', 'loaders', 'eslint']
+        os: macos-latest
+        test-suite: 'default'
 
     steps:
       - uses: actions/checkout@v2
