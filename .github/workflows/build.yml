@@ -1,0 +1,24 @@
+name: Build electron-nuxt app
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        test-suite: ['default', 'typescript', 'css_frameworks', 'loaders', 'eslint']
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm install -g vue-cli
+      - run: bash ./tests/init.sh
+        env:
+          CI: true
+          TEST_SUITE: ${{ matrix.test-suite }}
