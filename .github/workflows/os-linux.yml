@@ -8,8 +8,8 @@ jobs:
 
     strategy:
       matrix:
-        os: ubuntu-latest
-        test-suite: 'default'
+        os: [ubuntu-latest]
+        test-suite: ['default']
 
     steps:
       - uses: actions/checkout@v2

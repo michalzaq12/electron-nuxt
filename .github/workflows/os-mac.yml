@@ -8,8 +8,8 @@ jobs:
 
     strategy:
       matrix:
-        os: macos-latest
-        test-suite: 'default'
+        os: [macos-latest]
+        test-suite: ['default']
 
     steps:
       - uses: actions/checkout@v2

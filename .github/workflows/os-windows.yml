@@ -8,8 +8,8 @@ jobs:
 
     strategy:
       matrix:
-        os: windows-latest
-        test-suite: 'default'
+        os: [windows-latest]
+        test-suite: ['default']
 
     steps:
       - uses: actions/checkout@v2
