@@ -84,5 +84,11 @@ yarn run dev
 
 ## Made with electron-nuxt
 
-* [**NKNxVault**](https://vault.nknx.org): A NKN desktop wallet for all platforms
-* [**Reflex**](https://reflexapp.nickwittwer.com): A responsive web browser for Mac
+* [**NKNxVault**](https://vault.nknx.org): NKN desktop wallet (https://github.com/nknx-org/nknx-vault)
+* [**Reflex**](https://reflexapp.nickwittwer.com): Responsive web browser for developers (https://github.com/nwittwer/reflex)
+* **BinaryBotPlayground**: An Electron app for loading and running Binary bots (https://github.com/gabriellanzer/BinaryBotPlayground)
+* **system-companion**: Multi platform app for getting system information (https://github.com/romslf/system-companion)
+* **NSMultiTools**: Graphical interface to make life easier for Nintendo Switch hackers (https://github.com/MeatReed/NSMultiTools)
+* **blue-burlap**: CI/CD For Salesforce Deployments (https://github.com/fuzzybaird/blue-burlap)
+* [**cuesync**](https://cuesync.pro/): Synchronize cues between Algoriddim Djay, Serato DJ Lite/Pro and Virtual DJ (https://github.com/schneefux/cuesync)
+* **VKGram**: Messenger for VK that allows you to send custom stickers (https://github.com/PurpleHorrorRus/VKGram)
