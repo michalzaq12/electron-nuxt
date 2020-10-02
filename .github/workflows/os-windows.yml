@@ -1,4 +1,4 @@
-name: Build electron-nuxt app (windows)
+name: os-windows
 
 on: [push]
 

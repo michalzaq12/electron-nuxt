@@ -1,4 +1,4 @@
-name: Build electron-nuxt app (macos)
+name: os-mac
 
 on: [push]
 
