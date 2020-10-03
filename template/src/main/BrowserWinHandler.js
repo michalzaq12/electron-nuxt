@@ -37,7 +37,8 @@ export default class BrowserWinHandler {
           ...this.options.webPreferences,
           webSecurity: isProduction, // disable on dev to allow loading local resources
           nodeIntegration: true, // allow loading modules via the require () function
-          devTools: !process.env.SPECTRON // disable on e2e test environment
+          devTools: process.env.NODE_ENV !== 'test', // disable on test environment
+          enableRemoteModule: process.env.NODE_ENV === 'test' //enable on test environment
         }
       }
     )
