@@ -4,9 +4,9 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 export default class BrowserWinHandler {
   /**
-     * @param [options] {object} - browser window options
-     * @param [allowRecreate] {boolean}
-     */
+   * @param [options] {object} - browser window options
+   * @param [allowRecreate] {boolean}
+   */
   constructor (options, allowRecreate = true) {
     this._eventEmitter = new EventEmitter()
     this.allowRecreate = allowRecreate
@@ -53,25 +53,27 @@ export default class BrowserWinHandler {
   }
 
   /**
-     * @callback onReadyCallback
-     * @param {BrowserWindow}
-     */
+   * @callback onReadyCallback
+   * @param {BrowserWindow}
+   */
 
   /**
-     *
-     * @param callback {onReadyCallback}
-     */
+   *
+   * @param callback {onReadyCallback}
+   */
   onCreated (callback) {
+    if (this.browserWindow !== null) return callback(this.browserWindow);
     this._eventEmitter.once('created', () => {
       callback(this.browserWindow)
     })
   }
 
   /**
-     *
-     * @returns {Promise<BrowserWindow>}
-     */
+   *
+   * @returns {Promise<BrowserWindow>}
+   */
   created () {
+    if (this.browserWindow !== null) return Promise.resolve(this.browserWindow);
     return new Promise(resolve => {
       this._eventEmitter.once('created', () => {
         resolve(this.browserWindow)

@@ -1,6 +1,7 @@
+/* eslint-disable */
 import { Menu, MenuItem, app } from 'electron'
 import electronDebug from 'electron-debug'
-import vueDevtools from 'vue-devtools'
+import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import fs from 'fs'
 import path from 'path'
 import { ELECTRON_RELAUNCH_CODE } from '../../.electron-nuxt/config'
@@ -25,7 +26,16 @@ if (process.platform === 'win32') {
 }
 
 app.on('ready', () => {
-  vueDevtools.install()
+  installExtension(VUEJS_DEVTOOLS)
+    .then(name => {
+      console.log(`Added Extension:  ${name}`)
+      setTimeout(() => {
+        mainWinHandler.onCreated(browserWindow => {
+          browserWindow.webContents.openDevTools()
+        })
+      }, 1500)
+    })
+    .catch(err => console.log('An error occurred: ', err))
   const menu = Menu.getApplicationMenu()
   const refreshButton = new MenuItem({
     label: 'Relaunch electron',
@@ -38,9 +48,6 @@ app.on('ready', () => {
   Menu.setApplicationMenu(menu)
 })
 
-mainWinHandler.onCreated(browserWindow => {
-  browserWindow.webContents.openDevTools()
-})
 
 // Require `main` process to boot app
 require('./index')
