@@ -9,9 +9,9 @@
 
 <div align="center">
 
-[![Windows Build status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=windows&label=Windows&style=for-the-badge&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
-[![Linux Build status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=linux&label=Linux&style=for-the-badge&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
-[![OSX Build status](http://badges.herokuapp.com/travis/michalzaq12/electron-nuxt?env=BADGE=osx&label=Mac&style=for-the-badge&branch=master)](https://travis-ci.org/michalzaq12/electron-nuxt)
+[![Windows Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/os-windows?label=WINDOWS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
+[![Linux Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/os-linux?label=LINUX&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
+[![OSX Build status](https://img.shields.io/github/workflow/status/michalzaq12/electron-nuxt/os-mac?label=MACOS&style=for-the-badge)](https://github.com/michalzaq12/electron-nuxt/actions)
 
 </div>
 
@@ -32,7 +32,7 @@ The boilerplate for making electron applications built with vue / nuxt.
 
 **Currently runs with:**
 
-- Electron **v9**
+- Electron **v8**
 - Electron Builder **v22**
 - Vue **v2**
 - Nuxt **v2**
@@ -92,4 +92,3 @@ yarn run dev
 * **blue-burlap**: CI/CD For Salesforce Deployments (https://github.com/fuzzybaird/blue-burlap)
 * [**cuesync**](https://cuesync.pro/): Synchronize cues between Algoriddim Djay, Serato DJ Lite/Pro and Virtual DJ (https://github.com/schneefux/cuesync)
 * **VKGram**: Messenger for VK that allows you to send custom stickers (https://github.com/PurpleHorrorRus/VKGram)
-
