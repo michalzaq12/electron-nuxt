@@ -32,7 +32,7 @@
     "sass-loader": "10.0.2",
     "stylus": "0.54.8",
     "stylus-loader": "4.1.0",
-    "spectron": "10.0.1",
+    "spectron": "13.0.0",
     "typescript": "3.7.5",
     "@types/webdriverio": "4.13.3",
     "vue-devtools": "5.1.4",
