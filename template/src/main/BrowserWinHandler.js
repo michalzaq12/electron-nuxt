@@ -1,6 +1,8 @@
 import { EventEmitter } from 'events'
+import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import { BrowserWindow, app } from 'electron'
 const isProduction = process.env.NODE_ENV === 'production'
+const isDev = process.env.NODE_ENV === 'development'
 
 export default class BrowserWinHandler {
   /**
@@ -19,7 +21,10 @@ export default class BrowserWinHandler {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     // Some APIs can only be used after this event occurs.
-    app.on('ready', () => {
+    app.on('ready', async () => {
+      if (isDev) {
+        try { await installExtension(VUEJS_DEVTOOLS) } catch(e) {}
+      }
       this._create()
     })
 
@@ -37,8 +42,7 @@ export default class BrowserWinHandler {
           ...this.options.webPreferences,
           webSecurity: isProduction, // disable on dev to allow loading local resources
           nodeIntegration: true, // allow loading modules via the require () function
-          devTools: process.env.NODE_ENV !== 'test', // disable on test environment
-          enableRemoteModule: process.env.NODE_ENV === 'test' //enable on test environment
+          contextIsolation: !isDev, // https://github.com/electron/electron/issues/18037#issuecomment-806320028
         }
       }
     )
@@ -65,6 +69,7 @@ export default class BrowserWinHandler {
   onCreated (callback) {
     if (this.browserWindow !== null) return callback(this.browserWindow);
     this._eventEmitter.once('created', () => {
+      if (isDev) this.browserWindow.webContents.openDevTools()
       callback(this.browserWindow)
     })
   }
@@ -77,6 +82,7 @@ export default class BrowserWinHandler {
     if (this.browserWindow !== null) return Promise.resolve(this.browserWindow);
     return new Promise(resolve => {
       this._eventEmitter.once('created', () => {
+        if (isDev) this.browserWindow.webContents.openDevTools()
         resolve(this.browserWindow)
       })
     })
