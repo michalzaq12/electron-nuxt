@@ -32,7 +32,7 @@ The boilerplate for making electron applications built with vue / nuxt.
 
 **Currently runs with:**
 
-- Electron **v8**
+- Electron **v12**
 - Electron Builder **v22**
 - Vue **v2**
 - Nuxt **v2**
@@ -81,6 +81,21 @@ yarn run dev
 
 **Take a look at the [documentation](https://michalzaq12.github.io/electron-nuxt/). Here you will find useful information about configuration, project structure, and building your app**
 
+## Sponsors
+
+*Electron-nuxt is an MIT licensed open source project and completely free to use. However, 
+if you run a business and are using Electron-nuxt in a revenue-generating product, 
+it makes business sense to sponsor project development.*
+
+### Platinum Sponsors
+
+<div align="center">
+<br>
+<a href="https://remsupp.com"><img width="200" src="./docs/.vuepress/images/remsupp.svg" alt="RemSupp"></a>
+<br>
+<br>
+</div>
+
 
 ## Made with electron-nuxt
 
@@ -92,3 +107,7 @@ yarn run dev
 * **blue-burlap**: CI/CD For Salesforce Deployments (https://github.com/fuzzybaird/blue-burlap)
 * [**cuesync**](https://cuesync.pro/): Synchronize cues between Algoriddim Djay, Serato DJ Lite/Pro and Virtual DJ (https://github.com/schneefux/cuesync)
 * **VKGram**: Messenger for VK that allows you to send custom stickers (https://github.com/PurpleHorrorRus/VKGram)
+* **twitch-vip-controller**: An app to help Twitch streamers automate VIP redemption and removal (https://github.com/kisuka/twitch-vip-controller)
+* [**Keyanu**](https://cloud.kopanko.com/index.php/s/t7karHgpWLqdinA): Keyboard shortcut manager (https://github.com/pcktm/Keyanu)
+* [**JCloisterZone**](https://jcloisterzone.com/en/): PC implementation of Carcassonne board game (https://github.com/farin/JCloisterZone-Client)
+* **StreamOverlay**: An overlay for streamers with single display (https://github.com/PurpleHorrorRus/StreamOverlay)
