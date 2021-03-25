@@ -13,6 +13,9 @@ const userNuxtConfig = require('../../src/renderer/nuxt.config')
 const baseConfig = {
   srcDir: RENDERER_PROCESS_DIR,
   rootDir: RENDERER_PROCESS_DIR,
+  render: {
+    resourceHints: false // Disable scripts preloading because they have invalid paths (not absolute)
+  },
   router: {
     mode: 'hash'
   },
