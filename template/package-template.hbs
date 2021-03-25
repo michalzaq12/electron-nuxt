@@ -81,10 +81,6 @@
     {{dependency 'stylus'}}
     {{dependency 'stylus-loader'}}
     {{/if_eq}}
-    {{#if e2e}}
-    {{dependency 'spectron'}}
-    {{dependency '@types/webdriverio'}}
-    {{/if}}
     {{dependency 'electron-devtools-installer'}}
     {{#if_eq cssFramework 'vuetify'}}
     {{dependency 'roboto-fontface'}}
