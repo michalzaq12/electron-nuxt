@@ -46,3 +46,17 @@ footer: MIT Licensed | Copyright © Michał Zarach
 
 
 
+## Sponsors
+
+*Electron-nuxt is an MIT licensed open source project and completely free to use. However, 
+if you run a business and are using Electron-nuxt in a revenue-generating product, 
+it makes business sense to sponsor project development.*
+
+### Platinum Sponsors
+
+<div align="center">
+<br>
+<a href="https://remsupp.com"><img width="200" src="https://github.com/michalzaq12/electron-nuxt/blob/master/docs/.vuepress/images/remsupp.svg" alt="RemSupp"></a>
+<br>
+<br>
+</div>
