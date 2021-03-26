@@ -1,15 +1,10 @@
 /* eslint-disable */
-import { Menu, MenuItem, app } from 'electron'
-import electronDebug from 'electron-debug'
 import fs from 'fs'
 import path from 'path'
+import { Menu, MenuItem, app } from 'electron'
 import { ELECTRON_RELAUNCH_CODE } from '../../../.electron-nuxt/config'
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
-electronDebug({
-  showDevTools: false,
-  devToolsMode: 'right'
-})
 
 // work around https://github.com/MarshallOfSound/electron-devtools-installer/issues/122
 // which seems to be a result of https://github.com/electron/electron/issues/19468
