@@ -3,7 +3,7 @@ import { Menu, MenuItem, app } from 'electron'
 import electronDebug from 'electron-debug'
 import fs from 'fs'
 import path from 'path'
-import { ELECTRON_RELAUNCH_CODE } from '../../.electron-nuxt/config'
+import { ELECTRON_RELAUNCH_CODE } from '../../../.electron-nuxt/config'
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
 electronDebug({
@@ -38,4 +38,4 @@ app.on('ready', () => {
 
 
 // Require `main` process to boot app
-require('./index')
+require('../index')
