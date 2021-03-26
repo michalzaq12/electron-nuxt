@@ -4,9 +4,6 @@ module.exports = {
     browser: true,
     node: true
   },
-  globals: {
-    __resources: true
-  },
   parserOptions: {
     sourceType: 'module',
     {{#unless typescript}}parser: 'babel-eslint'{{/unless}}

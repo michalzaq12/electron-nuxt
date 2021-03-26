@@ -1,7 +1,6 @@
 <template>
   <div>
     <span id="external-resource">\{{ externalContent }}</span>
-    <img id="absolute-path-with-resources-const" :src="`file:///${__resources}/electron-nuxt.png`">
   </div>
 </template>
 
@@ -15,7 +14,7 @@ export default {
     }
   },
   mounted () {
-    this.externalContent = fs.readFileSync(path.join(__resources, 'external-file.txt'))
+    this.externalContent = fs.readFileSync(path.join(process.resourcesPath, 'external-file.txt'))
   }
 }
 </script>
