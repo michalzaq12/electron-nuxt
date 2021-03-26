@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@xpda-dev/core": "^0.1.5",
+    "@xpda-dev/core": "^0.1.6",
     "@xpda-dev/electron-launcher": "^0.3.0",
     "@xpda-dev/electron-builder": "^0.2.1",
     "@xpda-dev/webpack-step": "^0.1.2",

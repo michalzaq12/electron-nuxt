@@ -13,7 +13,11 @@ const NuxtApp = require('./renderer/NuxtApp')
 
 const isDev = process.env.NODE_ENV === 'development'
 
+const electronLogger = new Logger('Electron', 'teal')
+electronLogger.ignore(text => text.includes('nhdogjmejiglipccpnnnanhbledajbpd')) // Clear vue devtools errors
+
 const launcher = new ElectronLauncher({
+  logger: electronLogger,
   electronPath: electron,
   entryFile: path.join(DIST_DIR, 'main/index.js')
 })
