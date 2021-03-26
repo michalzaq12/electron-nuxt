@@ -7,6 +7,7 @@
 
 module.exports = {
   ssr: false,
+  target: 'static',
   head: {
     title: '{{name}}',
     meta: [{ charset: "utf-8" }]
