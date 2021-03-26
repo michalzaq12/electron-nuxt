@@ -18,5 +18,14 @@ app.on('ready', () => {
 })
 
 
+const handleProcessExit = () => {
+  app.exit(0)
+  process.exit(0)
+}
+
+process.on('SIGINT', handleProcessExit);
+process.on('SIGQUIT', handleProcessExit);
+process.on('SIGTERM', handleProcessExit);
+
 // Require `main` process to boot app
 require('../index')
