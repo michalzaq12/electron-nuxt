@@ -4,7 +4,6 @@ import electronDebug from 'electron-debug'
 import fs from 'fs'
 import path from 'path'
 import { ELECTRON_RELAUNCH_CODE } from '../../.electron-nuxt/config'
-import mainWinHandler from './mainWindow'
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
 electronDebug({

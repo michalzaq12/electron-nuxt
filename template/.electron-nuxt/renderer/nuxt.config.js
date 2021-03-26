@@ -44,11 +44,6 @@ const baseExtend = (config, { isClient }) => {
     __filename: !isProduction
   }
 
-  if (!isDev) {
-    // absolute path to files on production (default value: '/_nuxt/')
-    config.output.publicPath = '_nuxt/'
-  }
-
   config.plugins.push(
     new webpack.DefinePlugin({
       'global': 'window',

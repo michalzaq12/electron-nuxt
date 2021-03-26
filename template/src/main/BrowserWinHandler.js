@@ -1,6 +1,8 @@
+/* eslint-disable */
 import { EventEmitter } from 'events'
-import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import { BrowserWindow, app } from 'electron'
+import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
+const DEV_SERVER_URL = process.env.DEV_SERVER_URL
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -23,7 +25,7 @@ export default class BrowserWinHandler {
     // Some APIs can only be used after this event occurs.
     app.on('ready', async () => {
       if (isDev) {
-        try { await installExtension(VUEJS_DEVTOOLS) } catch(e) {}
+        try {await installExtension(VUEJS_DEVTOOLS)} catch(e) {}
       }
       this._create()
     })
@@ -42,7 +44,7 @@ export default class BrowserWinHandler {
           ...this.options.webPreferences,
           webSecurity: isProduction, // disable on dev to allow loading local resources
           nodeIntegration: true, // allow loading modules via the require () function
-          contextIsolation: !isDev, // https://github.com/electron/electron/issues/18037#issuecomment-806320028
+          contextIsolation: false, // https://github.com/electron/electron/issues/18037#issuecomment-806320028
         }
       }
     )
@@ -69,9 +71,16 @@ export default class BrowserWinHandler {
   onCreated (callback) {
     if (this.browserWindow !== null) return callback(this.browserWindow);
     this._eventEmitter.once('created', () => {
-      if (isDev) this.browserWindow.webContents.openDevTools()
       callback(this.browserWindow)
+      if (isDev) this.browserWindow.webContents.openDevTools()
     })
+  }
+
+  async loadPage(pagePath) {
+    if (!this.browserWindow) return Promise.reject(new Error('The page could not be loaded before win \'created\' event'))
+    const serverUrl = isDev ? DEV_SERVER_URL : 'app://./index.html'
+    const fullPath = serverUrl + '#' + pagePath;
+    await this.browserWindow.loadURL(fullPath)
   }
 
   /**
@@ -82,7 +91,6 @@ export default class BrowserWinHandler {
     if (this.browserWindow !== null) return Promise.resolve(this.browserWindow);
     return new Promise(resolve => {
       this._eventEmitter.once('created', () => {
-        if (isDev) this.browserWindow.webContents.openDevTools()
         resolve(this.browserWindow)
       })
     })
