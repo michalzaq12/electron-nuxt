@@ -19,10 +19,7 @@ const baseConfig = {
   dev: isDev,
   generate: {
     dir: path.join(DIST_DIR, 'renderer')
-  },
-  plugins: [
-    { ssr: true, src: path.join(__dirname, 'resources-plugin.js') }
-  ]
+  }
 };
 
 const baseExtend = (config, { isClient }) => {
@@ -47,7 +44,7 @@ const baseExtend = (config, { isClient }) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       'global': 'window',
-      INCLUDE_RESOURCES_PATH: isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
+      'process.resourcesPath': isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
     })
   )
 

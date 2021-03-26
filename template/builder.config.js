@@ -59,10 +59,12 @@ module.exports = {
     {
       from: 'dist/renderer',
       to: 'dist/renderer/'
-    },
+    }
+  ],
+  extraResources: [
     {
-      from: 'src/resources/',
-      to: 'dist/resources/'
+      from: 'src/extraResources/',
+      to: ''
     }
   ],
   ...windowsOS,
