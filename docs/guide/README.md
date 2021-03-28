@@ -26,16 +26,15 @@ Entry point: `main/index.js`
 
 ## Resolving paths in HTML
 
-If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide **absolute** path with **protocol** (required on Linux and Mac to proper work in development environment).
+If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide full path with **protocol**.
 
 **Examples:**
 - `<img src="~/assets/image.png" />`
-- `<img src="file:///home/User/image.png" />`
-- ```<script :src="`file:///${__resources}/ex_script.js`" /> ```
+- `<img src="https://example.com/image.png" />`
 
 ## Static resources
 
-Electron-nuxt provides a global variable named `__resources` that will yield a proper path to the `src/resources` in renderer and main process. In this directory you can store all necessary resources with reliable path to them, but **you must treat all assets in this directory as read only.** (If you need also write access use [`app.getPath('appData')`](https://electronjs.org/docs/api/app#appgetpathname) instead of `__resources`).
+Electron-nuxt (1.7.0) improves a global variable named [`process.resourcesPath`](https://www.electronjs.org/docs/api/process#processresourcespath-readonly) that will yield a proper path to the `src/extraResources` in renderer and main process. In this directory you can store all necessary resources with reliable path to them, but **you must treat all assets in this directory as read only.** (If you need also write access, use [`app.getPath('appData')`](https://electronjs.org/docs/api/app#appgetpathname) instead).
 
 **Use case:**
 * [Tray icon](https://electronjs.org/docs/api/tray)
