@@ -21,7 +21,7 @@
     "eslint": "5.16.0",
     "eslint-friendly-formatter": "4.0.1",
     "eslint-loader": "4.0.2",
-    "@nuxtjs/eslint-config-typescript": "1.0.2",
+    "@nuxtjs/eslint-config-typescript": "6.0.0",
     "@nuxtjs/eslint-config": "1.1.2",
     "less": "3.12.2",
     "less-loader": "7.0.1",
