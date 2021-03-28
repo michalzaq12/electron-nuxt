@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { EventEmitter } from 'events'
 import { BrowserWindow, app } from 'electron'
-import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 const DEV_SERVER_URL = process.env.DEV_SERVER_URL
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
@@ -23,10 +22,7 @@ export default class BrowserWinHandler {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     // Some APIs can only be used after this event occurs.
-    app.on('ready', async () => {
-      if (isDev) {
-        try {await installExtension(VUEJS_DEVTOOLS)} catch(e) {}
-      }
+    app.on('ready', () => {
       this._create()
     })
 
@@ -72,7 +68,7 @@ export default class BrowserWinHandler {
     if (this.browserWindow !== null) return callback(this.browserWindow);
     this._eventEmitter.once('created', () => {
       callback(this.browserWindow)
-      if (isDev) this.browserWindow.webContents.openDevTools()
+      if (isDev && BrowserWindow.getAllWindows().length === 1) this.browserWindow.webContents.openDevTools()
     })
   }
 
@@ -88,11 +84,8 @@ export default class BrowserWinHandler {
    * @returns {Promise<BrowserWindow>}
    */
   created () {
-    if (this.browserWindow !== null) return Promise.resolve(this.browserWindow);
     return new Promise(resolve => {
-      this._eventEmitter.once('created', () => {
-        resolve(this.browserWindow)
-      })
+      this.onCreated(() => resolve(this.browserWindow))
     })
   }
 }
