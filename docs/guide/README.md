@@ -26,16 +26,15 @@ Entry point: `main/index.js`
 
 ## Resolving paths in HTML
 
-If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide **absolute** path with **protocol** (required on Linux and Mac to proper work in development environment).
+If you would like to set the src of an `<img>` to the path of an image, you must use `~/assets` Webpack alias or provide full path with **protocol**.
 
 **Examples:**
 - `<img src="~/assets/image.png" />`
-- `<img src="file:///home/User/image.png" />`
-- ```<script :src="`file:///${__resources}/ex_script.js`" /> ```
+- `<img src="https://example.com/image.png" />`
 
 ## Static resources
 
-Electron-nuxt provides a global variable named `__resources` that will yield a proper path to the `src/resources` in renderer and main process. In this directory you can store all necessary resources with reliable path to them, but **you must treat all assets in this directory as read only.** (If you need also write access use [`app.getPath('appData')`](https://electronjs.org/docs/api/app#appgetpathname) instead of `__resources`).
+Electron-nuxt (1.7.0) improves a global variable named [`process.resourcesPath`](https://www.electronjs.org/docs/api/process#processresourcespath-readonly) that will yield a proper path to the `src/extraResources` in renderer and main process. In this directory you can store all necessary resources with reliable path to them, but **you must treat all assets in this directory as read only.** (If you need also write access, use [`app.getPath('appData')`](https://electronjs.org/docs/api/app#appgetpathname) instead).
 
 **Use case:**
 * [Tray icon](https://electronjs.org/docs/api/tray)
@@ -133,43 +132,3 @@ Global variables `__dirname` and `__filename` are no longer reliable on producti
 ## Testing
 
 Electron-nuxt supports both unit testing and end-to-end testing for the renderer process. During vue-cli scaffolding you will have the option to include testing support.
-
-
-### end-to-end
-
-Electron-nuxt makes use of Spectron for end-to-end testing.
-Spectron is the official electron testing framework that uses both ChromeDriver and WebDriverIO v4 for manipulating DOM elements. 
-Electron-nuxt provides also some helper methods.
-
-**Available properties**
-
-The most important: 
-- `client`: WebdriverIO's `browser` object ([WebDriver v4 doc](http://v4.webdriver.io/api.html))
-- `electron`: alias for `require('electron')` from within your app
-- `browserWindow`: access to the current `BrowserWindow`
-- `nuxt`
-    - `.ready() : Promise<void>`: resolve promise when nuxt app is ready
-    - `.navigate(path: string) : Promise<void>`: navigate to page. Throw error when page (for provided path) doesn't exist. 
-
-See also: [Spectron properties](https://github.com/electron-userland/spectron#properties)
-
-
-**Sample test case:**  
-
-```js
-test('click on element on home site', async t => {
-    const ELEMENT_SELECTOR = '#login-button'
-    let app = t.context.app
-     try {
-      await app.client.nuxt.ready()
-      await app.client.nuxt.navigate('/') //optional
-      await app.client.waitForExist(ELEMENT_SELECTOR)
-      await app.client.click(ELEMENT_SELECTOR)
-      t.pass() //or other assertion
-    } catch (e) {
-      t.fail(e.message)
-    }
-})
-```
-
-See also: [electron-nuxt test specs](https://github.com/michalzaq12/electron-nuxt/tree/master/template/test/e2e/specs)

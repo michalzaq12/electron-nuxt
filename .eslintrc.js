@@ -21,6 +21,9 @@ module.exports = {
     "curly": ["error", "multi-line"],
     "import/no-extraneous-dependencies": "off",
     "require-await": 0,
+    
+    // /src/renderer/plugins/vuetify.js imports fonts for offline use. eslint detects these as "unused-expressions".
+    "no-unused-expressions": "off",
 
     "global-require": 0,
     'import/no-unresolved': 0,

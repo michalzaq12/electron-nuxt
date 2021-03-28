@@ -42,10 +42,9 @@ const macOS = {
 }
 
 module.exports = {
-  asar: false,
-  productName: 'My browser',
-  appId: 'org.michalzarach.my-browser',
-  artifactName: 'my-browser-${version}.${ext}',
+  productName: '{{ name }}',
+  appId: '{{ appid }}',
+  artifactName: 'setup-${version}.${ext}',
   directories: {
     output: 'build'
   },
@@ -59,10 +58,12 @@ module.exports = {
     {
       from: 'dist/renderer',
       to: 'dist/renderer/'
-    },
+    }
+  ],
+  extraResources: [
     {
-      from: 'src/resources/',
-      to: 'dist/resources/'
+      from: 'src/extraResources/',
+      to: ''
     }
   ],
   ...windowsOS,

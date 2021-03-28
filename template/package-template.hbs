@@ -1,6 +1,6 @@
 {
   "name": "{{ name }}",
-  "version": "{{ appver }}",
+  "version": "0.0.1",
   "description": "{{ description }}",
   "main": "./dist/main/index.js",
   "scripts": {
@@ -52,7 +52,6 @@
     {{dependency 'cross-env'}}
     {{dependency 'electron'}}
     {{dependency 'electron-builder'}}
-    {{dependency 'electron-debug'}}
     {{#if_eq cssFramework 'element'}}
     {{dependency 'element-ui'}}
     {{/if_eq}}
@@ -71,7 +70,6 @@
     {{dependency 'native-ext-loader'}}
     {{dependency 'nuxt'}}
     {{#if typescript}}
-    {{dependency 'typescript'}}
     {{dependency '@nuxt/typescript-build'}}
     {{/if}}
     {{#if_eq cssPreprocessor 'sass'}}
@@ -82,11 +80,7 @@
     {{dependency 'stylus'}}
     {{dependency 'stylus-loader'}}
     {{/if_eq}}
-    {{#if e2e}}
-    {{dependency 'spectron'}}
-    {{dependency '@types/webdriverio'}}
-    {{/if}}
-    {{dependency 'vue-devtools'}}
+    {{dependency 'electron-devtools-installer'}}
     {{#if_eq cssFramework 'vuetify'}}
     {{dependency 'roboto-fontface'}}
     {{dependency 'vuetify'}}

@@ -33,21 +33,14 @@ module.exports = {
       type: 'string',
       required: true,
       message: 'Application Name',
-      default: 'your-app'
+      default: 'Electron app'
     },
     appid: {
       when: 'isNotTest',
       type: 'string',
       required: true,
       message: 'Application Id',
-      default: 'com.example.yourapp'
-    },
-    appver: {
-      when: 'isNotTest',
-      type: 'string',
-      required: true,
-      message: 'Application Version',
-      default: '0.0.1'
+      default: 'com.example.app'
     },
     description: {
       when: 'isNotTest',

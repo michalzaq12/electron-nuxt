@@ -19,10 +19,7 @@ const baseConfig = {
   dev: isDev,
   generate: {
     dir: path.join(DIST_DIR, 'renderer')
-  },
-  plugins: [
-    { ssr: true, src: path.join(__dirname, 'resources-plugin.js') }
-  ]
+  }
 };
 
 const baseExtend = (config, { isClient }) => {
@@ -44,14 +41,10 @@ const baseExtend = (config, { isClient }) => {
     __filename: !isProduction
   }
 
-  if (!isDev) {
-    // absolute path to files on production (default value: '/_nuxt/')
-    config.output.publicPath = '_nuxt/'
-  }
-
   config.plugins.push(
     new webpack.DefinePlugin({
-      INCLUDE_RESOURCES_PATH: isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
+      'global': 'window',
+      'process.resourcesPath': isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
     })
   )
 

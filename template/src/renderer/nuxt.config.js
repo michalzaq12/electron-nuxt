@@ -6,7 +6,8 @@
 
 
 module.exports = {
-  mode: 'spa', // or 'universal'
+  ssr: false,
+  target: 'static',
   head: {
     title: '{{name}}',
     meta: [{ charset: "utf-8" }]

@@ -5,9 +5,6 @@ export default {
   files: [
     'test/e2e/specs/**/*'
   ],
-  helpers: [
-    'test/e2e/helpers.js'
-  ],
   sources: [
     'src/**/*'
   ],
