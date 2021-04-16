@@ -5,10 +5,12 @@ const winHandler = new BrowserWinHandler({
   width: 1000
 })
 
-winHandler.onCreated(_browserWindow => {
-  winHandler.loadPage('/')
-  // Or load custom url
-  // _browserWindow.loadURL('https://google.com')
+winHandler.on('created', () => {
+  winHandler.onCreated(_browserWindow => {
+    winHandler.loadPage('/')
+    // Or load custom url
+    // _browserWindow.loadURL('https://google.com')
+  })
 })
 
 export default winHandler

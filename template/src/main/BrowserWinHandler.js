@@ -5,7 +5,7 @@ const DEV_SERVER_URL = process.env.DEV_SERVER_URL
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 
-export default class BrowserWinHandler {
+export default class BrowserWinHandler extends EventEmitter {
   /**
    * @param [options] {object} - browser window options
    * @param [allowRecreate] {boolean}
@@ -48,7 +48,7 @@ export default class BrowserWinHandler {
       // Dereference the window object
       this.browserWindow = null
     })
-    this._eventEmitter.emit('created')
+    this.emit('created')
   }
 
   _recreate () {
@@ -65,11 +65,8 @@ export default class BrowserWinHandler {
    * @param callback {onReadyCallback}
    */
   onCreated (callback) {
-    if (this.browserWindow !== null) return callback(this.browserWindow);
-    this._eventEmitter.once('created', () => {
-      callback(this.browserWindow)
-      if (isDev && BrowserWindow.getAllWindows().length === 1) this.browserWindow.webContents.openDevTools()
-    })
+    if (this.browserWindow !== null) callback(this.browserWindow);
+    if (isDev && BrowserWindow.getAllWindows().length === 1) this.browserWindow.webContents.openDevTools()
   }
 
   async loadPage(pagePath) {
