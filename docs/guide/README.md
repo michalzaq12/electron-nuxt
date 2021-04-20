@@ -89,7 +89,7 @@ See also: https://github.com/michalzaq12/action-electron-nuxt#configuration
              node-version: 12
 
          - name: Build/release Electron app
-           uses: michalzaq12/action-electron-nuxt@v1
+           uses: michalzaq12/action-electron-nuxt@v1.4.4
            with:
              # GitHub token, automatically provided to the action
              # (No need to define this secret in the repo settings)
