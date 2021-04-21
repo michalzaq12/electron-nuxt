@@ -56,7 +56,7 @@ it makes business sense to sponsor project development.*
 
 <div align="center">
 <br>
-<a href="https://remsupp.com"><img width="200" src="https://github.com/michalzaq12/electron-nuxt/blob/master/docs/.vuepress/images/remsupp.svg" alt="RemSupp"></a>
+<a href="https://remsupp.com"><img width="200" src="https://raw.githubusercontent.com/michalzaq12/electron-nuxt/master/docs/.vuepress/images/remsupp.svg" alt="RemSupp"></a>
 <br>
 <br>
 </div>
