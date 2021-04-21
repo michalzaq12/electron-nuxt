@@ -19,7 +19,7 @@
   "homepage": "https://github.com/michalzaq12/electron-nuxt#readme",
   "scripts": {
     "lint": "eslint --no-eslintrc --config .eslintrc.js --ext .js,.ts,.vue ./template ./template/.electron-nuxt",
-	  "docs:dev": "vuepress dev docs",
+    "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
