@@ -4,6 +4,11 @@ import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import { ELECTRON_RELAUNCH_CODE } from '../../../.electron-nuxt/config'
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
+app.once('browser-window-created', (_, browserWindow) => {
+  browserWindow.webContents.once('did-frame-finish-load', () => {
+    browserWindow.webContents.openDevTools();
+  })
+})
 
 app.on('ready', () => {
   const menu = Menu.getApplicationMenu()
