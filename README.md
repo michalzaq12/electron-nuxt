@@ -99,7 +99,7 @@ it makes business sense to sponsor project development.*
 
 ## Made with electron-nuxt
 
-* [**NKNxVault**](https://vault.nknx.org): NKN desktop wallet (https://github.com/nknx-org/nknx-vault)
+* **NKNxVault**: NKN desktop wallet (https://github.com/rule110-io/vault)
 * [**Reflex**](https://reflexapp.nickwittwer.com): Responsive web browser for developers (https://github.com/nwittwer/reflex)
 * **BinaryBotPlayground**: An Electron app for loading and running Binary bots (https://github.com/gabriellanzer/BinaryBotPlayground)
 * **system-companion**: Multi platform app for getting system information (https://github.com/romslf/system-companion)
