@@ -1,0 +1,118 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: vuepress
+    versions:
+    - "> 1.4.0"
+  - dependency-name: typescript
+    versions:
+    - 4.1.3
+    - 4.1.4
+    - 4.1.5
+    - 4.2.2
+  - dependency-name: "@vuepress/plugin-google-analytics"
+    versions:
+    - 1.8.0
+    - 1.8.1
+  - dependency-name: "@nuxtjs/eslint-config-typescript"
+    versions:
+    - 5.0.0
+- package-ecosystem: npm
+  directory: "/template"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  assignees:
+  - michalzaq12
+  ignore:
+  - dependency-name: ava
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: electron
+    versions:
+    - ">= 6.a, < 7"
+  - dependency-name: eslint
+    versions:
+    - ">= 6.a, < 7"
+  - dependency-name: require-extension-hooks-vue
+    versions:
+    - "> 0.4.1"
+  - dependency-name: spectron
+    versions:
+    - ">= 8.a, < 9"
+  - dependency-name: "@types/webdriverio"
+    versions:
+    - "> 4.13.3"
+  - dependency-name: webpack
+    versions:
+    - 5.28.0
+    - 5.30.0
+    - 5.31.0
+    - 5.31.2
+    - 5.32.0
+    - 5.33.2
+    - 5.34.0
+    - 5.35.0
+    - 5.35.1
+  - dependency-name: vuetify
+    versions:
+    - 2.4.10
+    - 2.4.3
+    - 2.4.4
+    - 2.4.5
+    - 2.4.6
+    - 2.4.7
+  - dependency-name: electron
+    versions:
+    - 11.2.1
+    - 11.2.2
+    - 11.2.3
+    - 11.3.0
+    - 12.0.0
+    - 12.0.1
+    - 12.0.2
+  - dependency-name: spectron
+    versions:
+    - 13.0.0
+    - 14.0.0
+  - dependency-name: nuxt
+    versions:
+    - 2.14.12
+    - 2.15.0
+    - 2.15.1
+    - 2.15.2
+    - 2.15.3
+  - dependency-name: "@nuxt/typescript-build"
+    versions:
+    - 2.0.0
+    - 2.0.5
+    - 2.0.6
+    - 2.1.0
+  - dependency-name: typescript
+    versions:
+    - 4.1.3
+    - 4.1.4
+    - 4.1.5
+    - 4.2.2
+    - 4.2.3
+  - dependency-name: eslint
+    versions:
+    - 7.18.0
+    - 7.19.0
+    - 7.20.0
+  - dependency-name: less-loader
+    versions:
+    - 7.3.0
+  - dependency-name: "@fortawesome/fontawesome-free"
+    versions:
+    - 5.15.2
+  - dependency-name: "@nuxtjs/eslint-config-typescript"
+    versions:
+    - 5.0.0
