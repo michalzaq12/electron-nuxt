@@ -30,7 +30,7 @@
     "sass-loader": "10.0.2",
     "stylus": "0.54.8",
     "stylus-loader": "3.0.2",
-    "electron-devtools-installer": "3.1.1",
+    "electron-devtools-installer": "3.2.0",
     "vuetify": "2.4.11",
     "@vue/test-utils": "1.2.0",
     "require-extension-hooks": "0.3.3",
