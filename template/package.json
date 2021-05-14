@@ -25,7 +25,7 @@
     "@nuxtjs/eslint-config": "6.0.0",
     "less": "4.1.1",
     "less-loader": "7.0.1",
-    "nuxt": "2.15.4",
+    "nuxt": "2.15.6",
     "node-sass": "4.14.1",
     "sass-loader": "10.0.2",
     "stylus": "0.54.8",
