@@ -9,10 +9,10 @@
 yarn install
 
 # serve app with hot reload
-yarn run dev
+yarn dev
 
 # build electron application for production
-yarn run build
+yarn build
 
 {{#or unit e2e}}
 # yarn tests

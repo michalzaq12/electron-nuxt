@@ -76,7 +76,7 @@ vue init michalzaq12/electron-nuxt <project-name>
 # Install dependencies and run your app
 cd <project-name>
 yarn install
-yarn run dev 
+yarn dev 
 ```
 
 **Take a look at the [documentation](https://michalzaq12.github.io/electron-nuxt/). Here you will find useful information about configuration, project structure, and building your app**
