@@ -15,4 +15,4 @@ yarn install
 yarn run build
 
 # Run e2e testing
-yarn run test
+# yarn run test
