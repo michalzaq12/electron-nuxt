@@ -143,32 +143,15 @@ module.exports = {
       required: true,
       message: 'Use linting with ESLint?',
       default: false
-    },
-    unit: {
-      when: 'isNotTest',
-      type: 'confirm',
-      message: 'Set up unit testing with vue-test-utils + AVA?',
-      required: true,
-      default: false
-    },
-    e2e: {
-      when: 'isNotTest',
-      type: 'confirm',
-      message: 'Set up end-to-end testing with Spectron + AVA?',
-      required: true,
-      default: false
     }
   },
   helpers: hbsHelpers,
   filters: {
     ...CITestsFilters,
-    'test/e2e/**/*': 'e2e',
-    'test/unit/**/*': 'unit',
     'src/renderer/tsconfig.json': 'typescript',
     'src/renderer/index.d.ts': 'typescript',
     'src/main/tsconfig.json': 'typescript',
     '.eslintrc.js': 'eslint',
-    'ava.config.js': 'unit || e2e',
     'src/renderer/plugins/buefy.js': 'cssFramework === \'buefy\' || cssFramework === \'all\'',
     'src/renderer/plugins/element.js': 'cssFramework === \'element\' || cssFramework === \'all\'',
     'src/renderer/plugins/vuetify.js': 'cssFramework === \'vuetify\' || cssFramework === \'all\'',
