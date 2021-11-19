@@ -58,8 +58,6 @@ The boilerplate for making electron applications built with vue / nuxt.
 * Pre-installed icon set for offline usage: \**
     * [Font Awesome 5](https://fontawesome.com/icons)
     * [Material Design Icon](https://materialdesignicons.com)
-* Unit Testing \([vue-test-utils](https://vue-test-utils.vuejs.org) + [AVA](https://github.com/avajs/ava)\) \**
-* End-to-end Testing \([Spectron](https://github.com/electron/spectron) + [AVA](https://github.com/avajs/ava)\) \** 
 
 \* available in renderer and main process <br>
 \** customizable during vue-cli scaffolding

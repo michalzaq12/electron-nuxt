@@ -8,8 +8,6 @@
     "@mdi/font": "^6.4.95",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/vuetify": "^1.12.1",
-    "ava": "2.4.0",
-    "browser-env": "^3.3.0",
     "buefy": "0.9.7",
     "cross-env": "^7.0.3",
     "deepmerge": "^4.2.2",
@@ -32,11 +30,6 @@
     "stylus-loader": "3.0.2",
     "electron-devtools-installer": "^3.2.0",
     "vuetify": "^2.5.10",
-    "@vue/test-utils": "^1.2.2",
-    "require-extension-hooks": "^0.3.3",
-    "require-extension-hooks-babel": "^1.0.0",
-    "require-extension-hooks-vue": "^3.0.0",
-    "babel-plugin-webpack-alias-7": "^0.1.1",
     "webpack": "^4.46.0",
     "webpack-node-externals": "^3.0.0"
   }
