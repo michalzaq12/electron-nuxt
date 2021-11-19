@@ -45,6 +45,7 @@
     {{dependency 'element-ui'}}
     {{/if_eq}}
     {{#if eslint}}
+    {{dependency 'eslint-plugin-jest'}}
     {{dependency 'eslint'}}
     {{#unless typescript}}{{dependency 'babel-eslint'}}{{/unless}}
     {{dependency 'eslint-friendly-formatter'}}
