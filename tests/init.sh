@@ -13,6 +13,3 @@ yarn install
 
 # Run webpack and build application
 yarn run build
-
-# Run e2e testing
-yarn run test
