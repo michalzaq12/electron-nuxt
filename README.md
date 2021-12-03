@@ -58,8 +58,6 @@ The boilerplate for making electron applications built with vue / nuxt.
 * Pre-installed icon set for offline usage: \**
     * [Font Awesome 5](https://fontawesome.com/icons)
     * [Material Design Icon](https://materialdesignicons.com)
-* Unit Testing \([vue-test-utils](https://vue-test-utils.vuejs.org) + [AVA](https://github.com/avajs/ava)\) \**
-* End-to-end Testing \([Spectron](https://github.com/electron/spectron) + [AVA](https://github.com/avajs/ava)\) \** 
 
 \* available in renderer and main process <br>
 \** customizable during vue-cli scaffolding
@@ -87,8 +85,6 @@ yarn dev
 if you run a business and are using Electron-nuxt in a revenue-generating product, 
 it makes business sense to sponsor project development.*
 
-### Platinum Sponsors
-
 <div align="center">
 <br>
 <a href="https://remsupp.com"><img width="200" src="./docs/.vuepress/images/remsupp.svg" alt="RemSupp"></a>
@@ -111,3 +107,7 @@ it makes business sense to sponsor project development.*
 * [**Keyanu**](https://cloud.kopanko.com/index.php/s/t7karHgpWLqdinA): Keyboard shortcut manager (https://github.com/pcktm/Keyanu)
 * [**JCloisterZone**](https://jcloisterzone.com/en/): PC implementation of Carcassonne board game (https://github.com/farin/JCloisterZone-Client)
 * **StreamOverlay**: An overlay for streamers with single display (https://github.com/PurpleHorrorRus/StreamOverlay)
+* **screencast**: Global Press Overlay of Keyboard and Mouse like VSCode Screencast (https://github.com/seonglae/screencast)
+* [**Enab App**](https://enab.app/): Enab System - Manage Businesses & Connecting Them! (https://github.com/itourstory/EnabApp)
+* **EARND**: Personal Finance Manager (https://github.com/sanespi09/EARND-NUXT)
+* [**Intuiter**](https://intuiter.seongland.com/): Global productivity app for anyone who use Windows (https://github.com/seonglae/intuiter)

@@ -11,8 +11,6 @@ const defaultValues = {
   typescript: false,
   eslint: false,
   eslintConfig: NONE,
-  unit: true,
-  e2e: true,
   author: 'CI user'
 }
 
