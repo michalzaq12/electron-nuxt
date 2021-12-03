@@ -7,7 +7,9 @@
 
 <script>
 import appHeader from '@/components/header'
+
 export default {
+  name: 'DefaultLayout',
   components: { appHeader }
 }
 </script>

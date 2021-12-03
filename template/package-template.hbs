@@ -49,7 +49,11 @@
     {{#unless typescript}}{{dependency '@babel/eslint-parser'}}{{/unless}}
     {{dependency 'eslint-friendly-formatter'}}
     {{dependency 'eslint-loader'}}
-    {{#unless typescript}}{{dependency '@nuxtjs/eslint-config'}}{{/unless}}
+    {{#unless typescript}}
+    {{dependency '@nuxtjs/eslint-config'}}
+    {{dependency 'eslint-plugin-nuxt'}}
+    {{dependency 'eslint-plugin-vue'}}
+    {{/unless}}
     {{#if typescript}}{{dependency '@nuxtjs/eslint-config-typescript'}}{{/if}}
     {{/if}}
     {{#if_eq cssPreprocessor 'less'}}
