@@ -16,7 +16,7 @@ yarn build
 
 {{#if eslint}}
 # lint all JS/Vue component files in `src/`
-yarn run lint
+yarn lint
 
 {{/if}}
 ```

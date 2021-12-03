@@ -8,10 +8,10 @@
     "build": "node .electron-nuxt/build.js",
     {{#if eslint}}
     "lint": "node_modules/.bin/eslint --ext .js,.vue{{#if typescript}},.ts{{/if}} -f ./node_modules/eslint-friendly-formatter ./src",
-    "lint:fix": "yarn run lint --fix",
+    "lint:fix": "yarn lint --fix",
     {{/if}}
     "preinstall": "node .electron-nuxt/check-engines.js",
-    "postinstall": "electron-builder install-app-deps {{#if eslint}}& yarn run lint:fix{{/if}}"
+    "postinstall": "electron-builder install-app-deps {{#if eslint}}& yarn lint:fix{{/if}}"
   },
   "keywords": [],
   "author": "{{#if isCIServer}}michalzaq12 <“michal.m.zarach@gmail.com”>{{else}}{{ author }}{{/if}}",

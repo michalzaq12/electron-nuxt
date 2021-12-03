@@ -12,4 +12,4 @@ npm set audit false
 yarn install
 
 # Run webpack and build application
-yarn run build
+yarn build

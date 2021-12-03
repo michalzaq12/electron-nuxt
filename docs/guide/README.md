@@ -50,7 +50,7 @@ Electron-nuxt support [electron-builder](https://github.com/electron-userland/el
 Any electron-builder command line argument can by passed through`build` script.
 
 - `package.json`: `"build": "node ./electron-nuxt/build.js --win"`
-- cli: `yarn run build -- --win` 
+- cli: `yarn build --win` 
 
 
 
