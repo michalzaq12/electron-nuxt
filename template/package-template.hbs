@@ -46,7 +46,7 @@
     {{/if_eq}}
     {{#if eslint}}
     {{dependency 'eslint'}}
-    {{#unless typescript}}{{dependency 'babel-eslint'}}{{/unless}}
+    {{#unless typescript}}{{dependency '@babel/eslint-parser'}}{{/unless}}
     {{dependency 'eslint-friendly-formatter'}}
     {{dependency 'eslint-loader'}}
     {{#unless typescript}}{{dependency '@nuxtjs/eslint-config'}}{{/unless}}
