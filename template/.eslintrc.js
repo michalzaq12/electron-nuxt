@@ -6,7 +6,8 @@ module.exports = {
   },
   parserOptions: {
     sourceType: 'module',
-    {{#unless typescript}}parser: 'babel-eslint'{{/unless}}
+    {{#unlsess typescript}}requireConfigFiles: false,
+    {{#unless typescript}}parser: '@babel/eslint-parser'{{/unless}}
   },
   extends: [
     {{#unless typescript}}'@nuxtjs'{{/unless}}
