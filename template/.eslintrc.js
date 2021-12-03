@@ -6,7 +6,7 @@ module.exports = {
   },
   parserOptions: {
     sourceType: 'module',
-    {{#unlsess typescript}}requireConfigFiles: false,{{/unless}}
+    {{#unless typescript}}requireConfigFiles: false,{{/unless}}
     {{#unless typescript}}parser: '@babel/eslint-parser'{{/unless}}
   },
   extends: [
