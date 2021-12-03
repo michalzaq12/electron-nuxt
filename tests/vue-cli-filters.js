@@ -9,5 +9,4 @@ module.exports = {
   'test/e2e/specs/loader.spec.js': TEST_SUITE === 'loaders',
 
   'src/renderer/pages/test/typescript/**/*': TEST_SUITE === 'typescript',
-  //TODO add e2e typescript test
 }

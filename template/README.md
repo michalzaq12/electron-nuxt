@@ -14,12 +14,6 @@ yarn dev
 # build electron application for production
 yarn build
 
-{{#or unit e2e}}
-# yarn tests
-yarn test
-
-{{/or}}
-
 {{#if eslint}}
 # lint all JS/Vue component files in `src/`
 yarn run lint
