@@ -8,17 +8,17 @@
     "build": "node .electron-nuxt/build.js",
     {{#if eslint}}
     "lint": "node_modules/.bin/eslint --ext .js,.vue{{#if typescript}},.ts{{/if}} -f ./node_modules/eslint-friendly-formatter ./src",
-    "lint:fix": "yarn run lint --fix",
+    "lint:fix": "yarn lint --fix",
     {{/if}}
     "preinstall": "node .electron-nuxt/check-engines.js",
-    "postinstall": "electron-builder install-app-deps {{#if eslint}}& yarn run lint:fix{{/if}}"
+    "postinstall": "electron-builder install-app-deps {{#if eslint}}& yarn lint:fix{{/if}}"
   },
   "keywords": [],
   "author": "{{#if isCIServer}}michalzaq12 <“michal.m.zarach@gmail.com”>{{else}}{{ author }}{{/if}}",
   "license": "MIT",
   "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
   "engines" : {
-    "node" : ">=12.13.0"
+    "node" : ">=14.14.9"
   },
   "resolutions": {
     "@types/node": "14.14.9"
@@ -46,10 +46,14 @@
     {{/if_eq}}
     {{#if eslint}}
     {{dependency 'eslint'}}
-    {{#unless typescript}}{{dependency 'babel-eslint'}}{{/unless}}
+    {{#unless typescript}}{{dependency '@babel/eslint-parser'}}{{/unless}}
     {{dependency 'eslint-friendly-formatter'}}
     {{dependency 'eslint-loader'}}
-    {{#unless typescript}}{{dependency '@nuxtjs/eslint-config'}}{{/unless}}
+    {{#unless typescript}}
+    {{dependency '@nuxtjs/eslint-config'}}
+    {{dependency 'eslint-plugin-nuxt'}}
+    {{dependency 'eslint-plugin-vue'}}
+    {{/unless}}
     {{#if typescript}}{{dependency '@nuxtjs/eslint-config-typescript'}}{{/if}}
     {{/if}}
     {{#if_eq cssPreprocessor 'less'}}

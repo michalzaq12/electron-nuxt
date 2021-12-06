@@ -36,11 +36,11 @@ We currently recommend using *Yarn* instead of *npm* because *npm* fails to gene
 
 |Command|Description|
 |--|---|
-|`yarn run dev`| :rocket: Run app in development |
-|`yarn run build`| :computer: Build your app for production |
-|`yarn run test:unit`| Run unit tests |
-|`yarn run test:e2e`| Run end-to-end tests |
-|`yarn run tests`| Run all tests | 
+|`yarn dev`| :rocket: Run app in development |
+|`yarn build`| :computer: Build your app for production |
+|`yarn test:unit`| Run unit tests |
+|`yarn test:e2e`| Run end-to-end tests |
+|`yarn tests`| Run all tests | 
 
 
 

@@ -5,7 +5,7 @@
  */
 
 
-module.exports = {
+export default {
   ssr: false,
   target: 'static',
   head: {

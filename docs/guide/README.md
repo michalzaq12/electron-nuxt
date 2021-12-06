@@ -50,7 +50,7 @@ Electron-nuxt support [electron-builder](https://github.com/electron-userland/el
 Any electron-builder command line argument can by passed through`build` script.
 
 - `package.json`: `"build": "node ./electron-nuxt/build.js --win"`
-- cli: `yarn run build -- --win` 
+- cli: `yarn build --win` 
 
 
 
@@ -86,7 +86,7 @@ See also: https://github.com/michalzaq12/action-electron-nuxt#configuration
          - name: Install Node.js, NPM and Yarn
            uses: actions/setup-node@v1
            with:
-             node-version: 12
+             node-version: 14
 
          - name: Build/release Electron app
            uses: michalzaq12/action-electron-nuxt@v1.4.4

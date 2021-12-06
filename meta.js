@@ -179,6 +179,6 @@ module.exports = {
     log(chalk.yellow('To get started:'))
     if (!data.inPlace) log(`\t cd ${data.destDirName}`)
     log('\t yarn install')
-    log('\t yarn run dev')
+    log('\t yarn dev')
   }
 }
