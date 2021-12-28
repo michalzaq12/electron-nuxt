@@ -111,3 +111,4 @@ it makes business sense to sponsor project development.*
 * [**Enab App**](https://enab.app/): Enab System - Manage Businesses & Connecting Them! (https://github.com/itourstory/EnabApp)
 * **EARND**: Personal Finance Manager (https://github.com/sanespi09/EARND-NUXT)
 * [**Intuiter**](https://intuiter.seongland.com/): Global productivity app for anyone who use Windows (https://github.com/seonglae/intuiter)
+* **Infrontier**: Simple AWS S3 client (https://github.com/DiscreteTom/Infrontier)
