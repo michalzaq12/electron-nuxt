@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { remote } from 'electron'
 import SystemInformation from '@/components/SystemInformation.vue'
 
 export default {
@@ -38,7 +37,7 @@ export default {
   },
   methods: {
     openURL (url) {
-      remote.shell.openExternal(url)
+      window.open(url)
     }
   }
 }
