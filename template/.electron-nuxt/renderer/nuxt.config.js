@@ -38,7 +38,6 @@ const baseExtend = (config, { isClient }) => {
 
   config.plugins.push(
     new webpack.DefinePlugin({
-      'global': 'window',
       'process.resourcesPath': isClient ? resourcesPath.nuxtClient() : resourcesPath.nuxtServer()
     })
   )
