@@ -30,13 +30,6 @@
 
 The boilerplate for making electron applications built with vue / nuxt.
 
-**Currently runs with:**
-
-- Electron **v12**
-- Electron Builder **v22**
-- Vue **v2**
-- Nuxt **v2**
-
 **Things you'll find in this boilerplate:**
 
 * Auto-updating for easy development \*
