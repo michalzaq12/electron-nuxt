@@ -7,8 +7,12 @@ const windowsOS = {
     target: 'nsis'
   },
 
+  // https://www.electron.build/configuration/nsis.html
   nsis: {
-    differentialPackage: true
+    differentialPackage: true,
+    allowToChangeInstallationDirectory: false,  // set to true if you want allow user choose folder
+    oneClick: true,                             // set to false, if you set allowToChangeInstallationDirectory to true
+    deleteAppDataOnUninstall: false
   }
 }
 
