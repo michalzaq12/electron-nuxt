@@ -32,7 +32,7 @@
     "stylus-loader": "6.2.0",
     "electron-devtools-installer": "^3.2.0",
     "vuetify": "^2.5.10",
-    "webpack": "^4.46.0",
+    "webpack": "^5.72.1",
     "webpack-node-externals": "^3.0.0"
   }
 }
