@@ -27,7 +27,7 @@
     "less-loader": "7.0.1",
     "nuxt": "^2.15.8",
     "node-sass": "^6.0.1",
-    "sass-loader": "12.4.0",
+    "sass-loader": "13.0.0",
     "stylus": "0.56.0",
     "stylus-loader": "6.2.0",
     "electron-devtools-installer": "^3.2.0",
