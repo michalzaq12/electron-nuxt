@@ -20,7 +20,7 @@
     "eslint-plugin-vue": "^8.1.1",
     "roboto-fontface": "^0.10.0",
     "element-ui": "2.15.6",
-    "eslint": "8.1.0",
+    "eslint": "8.34.0",
     "eslint-friendly-formatter": "4.0.1",
     "eslint-loader": "4.0.2",
     "less": "4.1.1",
