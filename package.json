@@ -29,6 +29,6 @@
     "typescript": "4.2.4",
     "vuepress": "1.4.0",
     "@vuepress/plugin-back-to-top": "^1.9.5",
-    "@vuepress/plugin-google-analytics": "^1.9.5"
+    "@vuepress/plugin-google-analytics": "^1.9.9"
   }
 }
